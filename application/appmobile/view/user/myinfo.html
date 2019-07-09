@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0,user-scalable=no,minimal-ui">
+    <link href="__CSS_MOBILE__/reset.css" rel="stylesheet" type="text/css">
+    <link href="__CSS_MOBILE__/common.css" rel="stylesheet" type="text/css">
+    <link href="__CSS_MOBILE__/iconfont.css" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" href="__CSS_MOBILE__/swiper-4.2.0.min.css">
+    <link href="__CSS_MOBILE__/myinfo.css" rel="stylesheet" type="text/css">
+	<title>理茶宝首页</title>
+	<style>
+
+	</style>
+</head>
+<body>
+	<div class="content"><!--content-->		
+		<div class="my-top"><!--my-top-->
+			<div class="my-mybg"><img src="__IMAGES_MOBILE__/mybg.jpg"></div>
+			<div class="title"><!--title-->
+				<span>我的</span>
+				<!--<i class="iconfont icon-xiaoxi"></i>-->
+			</div><!--title-->
+			<div class="my-info clear"><!--my-info-->
+				<div class="my-img"><img src="__IMAGES_MOBILE__/mrimg.png"></div>
+				<div class="vip">
+					<h4>{$data.user_name}</h4>
+					<p class="vip-dj">会员等级<span>{$data.user_rank}</span></p>
+					<a href="{:url('personcenter')}"><i class="iconfont icon-jiantouyou"></i></a>
+				</div>
+			</div><!--my-info-->
+		</div><!--my-top-->
+
+		<div class="buy-jf"><!--buy-jf-->
+			
+			<div class="cha-jf">
+				<img src="__IMAGES_MOBILE__/chajf.png">
+				<span class="lcb">理茶宝</span>
+				<span class="buyjf">购买得积分</span>
+			</div>
+			<div class="tea">
+			
+				<div>
+					<p>茶点</p>
+					<p>{$data.tea_ponit_inte}</p>
+				</div>
+				<div>
+					<p>茶券</p>
+					<p>{$data.tea_inte}</p>
+				</div>
+
+			</div>
+			<div class="tea tea-r">
+
+				<div>
+					<p>释放积分</p>
+					<p id="shifangjifen">{$data.sfjf}</p>
+				</div>
+				<div>
+					<p>剩余返还积分</p>
+					<p id="shengyujifen">{$data.surplus_inte}</p>
+				</div>
+				
+			</div>
+
+		</div><!--buy-jf-->
+
+		<div class="wallet"><!--wallet-->
+			<img src="__IMAGES_MOBILE__/jf.png"  class="wallet-img">
+			<div class="wallet-yue">
+				<img src="__IMAGES_MOBILE__/sytj.png" width="25">
+				<span>钱包余额</span>
+			</div>
+			<div class="zr">
+				<span class="zrnum"><span class="dol">￥</span>{$data.wallet}</span>
+				<a href="{:url('money/recharge')}"><input class="btn-zr" type="button" value="转入"></a>
+			</div>
+		</div><!--wallet-->
+
+			
+		<div class="myway">
+			<ul>
+
+				<li><a href="{:url('alluser/paycode')}"><i class="iconfont icon-fukuanma"></i>我的付款码<i class="iconfont icon-jiantouyou icon-jiantouyouh"></i></a></li>
+				<li><a href="{:url('alluser/friends')}"><i class="iconfont icon-fukuanma"></i>我的推荐码<i class="iconfont icon-jiantouyou icon-jiantouyouh"></i></a></li>
+				<li><a href="{:url('money/mymoney')}"><i class="iconfont icon-wodeqianbao1"></i>我的钱包<i class="iconfont icon-jiantouyou icon-jiantouyouh"></i></a></li>
+				<li><a href="{:url('myrichardtea')}"><img class="wdlcb"  src="__IMAGES_MOBILE__/chajf.png">我的理茶宝<i class="iconfont icon-jiantouyou icon-jiantouyouh"></i></a></li>
+				<li><a href="javascript:;"><i class="iconfont icon-shenghuojiaofei"></i>生活缴费</a></li>
+				<li><a href="javascript:;"><i class="iconfont icon-shoujichongzhi"></i>手机充值</a></li>	
+				<li><a href="javascript:;"><i class="iconfont icon-weibiaoti2"></i>电信固话</a></li>
+			</ul>
+		</div>
+		
+
+		<footer class="footer">
+			<nav class="nav">
+				<ul>
+					<li><a  href="{:url('index')}">
+						<p><i class="iconfont icon-weibiaoti1"></i></p>
+						<p>首页</p>
+					</a></li>
+					<li><a href="{:url('richardtea')}">
+						<p><i class="iconfont icon-licaishouyi"></i></p>
+						<p>理茶宝</p>
+					</a></li>
+					<li><a href="{:url('record')}">
+						<p><i class="iconfont icon-htmal5icon34"></i></p>
+						<p>记录</p>
+					</a></li>
+					<li><a class="active" href="{:url('myinfo')}">
+						<p><i class="iconfont icon-yonghu"></i></p>
+						<p>我的</p>
+					</a></li>
+				</ul>
+			</nav>
+		</footer>
+
+	</div><!--content-->
+
+	<script src="__JS_MOBILE__/jquery-1.8.3.min.js"></script>
+	<script src="__JS_MOBILE__/swiper-4.2.0.min.js"></script>
+	<script>        
+		  var mySwiper = new Swiper ('.swiper-container', {
+		    autoplay: true,
+		    touchRatio : 0.5,
+		    pagination: {
+      			el: '.swiper-pagination',
+      			type: 'bullets',
+    		},
+    		autoplay: {
+    			disableOnInteraction: false,
+  			},
+		  })  
+		  if($("#shengyujifen").text()==""){
+		  	$("#shengyujifen").text("0.00")
+		  } 
+		  if($("#shifangjifen").text()==""){
+		  	$("#shifangjifen").text("0.00")
+		  } 
+  </script>
+</body>
+</html>

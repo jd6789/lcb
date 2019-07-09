@@ -1,0 +1,291 @@
+body{
+	background:#eff2f3;
+}
+.icon-xiaoxi{
+	float:right;
+	margin-right:15px;
+	font-size:.20rem;
+}
+.my-top{
+	position:relative;
+	top:0;
+	left:0;
+}
+.my-mybg img{
+	width:100%;
+}
+.title{
+	height:.40rem;
+	line-height:.40rem;
+	text-align:center;
+	color:#fff;
+	font-size:.18rem;
+	position:absolute;
+	top:0px;
+	width:100%;
+	left:0px;
+}
+.my-info{
+	position:absolute;
+	bottom:0px;
+	width:100%;
+	box-sizing:border-box;
+}
+.my-img{
+	float:left;
+	width:20%;
+	margin-left:.15rem;
+	position:absolute;
+	bottom:.30rem;
+}
+.my-img img{
+	width:70px;
+	display:block;
+}
+/*width73.6666%;*/
+.vip{
+	float:right;
+	width:calc(100% - 100px);
+	position:relative;
+	bottom:.25rem;
+}
+.vip h4{
+	font-size:.16rem;
+	color:#fff;
+	margin-bottom:.08rem;
+	margin-top:.20rem;
+}
+.vip .vip-dj{
+	width:.85rem;
+	height:.2rem;
+	background:rgba(255,255,255,.6);
+	font-size:.13rem;
+	color:#fff;
+	text-align:center;
+	line-height:.2rem;
+	border-radius:.06rem;
+}
+.icon-jiantouyou{
+
+	right:.15rem;
+	position:absolute;
+	bottom:.10rem;
+	font-size:.20rem;
+	color:#fff;
+
+}
+.buy-jf{
+	background:#fff;
+	margin:.10rem 0;
+}
+.cha-jf{
+	height:.4rem;
+	line-height:.4rem;
+	padding:0 .15rem;
+	box-sizing:border-box;
+	border-bottom:solid 1px #f6f5f5;
+}
+.lcb{
+	font-size:.13rem;
+	font-weight:600;
+	margin-left:5px;
+}
+.buyjf{
+	float:right;
+	font-size:.12rem;
+	color:#727272;
+}
+.cha-jf img{
+	width:.20rem;
+	vertical-align:middle;
+}
+
+.tea{
+	display:flex;
+	height:.60rem;
+	background:#fff;
+	text-align:center;
+	font-size:.14rem;
+	color:#5b5b5b;
+	box-sizing:border-box;
+	border-bottom:solid 1px #d3d1d1;
+}
+.tea div{
+	flex-grow:1;
+	box-sizing:border-box;
+	width:50%;
+}
+.tea div p:nth-child(1){
+	margin-top:5px;
+	margin-bottom:5px;
+}
+.tea-r{
+	border-bottom:none;
+}
+.tea-r div:nth-child(1){
+	border-right:solid 1px #d3d1d1;
+}
+.wallet{
+	position:relative;
+}
+.wallet-img{
+	width:100%;
+}
+.wallet-yue{
+	position:absolute;
+	top:.10rem;
+	left:.15rem;
+}
+.wallet-yue span{
+	font-size:.13rem;
+	color:#333;
+	position:relative;
+	top:5px;
+	left:5px;
+	font-weight:600;
+}
+.zr{
+	height:.35rem;
+	position:absolute;
+	top:50%;
+	margin-top:-.13rem;
+	width:100%;
+	text-align:center;
+
+}
+.zrnum{
+	font-size:.30rem;
+	color:#fff;
+	font-weight:600;
+}
+.dol{
+	font-size:.20rem;
+}
+.btn-zr{
+	height:.35rem;
+	width:.9rem;
+	float:right;
+	background:rgba(255,255,255,.6);
+	border:none;
+	border-radius:20px;
+	font-size:.16rem;
+	color:#fff;
+	margin-right:.15rem;
+	vertical-align:middle;
+	margin-top:6px;
+}
+.myway{
+	background:#fff;
+	margin-top:10px;
+	width:100%;
+}
+.myway li a{
+	display:block;
+	height:.45rem;
+	line-height:.45rem;
+	border-bottom:solid 1px #edf0f5;
+	width:100%;
+	font-size:.13rem;
+	color:#333333;
+}
+.wdlcb{
+	vertical-align:middle;
+	width:20px;
+	margin-left:.15rem;
+	margin-right:.07rem;
+}
+.icon-wodeqianbao1{
+	color:#2291ff!important;
+	font-size:.24rem !important;
+	margin-left:.15rem;
+	margin-right:.07rem;
+	position:relative;
+	top:2px;
+}
+.icon-fukuanma{
+	color:#2291ff!important;
+	font-size:.24rem !important;
+	margin-left:.15rem;
+	margin-right:.07rem;
+	position:relative;
+	top:2px;
+}
+.icon-shenghuojiaofei{
+	color:#b198dc!important;
+	font-size:.24rem !important;
+	margin-left:.15rem;
+	margin-right:.07rem;
+	position:relative;
+	top:2px;
+}
+.icon-shoujichongzhi{
+	color:#00aefe!important;
+	font-size:.24rem !important;
+	margin-left:.15rem;
+	margin-right:.07rem;
+	position:relative;
+	top:2px;
+}
+.icon-weibiaoti2{
+	color:#ff8538!important;
+	font-size:.24rem !important;
+	margin-left:.15rem;
+	margin-right:.07rem;
+	position:relative;
+	top:2px;
+}
+.icon-jiantouyouh{
+	position:static;
+	float:right;
+	font-size:.20rem;
+	color:#777777;
+	margin-right:.15rem;
+
+}
+.footer{
+	height:45px;
+	width:100%;
+	position:fixed;
+	bottom:0px;
+	left:0px;
+	background:#fff;
+}
+.nav ul{
+	display:flex;
+	text-align:center;
+}
+.nav li{
+	flex-grow:1;
+
+}
+.nav li a{
+	font-size:.11rem;
+	color:#666;
+
+}
+.nav li p:nth-child(2){
+	margin-top:-4px;
+}
+.active{
+	color:#00a0e9 !important;
+}
+.icon-weibiaoti1{
+	font-size:.20rem;
+}
+.icon-licaishouyi{
+	font-size:.20rem;
+}
+.icon-htmal5icon34{
+	font-size:.20rem;
+}
+.icon-yonghu{
+	font-size:.20rem;
+}
+@media screen and (max-width:320px){
+
+	.balance{
+		text-align:center;
+		padding-top:0px;
+		padding-bottom:5px;
+	}
+}

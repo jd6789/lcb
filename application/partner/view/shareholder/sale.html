@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0"/>
+    <meta name="apple-mobile-web-app-capable" content="yes"/>
+    <meta name="apple-mobile-web-app-status-bar-style" content="black"/>
+    <meta name="format-detection" content="telephone=no"/>
+    <meta name="description" content="淘米科技"/>
+    <meta name="keywords" content="淘米科技"/>
+    <title>销售速报</title>
+    <link rel="stylesheet" href="__CSS_PARTNER__/commen.css">
+    <link rel="stylesheet" href="__CSS_PARTNER__/font-awesome.min.css">
+    <script type="text/javascript" src="__JS_PARTNER__/jquery.min.js"></script>
+    <script src="__JS_PARTNER__/layer/layer.js"></script>
+    <script type="text/javascript" src="__JS_PARTNER__/auto-size.js"></script>
+    <style>
+        html, body {
+            background-color: #edf0f5;
+            font-size: 0.28rem;
+        }
+        i.up{
+            color: #f89f0f;
+        }
+        i.down{
+            color: #0fb5fa;
+        }
+        i.right{
+            color: #30c23a;
+        }
+        .head {
+            background-color: #fff;
+        }
+
+        .title {
+            height: 1rem;
+            line-height: 1rem;
+            background-color: #fff;
+            margin-top: 0.9rem;
+        }
+
+        .title > div {
+            width: 50%;
+            text-align: center;
+        }
+
+        .title > div.curr span {
+            display: inline-block;
+            height: 100%;
+            color: #ff9b12;
+            border-bottom: 2px solid #ff9b12;
+        }
+
+        .title > div span {
+            color: #000;
+        }
+
+        .info {
+            width: 90%;
+            height: 2rem;
+            background-color: #fdde72;
+            margin: 0.5rem auto;
+            border-radius: 0.2rem;
+            display: flex;
+            box-shadow: -0.05rem 0.1rem 0.2rem 0.03rem #d3d4d8;
+        }
+
+        .info div {
+            height: 100%;
+            color: #fff;
+        }
+
+        .info div:first-of-type {
+            width: 49%;
+        }
+
+        .info .line {
+            width: 0.016rem;
+            background-color: #fff;
+            height: 80%;
+            margin: auto 0;
+        }
+
+        .info .fr {
+            flex: 1;
+        }
+
+        .info div span {
+            display: block;
+            margin-top: 0.1rem;
+            text-align: center;
+            font-size: 0.35rem;
+            font-weight: 400;
+        }
+
+        .info div span:first-of-type {
+            margin-top: 0.5rem;
+        }
+
+        .order_info {
+            width: 90%;
+            margin: 0 auto;
+            background-color: #fff;
+            height: 2rem;
+            border-radius: 0.2rem;
+            box-shadow: -0.05rem 0.1rem 0.2rem 0.03rem #d3d4d8;
+        }
+
+        .order_info .fl {
+            width: 33.3%;
+        }
+
+        .order_info .fl span {
+            display: block;
+            margin-top: 0.1rem;
+            text-align: center;
+            font-size: 0.35rem;
+            color: #7d7d7d;
+        }
+
+        .order_info .fl span:first-of-type {
+            margin-top: 0.5rem;
+            color: #fdde72;
+        }
+
+        .order_table {
+            width: 90%;
+            margin: 0 auto;
+            background-color: #fff;
+            border-radius: 0.2rem;
+            margin-top: 0.5rem;
+            padding: 0.2rem;
+            box-sizing: border-box;
+        }
+        .order_table table{
+            width: 100%;
+        }
+        .order_table table th{
+            color: #fdde72;
+        }
+        .order_table table td{
+            text-align: center;
+            padding: 0.2rem;
+            color: #696969;
+        }
+        .order_table table td:nth-child(2){
+            color: #ff9b12;
+        }
+        .order_table table tbody tr{
+            border-bottom:1px solid #f5f5f5;
+        }
+    </style>
+</head>
+<body>
+<div class="head">
+    <a href="javascript:history.go(-1);" class="back">
+        <img src="__IMAGES_PARTNER__/fh_03.png" alt="">
+    </a>
+    <p style="color: #000;font-size: 0.35rem;">我的</p>
+</div>
+<div class="title">
+    <div class="fl curr">
+        <span>上月收益</span>
+    </div>
+    <div class="fl">
+        <span>本月预估</span>
+    </div>
+</div>
+<div class="info">
+    <div class="fl">
+        <span class="num">
+            ￥6000
+        </span>
+        <span>
+            销售额
+        </span>
+    </div>
+    <div class="line fl">
+
+    </div>
+    <div class="fr">
+        <span class="num">
+            6000
+        </span>
+        <span>
+            客流量
+        </span>
+    </div>
+</div>
+
+<div class="order_info">
+    <div class="fl">
+        <span>$200</span>
+        <span>客单价</span>
+    </div>
+    <div class="fl">
+        <span>85%</span>
+        <span>成交率</span>
+    </div>
+    <div class="fl">
+        <span>200</span>
+        <span>成交单数</span>
+    </div>
+</div>
+<div class="order_table">
+    <table>
+        <thead>
+            <tr>
+                <th>类型</th>
+                <th>本月</th>
+                <th>上月</th>
+                <th>浮动</th>
+            </tr>
+        </thead>
+        <tbody>
+        <tr>
+            <td>销售额</td>
+            <td>9000</td>
+            <td>4500</td>
+            <td>-50% <i class="fa fa-long-arrow-up up"></i></td>
+        </tr>
+        <tr>
+            <td>销售额</td>
+            <td>9000</td>
+            <td>4500</td>
+            <td>-50% <i class="fa fa-long-arrow-down down"></i></td>
+        </tr>
+        <tr>
+            <td>销售额</td>
+            <td>9000</td>
+            <td>4500</td>
+            <td>-50% <i class="fa fa-long-arrow-right right"></i></td>
+        </tr>
+        </tbody>
+    </table>
+
+</div>
+<script>
+    $(function () {
+        $(".title>div").click(function () {
+            $(this).addClass("curr").siblings().removeClass("curr")
+        })
+    })
+</script>
+</body>
+</html>

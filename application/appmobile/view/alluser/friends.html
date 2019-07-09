@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0,user-scalable=no,minimal-ui">
+    <link href="/mobile/css/reset.css" rel="stylesheet" type="text/css">
+    <link href="/mobile/css/common.css" rel="stylesheet" type="text/css">
+    <link href="/mobile/css/iconfont.css" rel="stylesheet" type="text/css">
+    <link href="/mobile/css/friends.css" rel="stylesheet" type="text/css">
+    <link href="/mobile/css/layer.css" rel="stylesheet" type="text/css">
+    <script type="text/javascript" src="/mobile/js/jquery-1.9.0.min.js"></script>
+    <script type="text/javascript" src="/mobile/js/jquery.qrcode.min.js"></script>
+    <title>邀请好友</title>
+    <style>
+        canvas{
+            width:100%
+        }
+        #code{
+            position:absolute;
+            top:50%;
+            left:50%;
+            margin-left:-60px;
+            margin-top:-20px
+        }
+        </style>
+</head>
+<body>
+     
+
+          <div class="friend">
+              <a class="back" href="{:url('user/myinfo')}" style="margin-top: 15px;"><i class="iconfont icon-fanhui" style="color: #fff;"></i></a>
+            <img class="friend-img" src="/mobile/images/yqhy.jpg" alt="">
+              <div id="code" style="height: 120px;width: 120px;"></div>
+              <input type="hidden" value="{$data}" id="data">
+          </div>
+      <script src="/mobile/js/layer.js"></script>
+      
+</body>
+<script>
+    $(function(){
+        var urldata = $("#data").val();
+        $('#code').qrcode(urldata);
+    })
+
+</script>
+</html>

@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link href="__ADMIN_CSS__/styles.bundle.css" rel="stylesheet">
+    <style>
+        .viewsmall.in {
+            min-height: 70%;
+            width: 60%;
+            top: 2%;
+        }
+    </style>
+</head>
+<body>
+<div class="viewsmall form_cont r10px in" style="transform: translateX(-50%);">
+    <div class="form_cap clearfix">
+        <span class="fl">修改返积分规则</span>
+        <!--<a class="close fr" href="javascript:void(0);"></a>-->
+    </div>
+    <div class="form_detail">
+        <!---->
+        <form method="post" action="{:URL('tmvip/System/save_teapoint_edit')}">
+        <div class="form_table" style="width: 325px;margin: 0 auto;">
+            <table border="0" cellpadding="0" cellspacing="0">
+                <tbody>
+                <tr>
+                    <td>茶点动态比例：</td>
+                    <td><input autofocus="true" placeholder="" type="text"
+                               class="ng-untouched ng-pristine ng-invalid" name="tea_score_rate" value="{$data.tea_score_rate}">%
+                    </td>
+                    <td colspan="2" style="text-align:left; padding:0;"></td>
+                </tr>
+                <tr>
+                    <td>茶券动态比例：</td>
+                    <td><input  placeholder="" type="text"
+                               class="ng-untouched ng-pristine ng-invalid" name="tea_inte_rate" value="{$data.tea_inte_rate}">%
+                    </td>
+                    <td colspan="2" style="text-align:left; padding:0;"></td>
+                </tr>
+                <tr>
+                    <td>茶点静态比例：</td>
+                    <td><input  placeholder="" type="text"
+                                class="ng-untouched ng-pristine ng-invalid" name="slow_tea_score_rate" value="{$data.slow_tea_score_rate}">%
+                    </td>
+                    <td colspan="2" style="text-align:left; padding:0;"></td>
+                </tr>
+                <tr>
+                    <td>茶券静态比例：</td>
+                    <td><input  placeholder="" type="text"
+                                class="ng-untouched ng-pristine ng-invalid" name="slow_tea_inte_rate" value="{$data.slow_tea_inte_rate}">%
+                    </td>
+                    <td colspan="2" style="text-align:left; padding:0;"></td>
+                </tr>
+                <tr>
+                    <td>固定返利封顶值：</td>
+                    <td><input  placeholder="" type="text"
+                                class="ng-untouched ng-pristine ng-invalid" name="hight_rate" value="{$data.hight_rate}">%
+                    </td>
+                    <td colspan="2" style="text-align:left; padding:0;"></td>
+                </tr><tr>
+                    <td>转赠注册积分最低值：</td>
+                    <td><input  placeholder="" type="text"
+                                class="ng-untouched ng-pristine ng-invalid" name="small_reg" value="{$data.small_reg}">
+                    </td>
+                    <td colspan="2" style="text-align:left; padding:0;"></td>
+                </tr>
+                <tr>
+                    <td>发展奖利率：</td>
+                    <td><input  placeholder="" type="text"
+                                class="ng-untouched ng-pristine ng-invalid" name="dev_rate" value="{$data.dev_rate}">%
+                    </td>
+                    <td colspan="2" style="text-align:left; padding:0;"></td>
+                </tr>
+                <tr>
+                    <td>升级最小值：</td>
+                    <td><input  placeholder="" type="text"
+                                class="ng-untouched ng-pristine ng-invalid" name="rank_start" value="{$data.rank_start}">万
+                    </td>
+                    <td colspan="2" style="text-align:left; padding:0;"></td>
+                </tr>
+
+                <tr>
+                    <td><input name="id" type="" value="{$data.id}"  hidden></td>
+                    <td><input type="submit" value="确定" class="btngreen baocun"></td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+        </form>
+
+    </div>
+</div>
+</body>
+</html>

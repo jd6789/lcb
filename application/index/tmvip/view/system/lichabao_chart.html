@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link href="__ADMIN_CSS__/styles.bundle.css" rel="stylesheet">
+    <link href="__ADMIN_CSS__/bootstrap.min.css" rel="stylesheet">
+    <script src="__ADMIN_JS__/jquery.min.js"></script>
+    <link rel="stylesheet" href="__ADMIN_CSS__/jquery-ui.min.css">
+    <script src="__ADMIN_JS__/bootstrap.min.js"></script>
+    <script src="__ADMIN_JS__/distpicker.data.js"></script>
+    <script src="__ADMIN_JS__/distpicker.js"></script>
+    <script src="__ADMIN_JS__/main.js"></script>
+    <script src="__ADMIN_JS__/highcharts.js"></script>
+    <style>
+        .viewsmall.in {
+            min-height: 70%;
+            width: 60%;
+            top: 2%;
+        }
+    </style>
+</head>
+<body>
+<div class="viewsmall form_cont r10px in" style="transform: translateX(-50%);">
+    <div class="search1 search">
+    起止时间： <input class="calendar ng-untouched ng-pristine ng-valid " id="saleReportBeginTime" type="text" name="time1" >&nbsp;&nbsp;至&nbsp;&nbsp;<input
+        class="calendar ng-untouched ng-pristine ng-valid "
+        id="saleReportEndTime" type="text" name="time2" >
+    <!--手机号<input type="text" name="tel" size="15" />-->
+    <!--用户名<input type="text" name="user" size="15" />-->
+</div>
+    <div id="container" style="min-width:400px;height:400px"></div>
+</div>
+</body>
+</html>
+<script src="__ADMIN_JS__/jquery-ui.min.js"></script>
+<script src="__ADMIN_JS__/datepicker-zh-CN.js"></script>
+<script>
+    $("#saleReportBeginTime").datepicker();
+    $("#saleReportEndTime").datepicker();
+    $(function () {
+        $(".search2 span").click(function () {
+            $(".search2 span input").removeAttr("name")
+            $(this).addClass("curr").siblings().removeClass("curr")
+            $(this).find("input").attr("name","type")
+        })
+
+    })
+</script>
+<script>
+    getDate2_1(1,0,0)
+    function getDate2_1(curPage, time1, time2) {
+        if (time1 == 0) {
+            var time1_1 = ""
+        } else {
+            time1_1 = time1
+        }
+        if (time2 == 0) {
+            var time2_1 = ""
+        } else {
+            time2_1 = time2
+        }
+        $.ajax({
+            url: "{:URL('tmvip/User/integral_chart')}",
+            type: "post",
+            data: {time1: time1_1, time2: time2_1},
+            success: function (data) {
+
+
+                var data = JSON.parse(data)
+                console.log(data)
+                var str = ''
+                var str1 = ''
+                names = "";
+                grades = "";
+                place = "";
+                place1 = "";
+                xx = "";
+                yy = "";
+                zz = ""
+
+
+                    // $("#tab2_1_real_money").text(data.sum.real_pay)
+                    // $("#tab2_1_cz").text(data.sum.recharge_sum)
+                    // $("#tab2_1_jz").text(data.sum.bill_number)
+                    // $("#tab2_1_xf").text(data.sum.people_num)
+                    // var x_page = curPage;
+                    // curPage = (curPage - 1) * step;-
+                    //
+                    // var count = curPage + step;
+                    // if (data.tongji.time.length > x_page * step) {
+                    //
+                    // } else {
+                    //     count = data.tongji.time.length;
+                    // }
+                    for (var i = 0; i < data.length; i++) {
+                        for(var j = 0; j < data[i].length; j++){
+                            var name = data[i][j]['time'][j];//X轴名称
+                            var grade = data[i][j]['surplus_inte'][j];//释放
+                            var cz = data[i][j]['tea_inte'][j];//茶券
+                            var cz1 = data[i][j]['tea_ponit_inte'][j];//茶点
+                            names += ",'" + name + "'";
+                            grades += "," + grade + "";
+                            place += "," + cz + "";
+                            place1 += "," + cz1 + "";
+                        }
+                    }
+                    //console.log(name);
+                    xx = names.substring(1);
+                    xx = "[" + xx + "]";
+                    yy = grades.substring(1);
+                    yy = "[" + yy + "]";
+                    zz = place.substring(1);
+                    zz = "[" + zz + "]";
+                    zz1 = place1.substring(1);
+                    zz1 = "[" + zz1 + "]";
+                    tab2_1_chart()
+                    var page_num = 0;
+                    var str_1 = ''
+                    var str1_1 = ''
+                    page_num = Math.ceil(( data.tongji.time.length / step));//总页数
+                    if (page_num == 0 || !page_num) {
+                        str_1 += '<div class="text">共<b>0</b>页<b>0</b>条记录</div>\n' +
+                            '                                <div class="linklist">\n' +
+                            '                                    <a class="prev" href="javascript:void(0)">&nbsp;</a>\n' +
+                            '                                    <a href="javascript:void(0)" class="current">1</a>\n' +
+                            '                                    <!---->\n' +
+                            '                                    <!---->\n' +
+                            '                                    <!---->\n' +
+                            '                                    <!---->\n' +
+                            '                                    <a class="next" href="javascript:void(0)">&nbsp;</a>\n' +
+                            '                                </div>'
+                        str1_1 += '<div class="text">共<b>0</b>页<b>0</b>条记录</div>\n' +
+                            '                                <div class="linklist">\n' +
+                            '                                    <a class="prev" href="javascript:void(0)">&nbsp;</a>\n' +
+                            '                                    <a href="javascript:void(0)" class="current">1</a>\n' +
+                            '                                    <!---->\n' +
+                            '                                    <!---->\n' +
+                            '                                    <!---->\n' +
+                            '                                    <!---->\n' +
+                            '                                    <a class="next" href="javascript:void(0)">&nbsp;</a>\n' +
+                            '                                </div>'
+                    } else {
+                        str_1 = " <div class=\"text\">共<b id='pageNum2_1_1'>" + page_num + "</b>页<b>" + data.tongji.time.length + "</b>条记录</div><div class=\"linklist\"><a class=\"prev\" href=\"javascript:void(0);onclick=preEvent2_1_1(" + time1 + "," + time2 + ");\" data-num='" + x_page + "' id='pre2_1_1'>&nbsp;</a>"
+                        str1_1 = " <div class=\"text\">共<b id='pageNum2_1_2'>" + page_num + "</b>页<b>" + data.tongji.time.length + "</b>条记录</div><div class=\"linklist\"><a class=\"prev\" href=\"javascript:void(0);onclick=preEvent2_1_2(" + time1 + "," + time2 + ");\" data-num='" + x_page + "' id='pre2_1_2'>&nbsp;</a>"
+                        for (var i = 0; i < page_num; i++) {
+                            str_1 += ' <a href="javascript:void(0);onclick=getData2_1_1( ' + (parseInt(i) + 1) + ',' + time1 + ',' + time2 + ');" >' + (parseInt(i) + 1) + '</a>'
+                            str1_1 += ' <a href="javascript:void(0);onclick=getData2_1_2( ' + (parseInt(i) + 1) + ',' + time1 + ',' + time2 + ');" >' + (parseInt(i) + 1) + '</a>'
+                        }
+                        str_1 += '<a class="next" href="javascript:void(0);onclick=nextEvent2_1_1(' + time1 + ',' + time2 + ');" data-num="' + x_page + '" id="next2_1_1">&nbsp;</a></div>'
+                        str1_1 += '<a class="next" href="javascript:void(0);onclick=nextEvent2_1_2(' + time1 + ',' + time2 + ');" data-num="' + x_page + '" id="next2_1_2">&nbsp;</a></div>'
+
+                    }
+
+                $("#tab2_1_1").html(str)
+                $("#tab2_1_2").html(str1)
+                $("#page2_1_1").html(str_1)
+                $("#page2_1_2").html(str1_1)
+                $("#page2_1_1 .linklist a").eq(x_page).addClass("current");
+                $("#page2_1_2 .linklist a").eq(x_page).addClass("current");
+            }
+        })
+    }
+
+    function tab2_1_chart() {
+        //定制树状图颜色
+        /*  Highcharts.setOptions({
+                  colors:['#8000ff']
+          });  */
+        //图表展示容器，与div的id保持一致
+        $('#container').highcharts({
+            chart: {
+                //指定图表的类型，默认是折线图（line）
+                type: "column",
+                //定制树状图颜色
+
+            }, title: {
+
+                //指定图表标题
+                text: '',
+            },
+
+            //动态获取数据库的名字  就是所谓的X轴
+            xAxis: {
+                categories: eval(xx),
+                crosshair: true
+            },
+            credits: {
+                enabled: false
+            },
+            //动态获取数据
+            series: [
+                {
+                    name: '释放',
+                    animation: true,
+                    data: eval(yy)
+
+                }, {
+                    name: '茶券',
+                    animation: true,
+                    data: eval(zz)
+
+                },{
+                    name: '茶点',
+                    animation: true,
+                    data: eval(zz1)
+
+                }],
+            //Y轴标题
+            yAxis: {
+                title: {text: "积分数"}
+            },
+
+        });
+    }
+</script>

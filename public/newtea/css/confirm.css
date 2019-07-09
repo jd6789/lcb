@@ -1,0 +1,121 @@
+body{
+	background:#e6e9ee;
+}
+.icon-fanhui{
+	font-size:.20rem;
+	color:#000;
+	font-weight:bold;
+}
+.back{
+	position:absolute;
+	left:.12rem;
+}
+.login{
+	font-size:.18rem;
+
+}
+.top{
+	background:#fff;
+}
+.total{
+	background:#e6e9ee url("../images/conf.png") no-repeat ;
+	height:1.65rem;
+	text-align:center;
+	background-size:100%;
+	box-sizing:border-box;
+	margin:10px 5px 0 5px;
+}
+.total-num{
+	font-size:.36rem;
+	color:#fe2b32;
+	padding-top:40px;
+}
+.sm{
+	font-size:.24rem;
+}
+.total-jf{
+	font-size:.18rem;
+	color:#3a3a3a;
+}
+.pay{
+	padding-top:20px;
+	padding-left:15px;
+	color:#333;
+	font-size:.14rem;
+}
+.payment{
+	background:#fff;
+	margin-top:10px;
+}
+.payment li{
+	height:.50rem;
+	line-height:.50rem;
+	box-sizing:border-box;
+	border-bottom:solid 1px #edf0f5;
+	font-size:.15rem;
+	color:#000;
+}
+.payment li img{
+	width:26px;
+	vertical-align:middle;
+	margin:0 20px 0 15px;
+}
+.radio{
+	float:right;
+	margin-right:16px;
+}
+.xxinfo{
+	display:none;
+	
+}
+.xxinfo1{
+	border:solid 1px #ccc;
+	margin:10px;
+	padding:10px;
+}
+.xxinfo2{
+	text-align:center;
+	background:#d9bf77;
+	margin:10px;
+	line-height:2;
+}
+.red{
+	color:#f00;
+}
+.look{
+	margin:39px 15px 0 15px;
+	display:none;
+}
+.look-btn{
+	height:.45rem;
+	width:100%;
+	border:none;
+	border-radius:50px;
+	font-size:.17rem;
+	color:#fff;
+	background:linear-gradient(to top, #ffa62f 0%, #ffe482 100%	);
+}
+.now{
+	margin:39px 15px 0 15px;
+}
+.now-btn{
+	height:.45rem;
+	width:100%;
+	border:none;
+	border-radius:50px;
+	font-size:.17rem;
+	color:#fff;
+	background:linear-gradient(to top, #ffa62f 0%, #ffe482 100%	);
+}
+
+
+
+
+@media screen and (max-width:320px){
+
+	.now{
+		padding-bottom:75px;
+	}
+		
+
+}

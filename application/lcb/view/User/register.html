@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>理茶宝注册</title>
+    <link rel="stylesheet" href="__CSS__/commen.css">
+    <style>
+        .content .bx{
+            position: relative;
+        }
+        .content .bx .c_content{
+            position: absolute;
+            width: 60%;
+            height: 80%;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%,-50%);
+            background-color: #fff;
+        }
+        .content .bx .c_content div{
+            margin:10px 0 10px 30px;
+        }
+        .content .bx .c_content div:first-of-type{
+            margin-top:35px;
+        }
+        .content .bx .c_content div i{
+            width: 180px;
+            display: inline-block;
+            font-style: normal;
+            text-align: right;
+            font-size: 14px;
+        }
+        .content .bx .c_content div input{
+            display: inline-block;
+            width: 230px;
+            height: 30px;
+            line-height: 30px;
+            outline:none;
+            border: none;
+            border: 1px solid #ccc;
+            padding-left: 10px;
+        }
+        .content .bx .c_content div.yz input{
+            width: 100px;
+        }
+        .content .bx .c_content div.yz button{
+            width: 123px;
+            display: inline-block;
+            height: 30px;
+            line-height: 30px;
+            background-color: #38b4e7;
+            color: #fff;
+            border: none;
+            outline: none;
+        }
+        .content .bx .c_content a{
+            width: 100px;
+            display: block;
+            height: 30px;
+            line-height: 30px;
+            background-color: #38b4e7;
+            color: #fff;
+            margin-left: 180px;
+            margin-top: 30px;
+            text-decoration: none;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+<div class="main">
+    <!--头部-->
+    <div class="header">
+        <!--头部内容-->
+        <div class="header-content">
+            <!--Logo-->
+            <div class="header-logo">
+                <div class="header-logo-content">
+                    <div class="flexbox">理茶宝</div>
+                    <div class="flexbox">注册入口</div>
+                </div>
+            </div>
+            <!--登录注册-->
+            <div class="header-login">
+                <div class="header-login-content">
+                    <a class="flexbox pointer" href="{:url('login')}">登录</a>
+                    <a class="flexbox pointer" href="{:url('register')}">注册</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--内容-->
+    <div class="content">
+        <div class="bx">
+            <div class="c_content">
+                <div>
+                    <i>用户名：</i><input type="text" placeholder="请输入用户名" id="username">
+                </div>
+                <div>
+                    <i>设置密码：</i><input type="password" placeholder="请输入密码" id="password1">
+                </div>
+                <div>
+                    <i>确认密码：</i><input type="password" placeholder="请输入密码" id="password2">
+                </div>
+                <div>
+                    <i>手机号：</i><input type="text" placeholder="请输入手机号" id="tel">
+                </div>
+                <div class="yz">
+                    <i>短信验证码：</i><input type="text" id="code"> <button id="sendCodeBth">点击获取验证码</button>
+                </div>
+                <div>
+                    <i>推荐人（选填）：</i><input type="text" placeholder="请输入推荐人" id="re_username">
+                </div>
+                <a href="javascript:;" id="J_Register">注册</a>
+            </div>
+
+        </div>
+
+    </div>
+    <!--尾部-->
+    <div class="footer">
+        <!--尾部内容-->
+        <div class="footer-content">
+            <ul class="footer-ul">
+                <li>
+                    <ul class="footer-ul-one">
+                        <li>
+                            <p>关于理茶宝</p>
+                            <a href="">资质荣誉</a>
+                            <a href="">运营报告</a>
+                            <a href="">加盟合作</a>
+                        </li>
+                        <li>
+                            <p>关于理茶宝</p>
+                            <a href="">资质荣誉</a>
+                            <a href="">运营报告</a>
+                            <a href="">加盟合作</a>
+                        </li>
+                        <li>
+                            <p>关于理茶宝</p>
+                            <a href="">资质荣誉</a>
+                            <a href="">运营报告</a>
+                            <a href="">加盟合作</a>
+                        </li>
+                    </ul>
+                </li>
+                <li>
+                    <ul class="footer-ul-two">
+                        <li>
+                            <p>客户热线</p>
+                        </li>
+                        <li>
+                            <h3 class="orange">027-6417-7777</h3>
+                        </li>
+                        <li>
+                            <span class="small-size">(09:00-18:00)</span>
+                        </li>
+                        <li class="fa-icon">
+                        <span>
+                            <span class="fa fa-weixin"></span>
+                        </span>
+                            <span>
+                            <span class="fa fa-weibo"></span>
+                        </span>
+                            <span>
+                            <span class="fa fa-users"></span>
+                        </span>
+                        </li>
+                    </ul>
+                </li>
+                <li>
+                    <ul class="footer-ul-three">
+                        <li>二维码</li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>
+</body>
+</html>
+<script src="__JS__/jquery.min.js"></script>
+<!--<script src="__PUBLIC_HOME__/js/jquery-1.8.1.js"></script>-->
+<script src="__JS__/layer/layer.js"> </script>
+<script type="text/javascript">
+    //判断用户名是否存在
+    $("#username").blur(function(){
+        var username = $('#username').val();
+        if(!username){
+            layer.msg("用户名不能为空!");
+            return false;
+        }
+        $.ajax({
+            type:"post",
+            url:"{:url('lcb/user/checkUser')}",
+            dataType:'json',
+            data:{
+                'username':username,
+            },
+            success:function(msg){
+                var msg=JSON.parse(msg)
+                console.log(msg.status);
+                console.log(msg);
+                if(msg.status == 0){
+                    layer.msg("用户名已存在!");
+                    return false;
+                }
+            }
+        });
+    });
+    //获取短信验证码
+    $('#sendCodeBth').click(function(){
+        var tel = $('#tel').val();
+        if(!tel){
+            layer.msg("请输入手机号!");
+            return false;
+        }
+        $.ajax({
+            type:'post',
+            url:"{:url('lcb/user/test')}",
+            data:{'tel':tel},
+            dataType:'json',
+            success:function(msg){
+                layer.msg("验证码发送成功!");
+            }
+        });
+    });
+    //判断两次密码是否一致
+    $("#password2").blur(function(){
+        var password1 = $('#password1').val();
+        var password2 = $('#password2').val();
+        if(password1 != password2){
+            layer.msg("两次密码必须一致!");
+            return false;
+        }
+    })
+    //会员注册
+    $("#J_Register").click(function(){
+        var username = $('#username').val();
+        var password1 = $('#password1').val();
+        var password2 = $('#password2').val();
+        var tel = $('#tel').val();
+        var code = $('#code').val();
+        var re_username = $('#re_username').val();
+        if(!username){
+            layer.msg("用户名不能为空!");
+            return false;
+        }
+        if(!password1){
+            layer.msg("密码不能为空!");
+            return false;
+        }
+        if(!password2){
+            layer.msg("请输入确认密码!");
+            return false;
+        }
+        if(!tel){
+            layer.msg("手机号不能为空!");
+            return false;
+        }
+        if(!code){
+            layer.msg("请输入短信验证码!");
+            return false;
+        }
+        if(password1 != password2){
+            layer.msg("两次密码必须一致!");
+            return false;
+        }
+        $.ajax({
+            type:"post",
+            url:"{:url('lcb/user/register')}",
+            dataType:'json',
+            data:{
+                'username':username,
+                'password1':password1,
+                'password2':password2,
+                'tel':tel,
+                're_username':re_username,
+                'code':code,
+            },
+            success:function(msg){
+                var msg=JSON.parse(msg)
+                console.log(msg.status);
+                if(msg.status == 1){
+                    layer.msg("注册成功");
+                    setTimeout(function(){
+                        location.href="{:url('lcb/user/login')}";
+                    },1000);
+                }else{
+                    layer.msg("内部维护中");
+                }
+            }
+        });
+    });
+</script>

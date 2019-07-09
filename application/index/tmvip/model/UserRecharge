@@ -1,0 +1,13 @@
+<?php
+/**
+ * Created by PhpStorm.
+ * User: jacky-fu
+ * Date: 2018/4/9
+ * Time: 15:38
+ */
+namespace app\appmobile\Model;
+use think\Model;
+use think\Db;
+class UserRecharge extends Model{
+
+}

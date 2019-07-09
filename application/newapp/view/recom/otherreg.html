@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0,user-scalable=no,minimal-ui">
+    <link href="__CSS_MOBILE__/reset.css" rel="stylesheet" type="text/css">
+    <link href="__CSS_MOBILE__/common.css" rel="stylesheet" type="text/css">
+    <link href="__CSS_MOBILE__/iconfont.css" rel="stylesheet" type="text/css">
+    <link href="__CSS_MOBILE__/reg.css" rel="stylesheet" type="text/css">
+    <link href="__CSS_MOBILE__/layer.css" rel="stylesheet" type="text/css">
+
+    <title>注册</title>
+    <style>
+        .btn{
+            display: block;
+            height: 0.5rem;
+            line-height: 0.5rem;
+            margin:0 auto;
+            background-color: #435aaa;
+
+            border-radius: 40px;
+            text-align: center;
+            color: #fff;
+            margin-top:0.3rem;
+        }
+        p input[type="radio"] {
+            -webkit-appearance: radio;
+            color: #8c8c8c;
+            font-size: .14rem;
+            border: none;
+            border-bottom: solid 1px #8c8c8c;
+            padding-bottom: .13rem;
+            vertical-align: middle;
+        }
+        p label{
+            color: #8c8c8c;
+            font-size: .14rem;
+            border: none;
+        }
+    </style>
+</head>
+<body>
+<div class="content"><!--content-->
+
+    <div class="top"><!--top-->
+        <a class="back" href="javascript:history.go(-1);"><i class="iconfont icon-fanhui"></i></a>
+        <span class="login">注册</span>
+    </div><!--top-->
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <div class="box"><!--box-->
+        <div class="form-input"><!--form-input-->
+            <p>
+                <i class="iconfont icon-yonghu"></i>
+                <input class="user" id="username" type="text" placeholder="请输入用户名">
+            </p>
+            <p class="pwd">
+                <i class="iconfont icon-yonghu"></i>
+                <input class="user" id="name" type="text" placeholder="请输入名字">
+            </p>
+            <p class="pwd">
+                <i class="iconfont icon-mima"></i>
+                <input id="password1" class="user" type="password" placeholder="请输入密码">
+            </p>
+            <p class="pwd">
+                <i class="iconfont icon-mima"></i>
+                <input id="password2" class="user" type="password" placeholder="请再次输入密码">
+            </p>
+            <!--<p class="pwd" style="border-bottom: solid 1px #8c8c8c;padding-bottom: 0.13rem; color: #8c8c8c;">-->
+                <!--会员类型：&nbsp;&nbsp;&nbsp;&nbsp;<input type="radio" id="hy" name="hy" checked value="10"><label for="hy">普通会员</label>-->
+
+            <!--</p>-->
+        </div><!--form-input-->
+        <div class="login-btn"><!--login-btn-->
+            <p><input class="btn" id="J_Register" type="button" value="确定注册"></p>
+        </div><!--login-btn-->
+    </div><!--box-->
+
+    <!--<div class="agree">注册即表示同意<a href="javascript:;" class="terms">《服务条款》</a></div>-->
+
+</div><!--content-->
+<script type="text/javascript" src="__JS_MOBILE__/jquery-1.9.0.min.js"></script>
+<script src="__JS_MOBILE__/layer.js"></script>
+<script type="text/javascript">
+    //判断用户名是否存在
+    $("#username").blur(function(){
+        var username = $('#username').val();
+        if(!username){
+            layer.msg("用户名不能为空!");
+            return false;
+        }
+        $.ajax({
+            type:"post",
+            url:"{:url('api/api/checkUser')}",
+            dataType:'json',
+            data:{
+                'username':username,
+            },
+            success:function(msg){
+                var msg=JSON.parse(msg)
+                if(msg.status == 0){
+                    layer.msg(msg.data);
+                }
+            }
+        });
+    });
+    //判断两次密码是否一致
+    $("#password2").blur(function(){
+        var password1 = $('#password1').val();
+        var password2 = $('#password2').val();
+        if(password1 != password2){
+            layer.msg("两次密码必须一致!");
+            return false;
+        }
+    })
+    //判断两次密码是否一致
+    $("#pay_pwd2").blur(function(){
+        var pay_pwd1 = $('#pay_pwd1').val();
+        var pay_pwd2 = $('#pay_pwd2').val();
+        if(pay_pwd1 != pay_pwd2){
+            layer.msg("两次支付密码必须一致!");
+            return false;
+        }
+    })
+    //会员注册
+    $("#J_Register").click(function(){
+        var username = $('#username').val();
+        var password1 = $('#password1').val();
+        var password2 = $('#password2').val();
+        var re_username = $('#name').val();
+        var rank_type=$("p input[name='hy']:checked").val()
+        if(!username){
+            layer.msg("用户名不能为空!");
+            return false;
+        }
+        if(!re_username){
+            layer.msg("姓名不能为空!");
+            return false;
+        }
+        if(!password1){
+            layer.msg("密码不能为空!");
+            return false;
+        }
+        if(!password2){
+            layer.msg("请输入确认密码!");
+            return false;
+        }
+        if(password1 != password2){
+            layer.msg("两次密码必须一致!");
+            return false;
+        }
+        $.ajax({
+            type:"post",
+            url:"{:url('user/otherreg')}",
+            dataType:'json',
+            data:{
+                'username':username,
+                'name':re_username,
+                'password1':password1,
+                'password2':password2,
+                'user_rank':10
+            },
+            success:function(msg){
+                console.log(msg);
+                if(msg.status == 1){
+                    layer.msg("注册成功");
+                    setTimeout(function(){
+                        location.href="{:url('user/myinfo')}";
+                    },1000);
+                }
+                if(msg.status == 2){
+                    layer.msg("服务器维护中");
+                }
+                if(msg.status == 3){
+                    layer.msg("两次输入的密码不一致");
+                }
+            }
+        });
+    });
+</script>
+</body>
+</html>

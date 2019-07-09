@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link href="__ADMIN_CSS__/styles.bundle.css" rel="stylesheet">
+</head>
+<body>
+<div class="cont_search clearfix">
+    <a class="btngreen search fl" href="javascript:void(0)" style="visibility: hidden">查询</a>
+    <a class="export fl" href="{:URL('tmvip/Admin/add_role')}">添加角色</a>
+</div>
+<div class="bench white-scroll">
+    <div class="globaltable r5px">
+        <table border="0" cellpadding="0" cellspacing="0">
+            <tbody>
+            <tr>
+                <td>角色名</td>
+                <td>操作</td>
+            </tr>
+            <!---->
+            {volist name="data" id="v"}
+            <tr>
+                <td align="center" class="first-cell"><span>{$v.role_name}</span></td>
+                <td align="center">&nbsp;&nbsp;
+                    <a href="{:URL('tmvip/Admin/edit_role',['id'=>$v.id])}">修改</a>&nbsp;&nbsp;
+                    <a href="{:URL('tmvip/Admin/del_role',['id'=>$v.id])}">删除</a>
+            </tr>
+            {/volist}
+            <!---->
+            </tbody>
+        </table>
+    </div>
+    <div class="page clearfix">
+        <div class="text">共<b>1</b>页<b>4</b>条记录</div>
+        <div class="linklist">
+            <a class="prev" href="javascript:void(0)">&nbsp;</a>
+            <a href="javascript:void(0)" class="current">1</a>
+            <a class="next" href="javascript:void(0)">&nbsp;</a>
+        </div>
+    </div>
+</div>
+</body>
+</html>

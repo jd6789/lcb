@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0,user-scalable=no,minimal-ui">
+    <link href="__CSS_MOBILE__/reset.css" rel="stylesheet" type="text/css">
+    <link href="__CSS_MOBILE__/common.css" rel="stylesheet" type="text/css">
+    <link href="__CSS_MOBILE__/iconfont.css" rel="stylesheet" type="text/css">
+    <link href="__CSS_MOBILE__/telLogin.css" rel="stylesheet" type="text/css">
+    <link href="__CSS_MOBILE__/layer.css" rel="stylesheet" type="text/css">
+    <title>手机号登录</title>
+    <style>
+        .check{
+
+            position:relative;
+            top:2px;
+            margin-right:5px
+        }
+        .btn{
+            background-color:#ccc;color:#fff
+        }
+    </style>
+</head>
+<body>
+      <div class="content"><!--content-->
+
+          <div class="top"><!--top-->
+             <a class="back" href="{:url('login')}"><i class="iconfont icon-fanhui"></i></a>
+             <span class="login">手机号登录</span>
+             <a class="rel" href="{:url('register')}">注册</a>
+          </div><!--top-->
+
+          <div class="logo"><!--logo-->
+             <img src="__IMAGES_MOBILE__/logo.png">
+          </div><!--logo-->
+
+          <div class="box"><!--box-->
+            <div class="form-input"><!--form-input-->
+              <p class="pwd">
+                <i class="iconfont icon-shouji"></i>
+                <input class="user" id="tel" type="text" placeholder="请输入手机号">
+              </p>
+              <p class="pwd">
+                <i class="iconfont icon-yanzhengma2"></i>
+                <input id="code" class="user-yzm" type="text" placeholder="请输入短信验证码">
+                <input id="sendCodeBth" class="yzm" type="button" value="获取验证码">
+              </p>
+            </div><!--form-input-->
+
+            <div class="login-btn"><!--login-btn-->
+                <p><input class="btn" id="userlogin" disabled="disabled" type="button" value="登录"></p>
+                
+                <p class="fs"><a class="tel" href="{:url('login')}">用户名登录</a></p>
+            </div><!--login-btn-->
+          </div><!--box-->
+
+          <div class="agree"><label for="ck"><input  id="ck" type="checkbox" class="check">注册即表示同意</label><a href="{:url('agreement')}" class="terms">《服务条款》</a></div>
+
+      </div><!--content-->
+      <script type="text/javascript" src="__JS_MOBILE__/jquery-1.9.0.min.js"></script>
+      <script src="__JS_MOBILE__/layer.js"></script>
+      <script>
+      $(function() {
+
+          $("#ck").click(function () {
+              if($(this).is(':checked')){
+                  $("#userlogin").css({"background-color":"#00a0e9","color":'#fff'})
+                  $("#userlogin").removeAttr("disabled")
+              }else{
+                  $("#userlogin").css({"background-color":"#ccc","color":'#fff'})
+                  $("#userlogin").attr("disabled",true)
+              }
+
+          })
+
+
+          //验证手机号正则
+          function checkMobile(mobile) {
+              var flag = true;
+              if (typeof(mobile) != "string") {
+                  flag = false;
+              } else {
+                  // ??? ????绰 - ???????
+                  var mobileReg = /^(13|14|15|17|18)\d{9}$/;
+                  if (!mobileReg.test(mobile)) {
+                      flag = false;
+                  }
+              }
+              return flag;
+          }
+
+          $("#tel").blur(function () {
+              var tel = $('#tel').val();
+              if (!tel) {
+                  layer.msg("手机号不能为空!");
+                  return false;
+              }
+              if(!checkMobile(tel)){
+                  layer.msg("手机号码格式不正确!");
+                  return false;
+              }
+              $.ajax({
+                  type: "post",
+                  url: "{:url('appmobile/user/checkTel')}",
+                  dataType: 'json',
+                  data: {
+                      'rec_tel': tel,
+                  },
+                  success: function (msg) {
+                      var msg = JSON.parse(msg)
+                      console.log(msg);
+                      if (msg.status == 0) {
+                          layer.msg("手机号不存在!");
+                      }
+                  }
+              });
+          });
+
+          //获取短信验证码
+          $('#sendCodeBth').click(function () {
+              var tel = $('#tel').val();
+              if (!tel) {
+                  layer.msg("请输入手机号!");
+                  return false;
+              }
+              $.ajax({
+                  type: 'post',
+                  url: "{:url('appmobile/user/test')}",
+                  data: {'tel': tel},
+                  dataType: 'json',
+                  success: function (msg) {
+                      layer.msg("验证码发送成功!");
+                  }
+              });
+          });
+
+          $("#userlogin").click(function () {
+              var tel = $("#tel").val();
+              var code = $("#code").val();
+              if (!tel) {
+                  layer.msg("请输入手机号!");
+                  return false;
+              }else{
+                  if(!checkMobile(tel)){
+                      layer.msg("手机号码格式不正确!");
+                      return false;
+                  }
+              }
+
+              /*$.ajax({
+                  type: 'post',
+                  url: "{:url('appmobile/user/cmobile_phone')}",
+                  data: {
+                      'tel': tel,
+                      'code': code
+                  },
+                  dataType: 'json',
+                  success: function (msg) {
+                      var msg = JSON.parse(msg);
+                      if (msg.status == 0) {
+                          layer.msg("手机号不存在!");
+                      }
+                  }
+              });*/
+              $.ajax({
+                  type: 'post',
+                  url: "{:url('appmobile/user/checkCode')}",
+                  data: {
+                      'code': code,
+                      'tel': tel,
+                  },
+                  dataType: 'json',
+                  success: function (msg) {
+                      var msg = JSON.parse(msg);
+                      if (msg.status == 0) {
+                          layer.msg("验证码错误!");
+                          return false;
+                      }
+                      if (msg.status == 2) {
+                          layer.msg("该账号已被冻结!");
+                          return false;
+                      }
+                      if (msg.status == 1) {
+                          layer.msg("登录成功");
+                          setTimeout(function () {
+                              location.href = "{:url('appmobile/user/index')}";
+                          }, 1000);
+                      }
+                  }
+              });
+          });
+      })
+      </script>
+</body>
+</html>

@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link href="__ADMIN_CSS__/styles.bundle.css" rel="stylesheet">
+    <style>
+        .viewsmall.in {
+            min-height: 70%;
+            width: 60%;
+            top: 2%;
+        }
+    </style>
+</head>
+<body>
+<div class="viewsmall form_cont r10px in" style="transform: translateX(-50%);">
+    <div class="form_cap clearfix">
+        <span class="fl">添加权限</span>
+        <!--<a class="close fr" href="javascript:void(0);"></a>-->
+    </div>
+    <div class="form_detail">
+        <!---->
+        <form method="post" action="{:URL('tmvip/Admin/save_edit_rule')}">
+        <div class="form_table" style="width: 325px;margin: 0 auto;">
+            <table border="0" cellpadding="0" cellspacing="0">
+                <tbody>
+                <tr>
+                    <td>权限名称：</td>
+                    <td><input autofocus="true" placeholder="" type="text"
+                               class="ng-untouched ng-pristine ng-invalid" name="rule_name" value="{$data.rule_name}">
+                    </td>
+                    <td colspan="2" style="text-align:left; padding:0;"></td>
+                </tr>
+                <tr>
+                    <td>模型名称：</td>
+                    <td><input autofocus="true"  placeholder="" type="text"
+                               class="ng-untouched ng-pristine ng-invalid" name="module_name" value="{$data.module_name}">
+                    </td>
+                    <td colspan="2" style="text-align:left; padding:0;"></td>
+                </tr>
+                <tr>
+                    <td>控制器名称：</td>
+                    <td><input autofocus="true"  placeholder="" type="text"
+                               class="ng-untouched ng-pristine ng-invalid" name="controller_name" value="{$data.controller_name}">
+                    </td>
+                    <td colspan="2" style="text-align:left; padding:0;"></td>
+                </tr>
+                <tr>
+                    <td>方法名称：</td>
+                    <td><input  placeholder="" type="text"
+                               class="ng-untouched ng-pristine ng-invalid" name="action_name" value="{$data.action_name}">
+                    </td>
+                    <td colspan="2" style="text-align:left; padding:0;"></td>
+                </tr>
+                <tr>
+                    <td class="label">上级权限:</td>
+                    <td>
+                        <select name="parent_id">
+                            <option value="0">|--顶级权限</option>
+                            {volist name="cate" id="vo"}
+                            <option value="{$vo.id}" {eq name="data.parent_id" value="$vo.id"}selected="selected"{/eq}>|{$vo.lev|str_repeat="--",###}{$vo.rule_name}</option>
+                            {/volist}
+
+                        </select>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="label">是否显示:</td>
+                    <td>
+                        <input type="radio" name="is_show" value="1"  {eq name="data.is_show" value="1"}checked="true"{/eq}/> 是
+                        <input type="radio" name="is_show" value="0"  {eq name="data.is_show" value="0"}checked="true"{/eq}/> 否
+                    </td>
+                </tr>
+                <tr>
+                    <td><input type="text" hidden name="id" value="{$data.id}"></td>
+                    <td><input  type="submit" value="确定" class="btngreen baocun"></td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+        </form>
+
+    </div>
+</div>
+</body>
+</html>

@@ -1,0 +1,647 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>找回密码</title>
+    <link rel="stylesheet" href="__CSS__/commen.css">
+    <style>
+        .content {
+            position: relative;
+        }
+
+        .content .c_box {
+            position: absolute;
+            height: 80%;
+            background-color: #fff;
+            width: 50%;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%, -50%);
+        }
+
+        /*流程步骤*/
+        .content .c_box ul {
+            display: block;
+            text-align: center;
+            width: 80%;
+            position: absolute;
+            left: 50%;
+            top: 20px;
+            transform: translateX(-46%);
+        }
+
+        .content .c_box ul li {
+            display: inline-block;
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            background-color: #ccc;
+            text-align: center;
+            color: #fff;
+            font-size: 12px;
+            line-height: 30px;
+            margin-right: 95px;
+            position: relative;
+        }
+
+        .content .c_box ul li span {
+            width: 80px;
+            color: #ccc;
+            position: absolute;
+            top: 30px;
+            left: -100%;
+        }
+
+        .content .c_box ul li.curr span {
+            width: 80px;
+            color: #38b4e7;
+            position: absolute;
+            top: 30px;
+            left: -100%;
+        }
+
+        .content .c_box ul li.curr {
+            display: inline-block;
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            background-color: #38b4e7;
+            text-align: center;
+            color: #fff;
+            font-size: 12px;
+            line-height: 30px;
+            margin-right: 95px;
+            position: relative;
+        }
+
+        .content .c_box ul li:after {
+            content: '';
+            position: absolute;
+            left: -50px;
+            top: 50%;
+            width: 50px;
+            height: 2px;
+            background-color: #ccc;
+        }
+
+        .content .c_box ul li:before {
+            content: '';
+            position: absolute;
+            left: 30px;
+            top: 50%;
+            width: 50px;
+            height: 2px;
+            background-color: #ccc;
+        }
+
+        .content .c_box ul li.curr:after {
+            content: '';
+            position: absolute;
+            left: -50px;
+            top: 50%;
+            width: 50px;
+            height: 2px;
+            background-color: #38b4e7;
+        }
+
+        .content .c_box ul li.curr:before {
+            content: '';
+            position: absolute;
+            left: 30px;
+            top: 50%;
+            width: 50px;
+            height: 2px;
+            background-color: #38b4e7;
+        }
+
+        .content .c_box ul li:first-of-type:after, .content .c_box ul li:last-of-type:before {
+            width: 0;
+        }
+
+        /*流程步骤*/
+        /*第一步*/
+        .content .c_box .first_bz > div {
+            margin: 10px 0 10px 30px;
+        }
+
+        .content .c_box .first_bz > div:first-of-type {
+            margin-top: 35px;
+        }
+
+        .content .c_box .first_bz > div i {
+            width: 180px;
+            display: inline-block;
+            font-style: normal;
+            text-align: right;
+            font-size: 14px;
+        }
+
+        .content .c_box .first_bz > div input {
+            display: inline-block;
+            width: 230px;
+            height: 30px;
+            line-height: 30px;
+            outline: none;
+            border: none;
+            border: 1px solid #ccc;
+            padding-left: 10px;
+        }
+
+        .content .c_box .first_bz > div.yz input {
+            width: 100px;
+        }
+
+        .content .c_box .first_bz > div.yz > button {
+            width: 123px;
+            display: inline-block;
+            height: 30px;
+            line-height: 30px;
+            vertical-align: middle;
+        }
+
+        .content .c_box .first_bz a {
+            width: 100px;
+            display: inline-block;
+            height: 30px;
+            line-height: 30px;
+            background-color: #38b4e7;
+            color: #fff;
+            margin-left: 180px;
+            margin-top: 30px;
+            text-decoration: none;
+            text-align: center;
+        }
+        /*第一步*/
+        /*第二步*/
+        .content .c_box .er_bz > div {
+            margin: 10px 0 10px 30px;
+        }
+
+        .content .c_box .er_bz > div:first-of-type {
+            margin-top: 35px;
+        }
+
+        .content .c_box .er_bz > div i {
+            width: 180px;
+            display: inline-block;
+            font-style: normal;
+            text-align: right;
+            font-size: 14px;
+        }
+
+        .content .c_box .er_bz > div input {
+            display: inline-block;
+            width: 230px;
+            height: 30px;
+            line-height: 30px;
+            outline: none;
+            border: none;
+            border: 1px solid #ccc;
+            padding-left: 10px;
+        }
+
+        .content .c_box .er_bz > div.yz input {
+            width: 100px;
+        }
+
+        .content .c_box .er_bz > div.yz > button {
+            width: 123px;
+            display: inline-block;
+            height: 30px;
+            line-height: 30px;
+            vertical-align: middle;
+        }
+
+        .content .c_box .er_bz a {
+            width: 100px;
+            display: inline-block;
+            height: 30px;
+            line-height: 30px;
+            background-color: #38b4e7;
+            color: #fff;
+            margin-left: 180px;
+            margin-top: 30px;
+            text-decoration: none;
+            text-align: center;
+        }
+        .content .c_box .er_bz a:last-of-type{
+            margin-left: 20px;
+        }
+        /*第二步*/
+        /*第三步*/
+        .content .c_box .san_bz > div {
+            margin: 10px 0 10px 30px;
+        }
+
+        .content .c_box .san_bz > div:first-of-type {
+            margin-top: 35px;
+        }
+
+        .content .c_box .san_bz > div i {
+            width: 180px;
+            display: inline-block;
+            font-style: normal;
+            text-align: right;
+            font-size: 14px;
+        }
+
+        .content .c_box .san_bz > div input {
+            display: inline-block;
+            width: 230px;
+            height: 30px;
+            line-height: 30px;
+            outline: none;
+            border: none;
+            border: 1px solid #ccc;
+            padding-left: 10px;
+        }
+
+        .content .c_box .san_bz > div.yz input {
+            width: 100px;
+        }
+
+        .content .c_box .san_bz > div.yz > button {
+            width: 123px;
+            display: inline-block;
+            height: 30px;
+            line-height: 30px;
+            vertical-align: middle;
+        }
+
+        .content .c_box .san_bz a {
+            width: 100px;
+            display: inline-block;
+            height: 30px;
+            line-height: 30px;
+            background-color: #38b4e7;
+            color: #fff;
+            margin-left: 180px;
+            margin-top: 30px;
+            text-decoration: none;
+            text-align: center;
+        }
+        .content .c_box .san_bz a:last-of-type{
+            margin-left: 20px;
+        }
+        /*第三步*/
+        /*第四步*/
+        .content .c_box .si_bz > div {
+            margin: 10px 0 10px 30px;
+        }
+
+        .content .c_box .si_bz > div:first-of-type {
+            margin-top: 35px;
+        }
+
+        .content .c_box .si_bz > div i {
+            width: 180px;
+            display: inline-block;
+            font-style: normal;
+            text-align: right;
+            font-size: 14px;
+        }
+
+        .content .c_box .si_bz > div input {
+            display: inline-block;
+            width: 230px;
+            height: 30px;
+            line-height: 30px;
+            outline: none;
+            border: none;
+            border: 1px solid #ccc;
+            padding-left: 10px;
+        }
+
+        .content .c_box .si_bz > div.yz input {
+            width: 100px;
+        }
+
+        .content .c_box .si_bz > div.yz > button {
+            width: 123px;
+            display: inline-block;
+            height: 30px;
+            line-height: 30px;
+            vertical-align: middle;
+        }
+
+        .content .c_box .si_bz a {
+            width: 100px;
+            display: block;
+            height: 30px;
+            line-height: 30px;
+            background-color: #38b4e7;
+            color: #fff;
+            margin-left: 180px;
+            margin-top: 30px;
+            text-decoration: none;
+            text-align: center;
+        }
+        /*第四步*/
+    </style>
+</head>
+<body>
+<div class="main">
+    <div class="header">
+        <!--头部内容-->
+        <div class="header-content">
+            <!--Logo-->
+            <div class="header-logo">
+                <div class="header-logo-content">
+                    <div class="flexbox">理茶宝</div>
+                    <div class="flexbox">找回密码</div>
+                </div>
+            </div>
+            <!--登录注册-->
+            <div class="header-login">
+                <div class="header-login-content">
+                    <a class="flexbox pointer" href="{:url('login')}">登录</a>
+                    <a class="flexbox pointer" href="{:url('register')}">注册</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="content">
+        <div class="c_box">
+            <div style="height: 100px;">
+                <ul>
+                    <li class="curr">1
+                        <span>输入用户名</span>
+                    </li>
+
+                    <li>2
+                        <span>验证身份</span>
+                    </li>
+                    <li>3
+                        <span>重置密码</span>
+                    </li>
+                    <li>4
+                        <span>修改完成</span>
+                    </li>
+                </ul>
+            </div>
+            <div class="first_bz">
+                <div>
+                    <i>用户名：</i><input type="text" placeholder="请输入用户名" id="username">
+                </div>
+                <div class="yz">
+                    <i>验证码：</i><input type="text" id="code_input">
+                    <button id="v_container"></button>
+                </div>
+                <a href="javascript:;" id="first_bz">下一步</a>
+            </div>
+            <div class="er_bz" style="display: none;">
+                <div>
+                    <i>输入手机号：</i><input type="text" placeholder="请输入手机号" id="tel">
+                </div>
+                <div class="yz">
+                    <i>短信验证码：</i><input type="text" id="getCode">
+                    <button id="sendCode">点击获取验证码</button>
+                </div>
+                <a href="javascript:;" id="er_syb">上一步</a>
+                <a href="javascript:;" id="er_bz">下一步</a>
+            </div>
+            <div class="san_bz" style="display: none;">
+                <div style="margin-left: 152px;font-size: 14px">
+                    身份验证通过！请设定新的登录密码：
+                </div>
+                <div>
+                    <i>新密码：</i><input type="password" placeholder="请输入登录密码" id="password1">
+                </div>
+                <div>
+                    <i>确认密码：</i><input type="password" placeholder="请输入密码" id="password2">
+                </div>
+                <a href="javascript:;" id="san_syb">上一步</a>
+                <a href="javascript:;" id="san_bz">下一步</a>
+            </div>
+            <div class="si_bz" style="display: none;">
+                <div style="margin-left: 152px;font-size: 14px;color: #6f9d53">
+                    恭喜您，密码重置成功！您可以使用新密码登录理茶宝了。
+                </div>
+                <a href="{:url('login')}">去登录</a>
+            </div>
+        </div>
+    </div>
+    <div class="footer">
+        <!--尾部内容-->
+        <div class="footer-content">
+            <ul class="footer-ul">
+                <li>
+                    <ul class="footer-ul-one">
+                        <li>
+                            <p>关于理茶宝</p>
+                            <a href="">资质荣誉</a>
+                            <a href="">运营报告</a>
+                            <a href="">加盟合作</a>
+                        </li>
+                        <li>
+                            <p>关于理茶宝</p>
+                            <a href="">资质荣誉</a>
+                            <a href="">运营报告</a>
+                            <a href="">加盟合作</a>
+                        </li>
+                        <li>
+                            <p>关于理茶宝</p>
+                            <a href="">资质荣誉</a>
+                            <a href="">运营报告</a>
+                            <a href="">加盟合作</a>
+                        </li>
+                    </ul>
+                </li>
+                <li>
+                    <ul class="footer-ul-two">
+                        <li>
+                            <p>客户热线</p>
+                        </li>
+                        <li>
+                            <h3 class="orange">027-6417-7777</h3>
+                        </li>
+                        <li>
+                            <span class="small-size">(09:00-18:00)</span>
+                        </li>
+                        <li class="fa-icon">
+                        <span>
+                            <span class="fa fa-weixin"></span>
+                        </span>
+                            <span>
+                            <span class="fa fa-weibo"></span>
+                        </span>
+                            <span>
+                            <span class="fa fa-users"></span>
+                        </span>
+                        </li>
+                    </ul>
+                </li>
+                <li>
+                    <ul class="footer-ul-three">
+                        <li>二维码</li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>
+<script src="__JS__/jquery.min.js"></script>
+<script src="__JS__/gVerify.js"></script>
+<script src="__JS__/layer/layer.js"></script>
+<script>
+    //验证用户名是否存在
+    $("#username").blur(function(){
+        var username = $('#username').val();
+        if(!username){
+            layer.msg("用户名不能为空!");
+            return false;
+        }
+        $.ajax({
+            type:"post",
+            url:"{:url('lcb/user/checkUser2')}",
+            dataType:'json',
+            data:{
+                'username':username,
+            },
+            success:function(msg){
+                var msg=JSON.parse(msg)
+                console.log(msg);
+                if(msg.status == 0){
+                    layer.msg("用户名不存在!");
+                }
+            }
+        });
+    });
+
+    //判断验证码是否正确(图形)
+    var verifyCode = new GVerify("v_container");
+    $(function () {
+        $("#first_bz").click(function () {
+            var res = verifyCode.validate(document.getElementById("code_input").value);
+            var username = $('#username').val();
+            if(!username){
+                layer.msg("用户名不能为空")
+                return false
+            }
+            if(res){
+                $(".first_bz").hide()
+                $(".er_bz").show()
+                $(".c_box li:eq(1)").addClass("curr")
+            }else{
+                layer.msg("验证码错误");
+            }
+        })
+        $("#er_bz").click(function () {
+
+            var code = $('#getCode').val();
+            alert(code)
+
+            //判断验证码是否正确
+            $.ajax({
+                type:"post",
+                url:"{:url('lcb/user/reppwd')}",
+                dataType:'json',
+                data:{
+                    'code':code,
+                },
+                success:function(msg){
+                    var msg=JSON.parse(msg)
+                    console.log(msg.status);
+                    if(msg.status == 0){
+                        layer.msg("短信验证码错误!");
+                        return false
+                    }else {
+                        $(".er_bz").hide()
+                        $(".san_bz").show()
+                        $(".c_box li:eq(2)").addClass("curr")
+                    }
+                }
+            })
+
+        })
+        $("#er_syb").click(function () {
+            $(".er_bz").hide()
+            $(".first_bz").show()
+            $(".c_box li:eq(1)").removeClass("curr")
+        })
+        //第三步  下一步
+        $("#san_bz").click(function () {
+            var password1 = $('#password1').val();
+            var password2 = $('#password2').val();
+            var username = $('#username').val()
+            alert(username)
+            if(!password1){
+                layer.msg("请填写密码!")
+                return false
+            }
+            if(!password2){
+                layer.msg("请确认密码!")
+                return false
+            }
+            if(password1 != password2){
+                layer.msg("两次密码要一致哦亲亲!!!")
+                return false
+            }
+            $.ajax({
+                type:"post",
+                url:"{:url('lcb/user/reppwd2')}",
+                dataType:'json',
+                data:{
+                    'password1':password1,
+                    'password2':password2,
+                    'username':username,
+                },
+                success:function(msg){
+                    var msg=JSON.parse(msg)
+                    console.log(msg.status);
+                    if(msg.status == 0){
+                        layer.msg("内部维护中!");
+                        return false
+                    }else {
+                        $(".san_bz").hide()
+                        $(".si_bz").show()
+                        $(".c_box li:eq(3)").addClass("curr")
+                    }
+                }
+            })
+        })
+        $("#san_syb").click(function () {
+            $(".san_bz").hide()
+            $(".er_bz").show()
+            $(".c_box li:eq(2)").removeClass("curr")
+        })
+    })
+
+    //获取短信验证码
+    $("#tel").blur(function(){
+        var tel = $('#tel').val();
+        alert(tel)
+        $.ajax({
+            type:"post",
+            url:"{:url('lcb/user/checkTel')}",
+            dataType:'json',
+            data:{
+                'tel':tel,
+            },
+            success:function(msg){
+                var msg=JSON.parse(msg)
+                console.log(msg.status);
+                if(msg.status == 0){
+                    layer.msg("手机号码不存在!");
+                }
+            }
+        })
+    })
+
+    $('#sendCode').click(function(){
+        var tel = $('#tel').val();
+        $.ajax({
+            type:"post",
+            url:"{:url('lcb/user/test')}",
+            dataType:'json',
+            data:{
+                'tel':tel,
+            },
+            success:function(msg){
+                layer.msg("验证码发送成功!");
+            }
+        })
+    });
+</script>
+</body>
+</html>

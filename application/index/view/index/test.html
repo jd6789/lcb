@@ -1,0 +1,124 @@
+<html>
+<head>
+    <meta http-equiv="content-type" content="text/html;charset=utf-8"/>
+    <title>微信支付</title>
+
+    <style>
+        *{
+            padding:0;
+            margin:0;
+        }
+        ul,ol,li{
+            list-style:none;
+        }
+        html{
+            font-size:625%;
+        }
+        body{
+            font-size:.14rem;
+            font-family:"微软雅黑";
+        }
+        input{
+            outline:none;
+        }
+        .content{
+            max-width:7.5rem;
+            margin:0 auto;
+        }
+        .title{
+            height:.45rem;
+            text-align:center;
+            line-height:.45rem;
+            font-size:.18rem;
+            color:#333;
+            box-sizing:border-box;
+            border-bottom:solid 1px #edf0f5;
+            border-bottom:solid 1px #edf0f5;
+        }
+        .zfinfo{
+            height:1rem;
+            padding-left:20px;
+            box-sizing:border-box;
+            background:#fff url("bg001.png") no-repeat 90% center;
+            background-size:150px;
+        }
+        .zfmc{
+            font-size:.14rem;
+            color:#333;
+            padding-top:25px;
+            padding-bottom:13px;
+        }
+        .pay-mon{
+            font-size:.15rem;
+            color:#333;
+            padding:15px 0 0 20px;
+        }
+        .pay-num{
+            color:#ff6000;
+            margin:50px 0;
+            font-size:.32rem;
+            font-weight:bold;
+            text-align:center;
+        }
+        .pay-num span{
+            font-size:.20rem;
+        }
+        .pay-btn{
+            width:60%;
+            margin:0 auto;
+        }
+        .btn{
+            height:.45rem;
+            background:#ff6000;
+            border:none;
+            border-radius:5px;
+            font-size:.16rem;
+            color:#fff;
+            width:100%;
+        }
+    </style>
+</head>
+<body>
+<!--<br/>
+<font color="#9ACD32"><b>该笔订单支付名称为：<span style="color:#f00;font-size:16px" id="body"></span></b></font><br/><br/>
+<font color="#9ACD32"><b>该笔订单支付金额为：<span style="color:#f00;font-size:16px" id="money"></span></b></font><br/><br/>
+<div align="center">
+    <button style="width:210px; height:50px; border-radius: 15px;background-color:#FE6714; border:0px #FE6714 solid; cursor: pointer;  color:white;  font-size:16px;" type="button" onclick="callpay()" >立即支付</button>
+</div>-->
+<div class="content">
+
+    <div class="title">微信支付</div>
+    <div class="zfinfo">
+        <p class="zfmc">该笔订单支付名称为：<span style="color:#f00;font-size:16px" id="body"></span></p>
+        <p class="zfje">理茶宝充值：<span style="color:#f00;font-size:16px" id="money"></span></p>
+    </div>
+    <hr size="10" color="#edf0f5">
+    <div class="pay">
+        <div class="pay-mon">支付金额</div>
+        <div class="pay-num"><span>￥</span>20000.00</div>
+    </div>
+
+    <div class="pay-btn">
+        <a href="/wapWxpay/example/againManagerJsapi.php"><input type="button" class="btn" value="立即支付"></a>
+    </div>
+
+</div>
+<script>
+    var body = getUrlParam("body");
+    var money = getUrlParam("money");
+    document.getElementById("body").innerText = body;
+    document.getElementById("money").innerText = money;
+
+    function getUrlParam(key) {
+        // 获取参数
+        var url = window.location.search;
+        // 正则筛选地址栏
+        var reg = new RegExp("(^|&)" + key + "=([^&]*)(&|$)");
+        // 匹配目标参数
+        var result = url.substr(1).match(reg);
+        //返回参数值
+        return result ? decodeURIComponent(result[2]) : null;
+    }
+</script>
+</body>
+</html>

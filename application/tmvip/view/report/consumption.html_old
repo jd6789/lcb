@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link href="__ADMIN_CSS__/styles.bundle.css" rel="stylesheet">
+    <link rel="stylesheet" href="__ADMIN_CSS__/jquery-ui.min.css">
+    <script src="__ADMIN_JS__/jquery-ui.min.js"></script>
+    <script src="__ADMIN_JS__/datepicker-zh-CN.js"></script>
+    <script>
+        $("#saleReportBeginTime").datepicker();
+        $("#saleReportEndTime").datepicker();
+    </script>
+    <style>
+        .cont_search input.search{
+            height: 28px;
+            line-height: 28px;
+            width: 100px;
+            font-weight: 200;
+            font-size: 14px;
+        }
+        .cont_search table{
+            width: auto;
+        }
+        .cont_search table td{
+            padding-right: 10px;
+        }
+    </style>
+</head>
+<body>
+<div class="cont_search clearfix">
+    <form action="" method="post">
+        用户名搜索：<input type="text" name="username" value="">
+        <select name="cate" >
+            <option value="0">请选择</option>
+            <option value="2">茶点消费</option>
+            <option value="1">茶券消费</option>
+            <option value="3">购买商品消费</option>
+            <option value="4">购买理茶宝消费</option>
+        </select>
+        <select name="money" >
+            <option value="0">>0</option>
+            <option value="1">0-99</option>
+            <option value="2">100-199</option>
+            <option value="3">200-499</option>
+            <option value="4">500以上</option>
+        </select>
+        <input type="text" name="key" value="">
+        <input type="submit" value="查询" class="btngreen search ">
+    </form>
+    <div>
+        <!--<table>-->
+            <!--<tr>-->
+                <!--<td>-->
+                    <!--{if condition="$data.recharge_money eq 0 "}理茶宝现金支付的金额:<span style="color:red">0</span>&nbsp;&nbsp;-->
+                       <!--{else /} 理茶宝现金支付的金额:<span style="color:red">{$data.recharge_money}</span>&nbsp;&nbsp;-->
+                    <!--{/if}-->
+                <!--</td>-->
+                <!--<td>消费的茶券:<span style="color:red">{$data.rec_tea_inte}</span>&nbsp;&nbsp;</td>-->
+                <!--<td>-->
+                    <!--{if condition="$data.rec_tea_ponit_inte eq 0 "}消费的茶点:<span style="color:red">0</span>-->
+                       <!--{else /} 消费的茶点:<span style="color:red">{$data.rec_tea_ponit_inte}</span>-->
+                    <!--{/if}-->
+                <!--</td>-->
+            <!--</tr>-->
+        <!--</table>-->
+    </div>
+</div>
+
+<div class="bench white-scroll" >
+    <div class="globaltable r5px">
+        <table border="0" cellpadding="0" cellspacing="0">
+            <tbody>
+            <tr>
+                <td>用户名</td>
+                <td>商品名称</td>
+                <td>商品价格</td>
+                <td>商品数量</td>
+                <td>消费时间</td>
+            </tr>
+            {volist name="data.recharge" id="v" key="k"}
+                <tr align="center">
+                    <td>{$v.name}</td>
+                    <td>{$v.body}</td>
+                    <td>{$v.recharge_money}</td>
+                    <td>1</td>
+                    <td>{$v.rec_addtime|date='Y-m-d H:i:s',###}</td>
+                </tr>
+            {/volist}
+            {volist name="data.log" id="v" key="k"}
+                <tr align="center">
+                    <td>{$v.name}</td>
+                    <td>{$v.introduce}</td>
+                    <td><if condition="$v.tea_inte neq 0 ">消费茶券{$v.tea_inte}<else />消费茶点{$v.tea_ponit_inte}</if></td>
+                    <td>1</td>
+                    <td>{$v.addtime|date='Y-m-d H:i:s',###}</td>
+                </tr>
+            {/volist}
+            <!---->
+            </tbody>
+        </table>
+    </div>
+</div>
+</body>
+</html>

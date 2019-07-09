@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0,user-scalable=no,minimal-ui">
+    <link href="__CSS_MOBILE__/reset.css" rel="stylesheet" type="text/css">
+    <link href="__CSS_MOBILE__/common.css" rel="stylesheet" type="text/css">
+    <link href="__CSS_MOBILE__/iconfont.css" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" href="__CSS_MOBILE__/swiper-4.2.0.min.css">
+    <link href="__CSS_MOBILE__/problem.css" rel="stylesheet" type="text/css">
+	<title>常见问题</title>
+</head>
+<body>
+	<div class="content"><!--content-->
+		
+		<div class="top"><!--top-->
+             <a class="back" href="{:url('index')}"><i class="iconfont icon-fanhui"></i></a>
+             <span class="login">常见问题</span>
+          </div><!--top-->
+          
+		<div class="question"><!--question-->
+			<div class="question-list">
+				<ul>
+					<li>
+						<p>
+							<span class="one">1</span>
+							<span class="one-title">什么时候看到收益到账？</span>
+						</p>
+						<p class="one-text">转入资金在基金公司确认份额的第2天可以看到收益，具体显
+示时间请留意（*如遇国家法定假期，基金公司不进行份额确
+认，以实际收益时间为准）</p>
+					</li>
+					<li>
+						<p>
+							<span class="two">2</span>
+							<span class="two-title">每天的收益是怎么计算的？</span>
+						</p>
+						<p class="one-text">当日收益=（理茶宝已确认份额的资金/10000）X每万份收益
+假设您已确认份额的资金为9000元，当天的每万份收益为1.25元代入计算公式，您当日的收益为：1.13元
+认，以实际收益时间为准）</p>
+					</li>
+				</ul>
+			</div>
+		</div><!--question-->
+
+	</div><!--content-->
+
+	<script src="__JS_MOBILE__/jquery-1.8.3.min.js"></script>
+	<script src="__JS_MOBILE__/swiper-4.2.0.min.js"></script>
+	<script>        
+		  var mySwiper = new Swiper ('.swiper-container', {
+		    autoplay: true,
+		    touchRatio : 0.5,
+		    pagination: {
+      			el: '.swiper-pagination',
+      			type: 'bullets',
+    		},
+    		autoplay: {
+    			disableOnInteraction: false,
+  			},
+		  })        
+  </script>
+</body>
+</html>

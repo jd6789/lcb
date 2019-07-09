@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0,user-scalable=no,minimal-ui">
+    <link href="__CSS_MOBILE__/reset.css" rel="stylesheet" type="text/css">
+    <link href="__CSS_MOBILE__/common.css" rel="stylesheet" type="text/css">
+    <link href="__CSS_MOBILE__/iconfont.css" rel="stylesheet" type="text/css">
+    <link href="__CSS_MOBILE__/login.css" rel="stylesheet" type="text/css">
+    <link href="__CSS_MOBILE__/layer.css" rel="stylesheet" type="text/css">
+    <title>登录</title>
+</head>
+<body>
+      <div class="content"><!--content-->
+
+          <div class="top"><!--top-->
+             <!--<a class="back" href="javascropt:;"><i class="iconfont icon-fanhui"></i></a>-->
+             <span class="login">登录</span>
+             <a class="rel" href="{:url('register')}">注册</a>
+          </div><!--top-->
+
+          <div class="logo"><!--logo-->
+             <img src="__IMAGES_MOBILE__/logo.png">
+          </div><!--logo-->
+
+          <div class="box"><!--box-->
+            <div class="form-input"><!--form-input-->
+              <p>
+                <i class="iconfont icon-yonghu"></i>
+                <input class="user" id="username" type="text"   name="userName" placeholder="请输入用户名">
+              </p>
+              <p class="pwd">
+                <i class="iconfont icon-mima"></i>
+                <input class="user" id="password" type="password" name="passWord" placeholder="请输入密码">
+                <i  id="togglePassword" class="iconfont icon-yanjing-bi"></i>
+              </p>
+            </div><!--form-input-->
+
+            <div class="login-btn"><!--login-btn-->
+                <p><input class="btn" type="button" value="登录" id="userlogin"></p>
+                <p class="fs"><a href="{:url('repwd')}">忘记密码?</a><a class="tel" href="{:url('tellogin')}">手机号登录</a></p>
+            </div><!--login-btn-->
+          </div><!--box-->
+
+          <div class="footer"><!--footer-->
+            <p>使用第三方账号登录</p>
+            <p><img src="__IMAGES_MOBILE__/wx.png"><img src="__IMAGES_MOBILE__/qq.png"></p>
+          </div><!--footer-->
+
+      </div><!--content-->
+      <script type="text/javascript" src="__JS_MOBILE__/jquery-1.9.0.min.js"></script>
+      <script src="__JS_MOBILE__/layer.js"></script>
+      <script src="__JS_MOBILE__/jquery.toggle-password.min.js"></script>
+    
+
+      <script>
+        $(function(){
+          $('#password').togglePassword({
+            el: '#togglePassword'
+          });
+        });
+      </script>
+
+      <script>
+      //会员登录
+      $("#userlogin").click(function () {   
+            var username= $("#username").val()
+            var password= $("#password").val()
+            if(!username){
+                  layer.msg("用户名不能为空!");
+                  return false;
+              }
+            if(!password){
+                  layer.msg("密码不能为空!");
+                  return false;
+            }
+            $.ajax({
+            type:"post",
+            url:"{:url('appmobile/user/login')}",
+            dataType:'json',
+            data:{
+                'username':username,
+                'password':password,
+            },
+            success:function(msg){
+                var msg=JSON.parse(msg)
+                console.log(msg.status);
+                if(msg.status == 2){
+                    layer.msg("用户名不存在");
+                    return false;
+                }
+                if(msg.status == 0){
+                    layer.msg("密码错误");
+                    return false;
+                }
+                if(msg.status == 3){
+                    layer.msg("该账户被冻结");
+                    return false;
+                }
+                if(msg.status == 1){
+                    layer.msg("登录成功");
+                    setTimeout(function(){
+                        location.href="{:url('appmobile/user/index')}";
+                    },1000);
+                }
+            }
+        });
+    });
+    </script>
+
+</body>
+</html>

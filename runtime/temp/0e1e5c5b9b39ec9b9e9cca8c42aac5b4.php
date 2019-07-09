@@ -1,0 +1,139 @@
+<?php if (!defined('THINK_PATH')) exit(); /*a:1:{s:86:"/www/wwwroot/vip.guochamall.com/public/../application/newapp/view/user/personinfo.html";i:1539259460;}*/ ?>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0,user-scalable=no,minimal-ui">
+    <link href="/newtea/css/reset.css" rel="stylesheet" type="text/css">
+    <link href="/newtea/css/layer.css" rel="stylesheet" type="text/css">
+    <link href="/newtea/css/common.css" rel="stylesheet" type="text/css">
+    <link href="/newtea/css/iconfont.css" rel="stylesheet" type="text/css">
+    <link href="/newtea/css/personinfo.css" rel="stylesheet" type="text/css">
+	<title>个人信息</title>
+</head>
+<body>
+	<div class="content"><!--content-->
+		
+		<div class="top"><!--top-->
+             <a class="back" href="<?php echo url('newapp/user/personcenter'); ?>"><i class="iconfont icon-fanhui"></i></a>
+             <span class="login">个人信息</span>
+        </div><!--top-->
+		
+		<div class="person">
+			<div class="person-info"><!--person-info-->
+				<ul>
+					<li>
+						<span class="bold">头像</span>
+						<span class="r"><img src="<?php echo $data['user_picture']; ?>" width="40" style="position:relative;top:-10px"></span>
+					</li>
+					<li>
+						<span class="bold">用户昵称</span>
+						<span class="r null" ><?php echo $data['nick_name']; ?></span>
+					</li>
+					<li>
+						<span class="bold">手机号</span>
+						<span class="r null"><?php echo $data['mobile_phone']; ?></span>
+					</li>
+					<li>
+						<span class="bold">姓名</span>
+						<span class="r null"><?php echo $data['real_name']; ?></span>
+					</li>
+					<li>
+						<span class="bold">身份证</span>
+						<span class="r null"><?php echo $data['self_num']; ?></span>
+					</li>
+					<li>
+						<span class="bold">开户行</span>
+						<span class="r null"><?php echo $data['bank_name']; ?></span>
+					</li>
+					<li>
+						<span class="bold">注册时间</span>
+						<span id="time" class="r null"><?php echo $data['reg_time']; ?></span>
+					</li>
+					<li>
+						<span class="bold">激活时间</span>
+						<span id="time1" class="r null"><?php echo $data['rec_addtime']; ?></span>
+					</li>
+
+				</ul>
+			</div><!--person-info-->
+
+			<div class="tc">
+				<input class="tc-btn" type="button" value="退出登录">
+			</div>
+		</div>
+
+	</div><!--content-->
+
+	<script src="/newtea/js/jquery-1.8.3.min.js"></script>
+	<script src="/newtea/js/layer.js"></script>
+	<script>
+        // function isWeiXin() {
+        //     var ua = window.navigator.userAgent.toLowerCase();
+        //     if (ua.match(/MicroMessenger/i) == 'micromessenger') {
+        //         return true;
+        //     } else {
+        //         return false;
+        //     }
+        // }
+        //判断是否为微信打开的
+        // if(isWeiXin()){
+        //     $(".tc").hide()
+        // }else{
+        //     $(".tc").show()
+        // }
+
+		var rs = $(".null");
+		for(var i = 0; i < rs.length; i++){
+		    //console.log(rs[0]);
+			if($(rs[i]).text() == ""){
+                $(rs[i]).text(0)
+			}
+		}
+
+
+		$(".tc-btn").click(function(){
+			$.ajax({
+				type:"post",
+				url:"<?php echo url('newapp/user/loginout'); ?>",
+				success:function(data){
+				    console.log(data)
+					layer.msg("退出成功");
+					setTimeout(function(){
+						location.href="<?php echo url('newapp/login/login'); ?>";
+					},1000)
+				}
+			})
+		})
+ 	</script>
+  <script>
+  	var time = $('#time').text();
+  	var time1 = $('#time1').text();
+  	//alert(time)
+  	function getLocalTime(nS) {
+        var myYear= new Date(parseInt(nS)*1000).getFullYear()
+        var myMonth= new Date(parseInt(nS)*1000).getMonth()+1
+        var myDay= new Date(parseInt(nS)*1000).getDate()
+        var   hour=new Date(parseInt(nS)*1000).getHours();
+        var   minute=new Date(parseInt(nS)*1000).getMinutes();
+        var   second=new Date(parseInt(nS)*1000).getSeconds();
+        if(myMonth<10){
+            myMonth='0'+myMonth
+        }
+        if(myDay<10){
+            myDay='0'+myDay
+        }
+        if(second<10){
+            second='0'+second
+        }
+        if(minute<10){
+            minute='0'+minute
+        }
+        var showDate = myYear+"-"+myMonth+'-'+myDay+' '+hour+':'+minute+':'+second
+        return showDate
+    }	
+    $('#time').text(getLocalTime(time));
+    $('#time1').text(getLocalTime(time1));
+  </script>
+</body>
+</html>

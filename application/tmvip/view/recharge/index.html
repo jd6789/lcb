@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <link rel="shortcut icon" href="__ADMIN_IMAGES__/mjicon.ico" type="image/x-icon">
+    <script src="__ADMIN_JS__/jquery.min.js"></script>
+    <link href="__ADMIN_CSS__/styles.bundle.css" rel="stylesheet">
+    <style>
+        iframe {
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+        }
+    </style>
+</head>
+<body>
+<div class="contviewtab">
+    {volist name="menu" id="v" }
+    <a href="{:URL($v['module_name'].'/'.$v['controller_name'].'/'.$v['action_name'])}" target="bbb" {eq name="v.parent_id" value="$url"}class="curr" {else/}style="display: none;"{/eq}>{$v.rule_name}</a>
+    {/volist}
+</div>
+<div class="bench white-scroll">
+    <iframe src="{{:URL('tmvip/recharge/recharge_info')}" frameborder="0" name="bbb" id="iframe"></iframe>
+
+
+</div>
+<script src="__ADMIN_JS__/jquery.min.js"></script>
+<script>
+    $(function () {
+        $(".user").mouseover(function () {
+            $(".user>.dropdown").addClass("in")
+        }).mouseleave(function () {
+            $(".user>.dropdown").removeClass("in")
+        })
+        $(".contviewtab a.curr:eq(0)").addClass("current")
+        var href=$(".contviewtab a.curr:eq(0)").attr("href")
+        $("#iframe").attr("src",href)
+        $(".contviewtab a").click(function () {
+            $(this).addClass("current").siblings().removeClass("current")
+        })
+
+    })
+</script>
+</body>
+</html>

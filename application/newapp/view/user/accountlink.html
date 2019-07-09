@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0,user-scalable=no,minimal-ui">
+    <link href="__CSS_MOBILE__/reset.css" rel="stylesheet" type="text/css">
+    <link href="__CSS_MOBILE__/common.css" rel="stylesheet" type="text/css">
+    <link href="__CSS_MOBILE__/iconfont.css" rel="stylesheet" type="text/css">
+    <link href="__CSS_MOBILE__/reppwd.css" rel="stylesheet" type="text/css">
+    <link href="__CSS_MOBILE__/layer.css" rel="stylesheet" type="text/css">
+    <title>账号关联</title>
+    <style>
+
+        .gl{
+            background:#0495d8;
+            color:#fff;
+            padding:10px;
+            margin:20px 15px;
+            border-radius:8px;
+            line-height:1.8;
+            font-size:.14rem;
+        }
+
+        /*流程步骤*/
+        .c_box ul {
+            display: block;
+            text-align: center;
+        }
+
+        .c_box ul li {
+            display: inline-block;
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            background-color: #ccc;
+            text-align: center;
+            color: #fff;
+            font-size: 12px;
+            line-height: 30px;
+            margin-right: 95px;
+            position: relative;
+        }
+
+        .c_box ul li span {
+            width: 80px;
+            color: #ccc;
+            position: absolute;
+            top: 30px;
+            left: -100%;
+        }
+
+        .c_box ul li.curr span {
+            width: 80px;
+            color: #38b4e7;
+            position: absolute;
+            top: 30px;
+            left: -100%;
+        }
+
+        .c_box ul li.curr {
+            display: inline-block;
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            background-color: #38b4e7;
+        }
+
+        .c_box ul li:after {
+            content: '';
+            position: absolute;
+            left: -50px;
+            top: 50%;
+            width: 50px;
+            height: 2px;
+            background-color: #ccc;
+        }
+
+        .c_box ul li:before {
+            content: '';
+            position: absolute;
+            left: 30px;
+            top: 50%;
+            width: 50px;
+            height: 2px;
+            background-color: #ccc;
+        }
+
+        .c_box ul li.curr:after {
+            content: '';
+            position: absolute;
+            left: -50px;
+            top: 50%;
+            width: 50px;
+            height: 2px;
+            background-color: #38b4e7;
+        }
+
+        .c_box ul li.curr:before {
+            content: '';
+            position: absolute;
+            left: 30px;
+            top: 50%;
+            width: 50px;
+            height: 2px;
+            background-color: #38b4e7;
+        }
+
+        .c_box ul li:first-of-type:after,  .c_box ul li:last-of-type:before {
+            width: 0;
+        }
+        button{
+            border:none;
+            outline:none;
+            background:none;
+        }
+        .pwd button{
+            width: .9rem;
+            display: inline-block;
+            height: 30px;
+            line-height: 30px;
+            vertical-align: middle;
+        }
+
+
+    </style>
+</head>
+<body>
+<div class="content"><!--content-->
+
+    <div class="top"><!--top-->
+        <a class="back" href="javascript:history.go(-1);"><i class="iconfont icon-fanhui"></i></a>
+        <span class="login">账号关联</span>
+    </div><!--top-->
+
+    <div class="gl">
+        <div style="font-size:.18rem;color:#fff;text-align:center;padding:10px 0">关联理查宝账号</div>
+        <div>
+            <p>1.新注册用户系统会默认分配一个主账号且自动关联，如果在商城已经注册过帐号的，可在此重新关联已注册的账号</p>
+            <p>2.关联可快捷登录商城PC网站和APP账号，并可享受网站会员特权等，商城承诺保护您的账号隐私安全。</p>
+        </div>
+    </div>
+
+
+    <div class="c_box">
+        <div style="height: 100px;">
+            <ul>
+                <li class="curr">1
+                    <span>验证信息</span>
+                </li>
+
+                <li class="cg" style="margin-right:0px">2
+                    <span>关联完成</span>
+                </li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="box"><!--box-->
+        <div class="form-input"><!--form-input-->
+            <p>
+                <i class="iconfont icon-yonghu"></i>
+                <input class="user" id="name" type="text" placeholder="请输入用户名/手机号">
+            </p>
+            <p class="pwd">
+                <i class="iconfont icon-yanzhengma2"></i>
+                <input id="code_input" class="user-yzm" type="text" placeholder="请输入验证码">
+                <button id="v_container"></button>
+            </p>
+            <p class="pwd">
+                <i class="iconfont icon-mima"></i>
+                <input id="password" class="user" type="password" placeholder="请输入您的密码">
+            </p>
+        </div><!--form-input-->
+
+        <div class="login-btn"><!--login-btn-->
+            <p><input class="btn" id="gl-btn" type="button" value="确定关联"></p>
+        </div><!--login-btn-->
+    </div><!--box-->
+
+
+</div><!--content-->
+<script type="text/javascript" src="__JS_MOBILE__/jquery-1.9.0.min.js"></script>
+<script src="__JS_MOBILE__/gVerify.js"></script>
+<script src="__JS_MOBILE__/layer.js"></script>
+
+<script>
+    $(function(){
+        var verifyCode = new GVerify("v_container");
+
+
+
+        function isWeiXin() {
+            var ua = window.navigator.userAgent.toLowerCase();
+            if (ua.match(/MicroMessenger/i) == 'micromessenger') {
+                return true;
+            } else {
+                return false;
+            }
+        }
+        if(isWeiXin()){
+            $("#gl-btn").click(function(){
+                var name = $("#name").val();
+                var code_input = $("#code_input").val();
+                var password = $("#password").val();
+                var res = verifyCode.validate(document.getElementById("code_input").value);
+                if(!name){
+                    layer.msg("请输入用户名或手机号");
+                    return false
+                }
+                if(!code_input){
+                    layer.msg("请输入验证码");
+                    return false
+                }
+                if(!res){
+                    layer.msg("验证码错误");
+                    return false
+                }
+                if(!password){
+                    layer.msg("请输入密码");
+                    return false
+                }
+                $.ajax({
+                    url:"{:url('wx/relative_user')}",
+                    type:"post",
+                    data:{
+                        name:name,
+                        password:password
+                    },
+                    success:function (data) {
+                        var data = JSON.parse(data);
+                        if(data.status == 0){
+                            layer.msg(data.msg);
+                            return false
+                        }else{
+                            layer.msg('关联成功');
+                            $(".cg").addClass("curr");
+                            $("#gl-btn").val("已关联");
+                            $("#gl-btn").attr("disabled",true);
+                            $("#gl-btn").css({"background":"#ccc" });
+                        }
+
+                    }
+                })
+
+            })
+
+
+        }
+    })
+</script>
+
+
+</body>
+</html>

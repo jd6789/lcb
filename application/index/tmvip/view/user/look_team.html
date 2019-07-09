@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link href="__ADMIN_CSS__/styles.bundle.css" rel="stylesheet">
+</head>
+<body>
+<div class="cont_search clearfix">
+    <a class="btngreen search fl" href="javascript:void(0)" style="visibility: hidden">查询</a>
+    <a class="export fl" href="{:URL('tmvip/Admin/add_rule')}">添加权限</a>
+</div>
+<div class="bench white-scroll">
+    <div class="globaltable r5px">
+        <table border="0" cellpadding="0" cellspacing="0">
+            <tbody>
+            <tr>
+                <td>权限名称</td>
+                <td>操作</td>
+            </tr>
+
+            <!---->
+            {volist name="data" id="vo"}
+            <tr>
+                <td  class="first-cell" STYLE="text-align: left">
+                    <span><a href="javascript:void(0)">|{$vo.lev|str_repeat='----',###}{$vo.user_name}</a></span>
+                </td>
+                <td width="30%" align="center">
+                    <a href="{:URL('tmvip/Admin/edit_rule',['id'=>$vo.user_id])}">编辑</a> |
+                    <a href="{:URL('tmvip/Admin/del_rule',['id'=>$vo.user_id])}" title="移除" onclick="">移除</a>
+                </td>
+            </tr>
+            {/volist}
+            <!---->
+            </tbody>
+        </table>
+    </div>
+    <div class="page clearfix">
+        <div class="text">共<b>1</b>页<b>4</b>条记录</div>
+        <div class="linklist">
+            <a class="prev" href="javascript:void(0)">&nbsp;</a>
+            <a href="javascript:void(0)" class="current">1</a>
+            <a class="next" href="javascript:void(0)">&nbsp;</a>
+        </div>
+    </div>
+</div>
+</body>
+</html>

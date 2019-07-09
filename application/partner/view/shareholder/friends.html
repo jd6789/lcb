@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0"/>
+    <meta name="apple-mobile-web-app-capable" content="yes"/>
+    <meta name="apple-mobile-web-app-status-bar-style" content="black"/>
+    <meta name="format-detection" content="telephone=no"/>
+    <meta name="description" content="淘米科技"/>
+    <meta name="keywords" content="淘米科技"/>
+    <title>邀请码</title>
+    <link rel="stylesheet" href="__CSS_PARTNER__/commen.css">
+    <script src="__JS_PARTNER__/layer/layer.js"></script>
+    <script type="text/javascript" src="__JS_PARTNER__/auto-size.js"></script>
+    <script type="text/javascript" src="/mobile/js/jquery-1.9.0.min.js"></script>
+    <script type="text/javascript" src="/mobile/js/jquery.qrcode.min.js"></script>
+    <style>
+        html, body {
+            background-color: #edf0f5;
+            font-size: 0.28rem;
+            height: 100%;
+        }
+
+        body {
+            background: url("__IMAGES_PARTNER__/yqm-bg_02.png") no-repeat;
+            background-size: cover;
+        }
+
+        .head {
+            background-color: #fff;
+        }
+
+        section {
+            position: absolute;
+            width: 100%;
+            height: 70%;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+
+        section .img {
+            width: 85%;
+            height: 50%;
+            margin: 0 auto;
+            background-color: #fff;
+            margin-top: 0.6rem;
+            position: relative;
+            border-radius: 0.2rem;
+            padding-top: 0.3rem;
+        }
+
+        section .tip {
+            width: 85%;
+            text-align: center;
+            margin: 0 auto;
+            background-color: #fff;
+            position: relative;
+            border-top: 1px dashed #ccc;
+            border-radius: 0.2rem;
+        }
+
+        section .img:before {
+            content: '';
+            position: absolute;
+            right: 0;
+            bottom: 0;
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            z-index: 999;
+            transform: translate(50%, 50%);
+            background-color: #000;
+        }
+
+        section .img:after {
+            content: '';
+            position: absolute;
+            left: 0;
+            bottom: 0;
+            width: 20px;
+            height: 20px;
+            z-index: 999;
+            border-radius: 50%;
+            transform: translate(-50%, 50%);
+            background-color: #000;
+        }
+        .img div{
+            text-align: center;
+            margin-bottom: 0.3rem;
+            color: #959595;
+        }
+        .img .title {
+            color: #ff9b12;
+        }
+
+        .img .yqm {
+            color: #ff9b12;
+            font-size:1rem;
+        }
+        .img button{
+            display: block;
+            margin:0 auto;
+            margin-bottom:0.3rem;
+            background-color: #ff9b12;
+            color: #fff;
+            padding:0.15rem 0.6rem;
+            border-radius: 0.1rem;
+        }
+        .img .cont{
+            background-color: #fdde72;
+            padding:0.1rem 0.15rem;
+            color: #b8a900;
+        }
+        .tip .fl{
+            width: 50%;
+            text-align: center;
+            padding:0.3rem 0;
+            color: #959595;
+        }
+        .tip .fl img{
+            display: block;
+            width: 40%;
+            margin:0.15rem auto;
+        }
+        .img .erweima{
+            height:70%;
+            width: 55%;
+            margin:0 auto;
+            background:url("__IMAGES_PARTNER__/kk_03.png") no-repeat;
+            background-size: 100% 100%;
+        }
+        #code canvas{
+            width: 80%;
+            height: 80%;
+            margin-top: 0.25rem;
+        }
+    </style>
+</head>
+<body>
+<div class="head">
+    <a href="javascript:history.go(-1);" class="back">
+        <img src="__IMAGES_PARTNER__/fh_03.png" alt="">
+    </a>
+    <p style="color: #000;font-size: 0.35rem;">邀请码</p>
+</div>
+<section>
+    <div class="img">
+        <div class="erweima" id="code">
+            <input type="hidden" value='{$data}' id="data">
+        </div>
+        <div style="font-size: 0.26rem;margin-top: 0.5rem;color:#ff9b12;" >
+            扫描二维码后填写相关信息完成注册
+        </div>
+    </div>
+    <div class="tip">
+        <div class="fl">
+            <img src="__IMAGES__/gd.png" alt="">
+            扫码进去股东
+        </div>
+        <div class="fl">
+            <img src="__IMAGES__/lcb.png" alt="">
+            扫码进入理茶宝
+        </div>
+        <div class="clear"></div>
+    </div>
+</section>
+<script>
+
+
+    $(function(){
+              var urldata = $("#data").val();
+        $('#code').qrcode(urldata);
+    })
+
+</script>
+
+</body>
+</html>

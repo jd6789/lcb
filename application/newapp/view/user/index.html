@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0,user-scalable=no,minimal-ui">
+    <link href="__CSS_NEW__/reset.css" rel="stylesheet" type="text/css">
+    <link href="__CSS_NEW__/common.css" rel="stylesheet" type="text/css">
+    <link href="__CSS_NEW__/iconfont.css" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" href="__CSS_NEW__/swiper-4.2.0.min.css">
+    <link href="__CSS_NEW__/index.css" rel="stylesheet" type="text/css">
+    <title>理茶宝首页</title>
+    <style>
+        .content {
+            padding-bottom: .45rem;
+        }
+
+        .footer p:first-child {
+            margin: 5px 0;
+        }
+    </style>
+</head>
+<body>
+
+<div class="content"><!--content-->
+
+    <div class="title"><!--title-->
+        <a href="{:url('newapp/alluser/paycode')}" class="fkm"><img src="__IMAGES_NEW__/fkm.png" width="25"></a>
+        <span class="titlelcb">理茶宝</span>
+        <a class="logini" href="{:url('newapp/user/login')}" id="href"
+           style="width: 140px;text-align: right;overflow: auto;white-space: nowrap;text-overflow: ellipsis;">
+            <span class="" id="username" style="color:#fff"></span>
+        </a>
+        <!--<i class="iconfont icon-xiaoxi"></i>-->
+    </div><!--title-->
+
+    <div class="swiper-container"><!--swiper-container-->
+        <div class="swiper-wrapper">
+            <!--<div class="swiper-slide"><img src="__IMAGES_MOBILE__/banner1.jpg"></div>-->
+            <!--<div class="swiper-slide"><img src="__IMAGES_MOBILE__/banner2.jpg"></div>-->
+            <!--<div class="swiper-slide"><img src="__IMAGES_MOBILE__/banner3.jpg"></div>-->
+            <div class="swiper-slide"><img src="__IMAGES_MOBILE__/1.jpg"></div>
+            <div class="swiper-slide"><img src="__IMAGES_MOBILE__/2.jpg"></div>
+            <div class="swiper-slide"><img src="__IMAGES_MOBILE__/3.jpg"></div>
+        </div>
+        <!-- 如果需要分页器 -->
+        <div class="swiper-pagination"></div>
+        <!--<div class="problems"><a href="{:url('problem')}">常见问题</a></div>-->
+    </div><!--swiper-container-->
+
+    <div class="index-bg">
+        <img src="__IMAGES_NEW__/index.png">
+    </div>
+</div>
+
+<footer class="footer">
+    <nav class="nav">
+        <ul>
+            <li><a class="active" href="{:url('newapp/user/index')}">
+                <p><img src="__IMAGES_NEW__/sy.png" width="21"></p>
+                <p>首页</p>
+            </a></li>
+            <li><a href="{:url('newapp/user/richardtea')}">
+                <p><img src="__IMAGES_NEW__/lcb1.png" width="19"></p>
+                <p>理茶宝</p>
+            </a></li>
+            <li><a href="{:url('newapp/user/record')}">
+                <p><img src="__IMAGES_NEW__/jl1.png" width="21"></p>
+                <p>记录</p>
+            </a></li>
+            <li><a href="{:url('newapp/user/myinfo')}">
+                <p><img src="__IMAGES_NEW__/wd1.png" width="22"></p>
+                <p>我的</p>
+            </a></li>
+        </ul>
+    </nav>
+</footer>
+
+<script src="__JS_NEW__/jquery-1.8.3.min.js"></script>
+<script src="__JS_NEW__/swiper-4.2.0.min.js"></script>
+<script>
+
+    $(".fkm").click(function () {
+        $(".box").fadeIn(100)
+    })
+
+    $(".box-bg").click(function () {
+        $(".box").fadeOut(200)
+    })
+
+    $.ajax({
+        url: "{:url('alluser/userLogin')}",
+        type: "post",
+        success: function (msg) {
+            if (msg.status == 1) {
+                $("#username").text("欢迎您，" + msg.msg)
+                $("#href").attr("href", "javascript:;")
+            } else {
+                $("#username").text("登录")
+            }
+        }
+    })
+
+    var mySwiper = new Swiper('.swiper-container', {
+        autoplay: true,
+        //freeMode : true,
+        //touchRatio : 0.5,
+        pagination: {
+            el: '.swiper-pagination',
+            type: 'bullets',
+        },
+        autoplay: {
+            disableOnInteraction: false,
+        },
+    })
+</script>
+</body>
+</html>

@@ -1,0 +1,33 @@
+<?php
+/**
+ * Created by PhpStorm.
+ * User: jieyu
+ * Date: 2018/5/3
+ * Time: 10:41
+ */
+namespace app\partner\model;
+use think\Db;
+use think\Cookie;
+use think\Session;
+use app\partner\controller;
+use think\Model;
+use think\Request;
+class Gudong extends Model
+{
+    //判断用户密码是否正确
+    public function pwd_exit($username,$password)
+    {
+        $user_info = Db::connect(config('db_config2'))->name("users")->where('user_name',$username)->find();
+        if($password != $user_info['password']){
+            return false;
+        }else{
+            //记录登录时间
+            Db::connect(config('db_config2'))->name("users")->where('user_id',$user_info['user_id'])->setField('last_login', time());
+            Db::table('tea_user')->where('user_id',$user_info['user_id'])->setField('last_time',time());
+            Cookie::set("user",$user_info);
+            session::set("user",$user_info);
+            session::set("user_id",$user_info['user_id']);
+            return true;
+        }
+    }
+}

@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link href="__ADMIN_CSS__/styles.bundle.css" rel="stylesheet">
+    <link rel="stylesheet" href="__ADMIN_CSS__/jquery-ui.min.css">
+    <script src="__ADMIN_JS__/jquery-ui.min.js"></script>
+    <script src="__ADMIN_JS__/datepicker-zh-CN.js"></script>
+    <script>
+        $("#saleReportBeginTime").datepicker();
+        $("#saleReportEndTime").datepicker();
+    </script>
+    <style>
+        /*分页*/
+        .pagination {
+            text-align: right;
+            margin-top: 15px;
+        }
+        .pagination li {display: inline-block;margin-right: -1px;padding: 5px;border: 1px solid #e2e2e2;min-width: 20px;text-align: center;}
+        .pagination li.active {background: #009688;color: #fff;border: 1px solid #009688;}
+        .pagination li a {display: block;text-align: center;}
+    </style>
+    <style>
+        .cont_search input.search{
+            height: 28px;
+            line-height: 28px;
+            width: 100px;
+            font-weight: 200;
+            font-size: 14px;
+        }
+        .cont_search table{
+            width: auto;
+        }
+        .cont_search table td{
+            padding-right: 10px;
+        }
+    </style>
+</head>
+<body>
+<div class="cont_search clearfix">
+    <div>
+        <form action="" method="post">
+            用户名搜索：<input type="text" name="username" value="">
+            <input type="submit" value="查询" class="btngreen search ">
+        </form>
+    </div>
+    <div>
+        <!--<table>-->
+            <!--<tr>-->
+                <!--<td>-->
+                    <!--{if condition="$data.money eq 0 "}现金支付的金额￥<span style="color:red">0</span>&nbsp;&nbsp;-->
+                        <!--{else/}-->
+                        <!--现金支付的金额￥<span style="color:red">{$data.money}</span>&nbsp;&nbsp;-->
+                    <!--{/if}-->
+                <!--</td>-->
+                <!--<td>-->
+                    <!--{if condition="$data.again_money eq 0 ">升级理茶宝消耗的茶籽<span style="color:red">0</span>&nbsp;&nbsp;-->
+                        <!--{else/}-->
+                        <!--升级理茶宝消耗的茶籽<span style="color:red">{$data.again_money}</span>&nbsp;&nbsp;-->
+                    <!--{/if}-->
+                <!--</td>-->
+            <!--</tr>-->
+        <!--</table>-->
+    </div>
+</div>
+<div class="bench white-scroll" >
+    <div class="globaltable r5px">
+        <table border="0" cellpadding="0" cellspacing="0">
+            <tbody>
+            <tr>
+                <td>用户名</td>
+                <td>商品名称</td>
+                <td>理茶宝等级</td>
+                <td>实付金额</td>
+                <td>消费时间</td>
+            </tr>
+
+            {volist name="data.info" id="v" key="k"}
+                <tr align="center">
+                    <td>{$data[$v.user_id]['username']}</td>
+                    <td>{$v.body}</td>
+                    <td>{$data[$v.user_id]['rec_money']}</td>
+                    <td>{if condition="$v.again_money eq 0 "}￥{$data[$v.user_id]['recharge_money']}{else /}￥{$data[$v.user_id]['recharge_money']}+{$data[$v.user_id]['again_money']}茶籽{/if}</td>
+                    <td>{$v.rec_addtime|date='Y-m-d H:i:s',###}</td>
+                </tr>
+            {/volist}
+            <!---->
+            </tbody>
+        </table><p>{$data.info->render()}</p>
+    </div>
+    <div class="page clearfix">
+        <div class="text">共<b>1</b>页<b>4</b>条记录</div>
+        <div class="linklist">
+            <a class="prev" href="javascript:void(0)">&nbsp;</a>
+            <a href="javascript:void(0)" class="current">1</a>
+            <a class="next" href="javascript:void(0)">&nbsp;</a>
+        </div>
+    </div>
+</div>
+</body>
+</html>

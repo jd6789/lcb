@@ -1,0 +1,103 @@
+.page-container {
+    color: #d99e4c;
+    font-size: 12px;
+    display: inline-block;
+}
+
+.page-container ul {
+    overflow: hidden;
+    display: flex;
+    text-align: center;
+    justify-content: center;
+}
+
+.page-container ul, .page-container li {
+    list-style: none;
+}
+
+.page-item {
+    margin-right: 9px;
+}
+
+.page-icon-content {
+    width: 36px;
+    height: 30px;
+}
+
+
+
+.page-icon-type1 {
+    position: relative;
+    top: -2px;
+}
+
+.page-icon-type2 {
+    position: relative;
+    top: 3px;
+}
+
+
+.page-text {
+    width: 23px;
+    height: 23px;
+    cursor: pointer;
+    display: block;
+    line-height: 23px;
+    border-radius: 3px;
+    color: #666;
+}
+
+.page-text-current {
+    width: 23px;
+    height: 23px;
+    cursor: pointer;
+    display: block;
+    line-height: 23px;
+    background: #d99e4c;
+    color: #fff;
+    border-radius: 3px;
+}
+
+.page-text:hover,.page-action-text:hover{
+    background: #d99e4c;
+    color: #fff;
+    cursor: pointer;
+}
+
+.page-action-text {
+    height: 23px;
+    width: 23px;
+    text-align: center;
+    border: 1px solid #d99e4c;
+    cursor: pointer;
+    display: block;
+    line-height: 23px;
+    color: #d99e4c;
+
+}
+.page-prev,.page-next{
+    position: relative;
+    height: 17px;
+    width: 17px;
+    text-align: center;
+    border-radius: 3px;
+    cursor: pointer;
+}
+.page-prev:before,.page-next:before{
+    display: inline-block;
+    position: absolute;
+    margin: 7px 0 0 0;
+    left: 9px;
+    content: "";
+    width: 0;
+    height: 0;
+    border-bottom: 4px solid transparent;
+    border-top: 5px solid transparent;
+    border-right: 5px solid #d99e4c;
+
+}
+
+.page-next:before{
+    border-right: 0;
+    border-left: 5px solid #d99e4c;
+}

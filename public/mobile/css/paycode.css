@@ -1,0 +1,55 @@
+body{
+	background:linear-gradient(to top, #0580db 0%, #3cade7 100%	);
+}
+.top{
+	
+	text-align:center;
+	line-height:.45rem;
+	position:relative;
+	color:#fff;
+}
+.icon-fanhui{
+	font-size:.20rem;
+	color:#fff;
+	font-weight:bold;
+}
+.back{
+	position:absolute;
+	left:.12rem;
+}
+.login{
+	font-size:.18rem;
+
+}
+.ewmbg{
+	position:relative;
+	margin:30px;
+	text-align:center;
+}
+.ewmbg img{
+	width:100%;
+	margin-top:.4rem;
+	position:relative;
+}
+.ewm img{
+	width:150px;
+	position:absolute;
+	top:25%;
+	left:50%;
+	margin-left:-75px;
+}
+.sys{
+	position:absolute;
+	width:220px;
+	bottom:5%;
+	left:50%;
+	margin-left:-110px;
+	font-size:.17rem;
+	text-align:center;
+}
+
+
+
+@media screen and (max-width: 320px){
+		
+}

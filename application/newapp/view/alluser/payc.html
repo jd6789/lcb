@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0,user-scalable=no,minimal-ui">
+    <link href="/mobile/css/reset.css" rel="stylesheet" type="text/css">
+    <link href="/mobile/css/common.css" rel="stylesheet" type="text/css">
+    <link href="/mobile/css/iconfont.css" rel="stylesheet" type="text/css">
+    <link href="/mobile/css/paycode.css" rel="stylesheet" type="text/css">
+    <link href="/mobile/css/layer.css" rel="stylesheet" type="text/css">
+    <script type="text/javascript" src="/mobile/js/jquery-1.9.0.min.js"></script>
+    <script type="text/javascript" src="/mobile/js/jquery.qrcode.min.js"></script>
+    <script src="/mobile/js/layer.js"></script>
+    <title>我的付款码</title>
+    <style>
+        canvas{
+            width:100%
+        }
+        #code{
+            position:absolute;
+            top:50%;
+            left:50%;
+            margin-left:-110px;
+            margin-top:-110px
+        }
+        .code-box{
+            position:absolute;
+            top:50%;
+            left:50%;
+            width:220px;
+            height:220px;
+            margin-left:-110px;
+            margin-top:-110px;
+            background:#ccc;
+            z-index:9999;
+            color:#fff;
+            text-align:center;
+            line-height:220px;
+            display:none;
+            font-size:.18rem
+        }
+    </style>
+</head>
+<body>
+      <div class="content"><!--content-->
+
+          <div class="top"><!--top-->
+             <a class="back" href="{:url('user/myinfo')}" style="margin-top: 8px;"><i class="iconfont icon-fanhui"></i></a>
+             <span class="login">付款码</span>
+          </div><!--top-->
+
+          <div class="ewmbg">
+            <img src="/mobile/images/ewmbg.png">
+            <span class="ewm"><div id="code" style="height: 220px;width: 220px;"></div>
+                <div class="code-box">二维码已失效</div>
+              <input type="hidden" value='{$data}' id="data"></span>
+            <p class="sys">请扫描上方二维码进行支付</p>
+          </div>
+          
+
+      </div><!--content-->
+
+
+
+
+
+</body>
+<script>
+
+
+    $(function(){
+        setTimeout(function(){
+             $(".code-box").fadeIn(500);
+        },120000)
+
+
+
+        var urldata = $("#data").val();
+        $('#code').qrcode(urldata);
+    })
+
+</script>
+</html>

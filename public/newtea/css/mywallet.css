@@ -1,0 +1,130 @@
+
+.top{
+	height:.45rem;
+	text-align:center;
+	line-height:.45rem;
+	background:#fff;
+	border-bottom:solid 2px #edf0f5;
+	position:fixed;
+	top:0;
+	left:0;
+	width:100%;
+}
+.icon-fanhui{
+	font-size:.20rem;
+	color:#000;
+	font-weight:bold;
+}
+.back{
+	position:absolute;
+	left:.12rem;
+}
+.login{
+	font-size:.18rem;
+
+}
+.totalassets{
+	margin-top:.55rem;
+	
+}
+.totalassets1{
+	border:solid 1px #30438a;
+	margin:15px;
+	height:1.35rem;
+	border-radius:8px;
+	position:relative;
+}
+.totalassets-num{
+	text-align:center;
+}
+.total-sm{
+	font-size:.15rem;
+	color:#565656;
+	margin-top:25px;
+	margin-bottom:5px;
+}
+.total-dol{
+	font-size:.2rem;
+	color:#ff3622;
+}
+.total-img{
+	position:absolute;
+	bottom:0px;
+}
+
+.total-bg img{
+	width:100%;
+}
+.money{
+	position:absolute;
+	bottom:15px;
+}
+.money{
+	width:100%;
+}
+.ye{
+	font-size:.14rem;
+	color:#565656;
+	margin-left:20px;
+}
+.zr{
+	float:right;
+	margin-right:20px;
+}
+.zr-btn{
+	width:.8rem;
+	height:.3rem;
+	border:none;
+	background:#fff;
+	border-radius:50px;
+	color:#4359aa;
+	font-size:.14rem;
+}
+
+.list{
+	height:.4rem;
+	line-height:.4rem;
+	
+}
+.list li{
+	float:left;
+	width:25%;
+	text-align:center;
+}
+.list li a{
+	font-size:.13rem;
+}
+.list li .actives{
+	background:#4359aa;
+	color:#fff;
+	padding:4px 12px;
+	border-radius:30px;
+}
+.list-con {
+	width:100%;
+}
+.list-con table{
+	display:none;
+	width:100%;
+}
+.list-con table tbody{
+	width:100%;
+}
+.list-con table tr td{
+	width:10%;
+	height:.4rem;
+	text-align:center;
+	padding:6px 0;
+}
+.list-con table tr:nth-child(2n+1){
+	background:#f2f3f9;
+}
+.blue{
+	color:#4359aa;
+}
+.red{
+	color:#f00;
+}
+.orange{
+	color:#fd981f;
+}

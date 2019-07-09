@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0,user-scalable=no,minimal-ui">
+    <link href="__CSS_MOBILE__/reset.css" rel="stylesheet" type="text/css">
+    <link href="__CSS_MOBILE__/common.css" rel="stylesheet" type="text/css">
+    <link href="__CSS_MOBILE__/iconfont.css" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" href="__CSS_MOBILE__/swiper-4.2.0.min.css">
+    <link href="__CSS_MOBILE__/mywallet.css" rel="stylesheet" type="text/css">
+	<title>我的钱包</title>
+</head>
+<body>
+	<div class="content"><!--content-->
+		
+		<div class="top"><!--top-->
+             <a class="back" href="{:url('myinfo')}"><i class="iconfont icon-fanhui"></i></a>
+             <span class="login">我的钱包</span>
+        </div><!--top-->
+		
+		<div class="assets">
+			<div class="total-assets">
+				<p class="total-assets1">总资产（元）</p>
+				<p class="total-assets2">1000.00</p>
+			</div>
+			<div class="kyye">
+				<div>
+					<p>可用余额（元）</p>
+					<p>1000.00</p>
+				</div>
+				<div><input class="cz-btn" type="button" value="充值"></div>
+			</div>
+		</div>
+
+<!--选项卡切换 -->
+	<div class="swiper-container">
+		<div class="my-pagination" ><ul  class="my-pagination-ul"></ul></div>
+		<div class="sm">
+			<div>日期</div>
+			<div>收入/支出</div>
+			<div>对应订单号</div>
+			<div>说明</div>
+		</div>
+			<div class="swiper-wrapper">    	
+				<div class="swiper-slide">
+		        	<!--茶籽-->
+		        	<div class="user_zc_body">
+		                <ul>                    
+		                    <li class="tab-info">
+		                    	<div>
+		                    		<p>2018-02-21</p>
+		                    		<p>10:22:32</p>
+		                    	</div>
+		                    	<div class="blue">+30</div>
+		                    	<div class="blue">18030762644153</div>
+		                    	<div>微信转入143元</div>
+		                    </li>
+		                    <li class="tab-info">
+		                    	<div>
+		                    		<p>2018-02-21</p>
+		                    		<p>10:22:32</p>
+		                    	</div>
+		                    	<div class="red">-20</div>
+		                    	<div class="blue">18030762644153</div>
+		                    	<div>每日释放</div>
+		                    </li>
+		                    <li class="tab-info">
+		                    	<div>
+		                    		<p>2018-02-21</p>
+		                    		<p>10:22:32</p>
+		                    	</div>
+		                    	<div class="red">-20</div>
+		                    	<div class="blue">18030762644153</div>
+		                    	<div>每日释放</div>
+		                    </li>
+		                </ul>
+		            </div>
+		            <!--茶籽-->           
+		        </div>
+                
+				<div class="swiper-slide">		        
+		        	<!--茶券-->
+		        	<div class="user_zc_body">
+		                <ul>		                    
+		                    	00000	                    
+		                </ul>
+		            </div>		            
+		            <!--茶券-->		        
+		        </div>
+
+		        <div class="swiper-slide">		        
+		            <!--茶点-->
+		            <div class="user_zc_body">
+		                <ul>
+		                    		                
+		                    111111
+		                </ul>
+		            </div>		            
+		            <!--茶点-->		        
+		        </div>
+		        <div class="swiper-slide">		        
+		            <!--可用资金-->
+		            <div class="user_zc_body">
+		                <ul>		                    
+		                    	4444	                    
+		                </ul>
+		            </div>		            
+		            <!--可用资金-->
+		        </div>
+		</div>
+	</div>
+	<!--选项卡切换 -->
+	</div><!--content-->
+
+	<script src="__JS_MOBILE__/jquery-1.9.0.min.js"></script>
+	<script src="__JS_MOBILE__/swiper.min.js"></script>
+	<script>
+		$(function(){
+			$(".jl span").click(function(){
+				$(this).addClass("jl-active").siblings().removeClass("jl-active")
+			})
+		})
+	</script>
+	<script>        
+		var mySwiper = new Swiper('.swiper-container',{
+		pagination: '.my-pagination-ul',
+		paginationClickable: true,
+		paginationBulletRender: function (index, className) {
+			switch (index) {
+			  case 0: name='全部';break;
+			  case 1: name='转入';break;
+			  case 2: name='支出';break;
+			  case 3: name='未支付订单';break;
+			  default: name='';
+			}
+			      return '<li class="' + className + '">' + name + '</li>';
+		}
+})       
+    </script>
+</body>
+</html>

@@ -1,0 +1,92 @@
+body{
+	background:#edf0f5;
+}
+.top{
+	height:.45rem;
+	text-align:center;
+	line-height:.45rem;
+	position:relative;
+	background:#fff;
+}
+.icon-fanhui{
+	font-size:.20rem;
+	color:#000;
+	font-weight:bold;
+}
+.back{
+	position:absolute;
+	left:.12rem;
+}
+.login{
+	font-size:.18rem;
+
+}
+.mytjr{
+	height:.26rem;
+	line-height:.26rem;
+	margin:8px 0;
+	border-left:solid 5px #f00;
+	margin-left:.15rem;
+}
+.tjr{
+	font-size:.15rem;
+	color:#333;
+	margin-left:8px;
+}
+.choice{
+	height:.5rem;
+	background:#fff;
+}
+.choice li{
+	border-bottom:solid 1px #dbdbdb;
+	margin-left:.15rem;
+	height:.5rem;
+	box-sizing:border-box;
+	line-height:.5rem;
+	font-size:.14rem;
+	color:#333;
+}
+.have{
+	margin:0 .25rem;
+}
+.choice-info{
+	background:#fff;
+}
+.choice-info li{
+	border-bottom:solid 1px #dbdbdb;
+	margin-left:.15rem;
+	height:.5rem;
+	box-sizing:border-box;
+	line-height:.5rem;
+	font-size:.14rem;
+	color:#333;
+}
+.adress{
+	margin-left:6px;
+	height:24px;
+	width:70%;
+	border:solid 1px #ccc;
+	text-indent:5px;
+	color:#333;
+}
+.bc{
+	width:60%;
+	margin:0 auto;
+	margin-top:28px;
+}
+.bc-btn{
+	height:.45rem;
+	width:100%;
+	background:#00a0e9;
+	font-size:.16rem;
+	color:#fff;
+	border-radius:8px;
+	border:none;
+}
+.tjruser{
+	margin-left:6px;
+	height:24px;
+	border:solid 1px #ccc;
+	text-indent:5px;
+	color:#333;
+}

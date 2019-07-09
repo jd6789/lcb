@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link href="__ADMIN_CSS__/styles.bundle.css" rel="stylesheet">
+    <style>
+        /*分页*/
+        .pagination {
+            text-align: right;
+            margin-top: 15px;
+        }
+        .pagination li {display: inline-block;margin-right: -1px;padding: 5px;border: 1px solid #e2e2e2;min-width: 20px;text-align: center;}
+        .pagination li.active {background: #009688;color: #fff;border: 1px solid #009688;}
+        .pagination li a {display: block;text-align: center;}
+    </style>
+    <style>
+        .cont_search input.search{
+            height: 28px;
+            line-height: 28px;
+            width: 100px;
+            font-weight: 200;
+            font-size: 14px;
+        }
+        .cont_search table{
+            width: auto;
+        }
+        .cont_search table td{
+            padding-right: 10px;
+        }
+    </style>
+</head>
+<body>
+<div class="cont_search clearfix">
+    <form action=""  method="post">
+        <!-- 关键字 -->
+        手机号<input type="text" name="tel" size="15" />
+        用户名<input type="text" name="user" size="15" />
+        <input type="submit" value="查询" class="btngreen search ">
+    </form>
+</div>
+<div class="bench white-scroll">
+    <div class="globaltable r5px">
+        <table border="0" cellpadding="0" cellspacing="0">
+            <tbody>
+            <tr>
+                <td>用户名</td>
+                <td>手机号</td>
+                <td>充值总额</td>
+                <td>一级推荐人数</td>
+                <td>二级推荐人数</td>
+                <td>注册时间</td>
+                <td>是否购买</td>
+                <td>用户推荐人</td>
+                <td>操作</td>
+            </tr>
+
+            <!---->
+            {volist name="data.info" id="v"}
+            <tr>
+                <td align="center" class="first-cell"><span>{$data[$v.user_id]['user_name']}</span></td>
+                <td align="center"><span onclick="">{$data[$v.user_id]['mobile_phone']}</span></td>
+                <td align="center"><span onclick="">{$v.money} </span></td>
+                <td align="center"><span>{$data[$v.user_id]['one']}</span></td>
+                <td align="center"><span>{$data[$v.user_id]['two']}</span></td>
+                <td align="center"><span>{$data[$v.user_id]['reg_time']|date='Y-m-d h:i:s',###}</span></td>
+                <td>{eq name="v.money" value="" }否
+                    {else/}
+                    是
+                    {/eq}
+                </td>
+                <td align="center" class="first-cell"><span>{$data[$v.user_id]['parent_name']}</span></td>
+                <td align="center"><a href="{:URL('tmvip/User/reset_login_pwd',['user_id'=>$v.user_id])}">重置登录密码</a>&nbsp;&nbsp;
+                                   <a href="{:URL('tmvip/User/reset_pay_pwd',['user_id'=>$v.user_id])}">重置支付密码</a>&nbsp;&nbsp;
+                                   <a href="{:URL('tmvip/User/edit_user_info',['user_id'=>$v.user_id])}">用户信息修改</a>
+                                   <a href="{:URL('tmvip/User/one_user_info',['user_id'=>$v.user_id])}">用户信息查看</a>
+                                   <a href="{:URL('tmvip/User/user_team',['user_id'=>$v.user_id])}">查看团队</a>
+                    {eq name="v.wait" value="0"}
+                    <a href="{:URL('tmvip/User/reset_login_pwd',['user_id'=>$v.user_id])}" >开启</a>
+                    {else/}
+                    <a href="{:URL('tmvip/User/user_wait',['user_id'=>$v.user_id])}" class="wait">冻结</a>
+                    {/eq}
+                </td>
+
+            </tr>
+            {/volist}
+            <!---->
+            </tbody>
+        </table>
+        <p>{$data.info->render()}</p>
+    </div>
+</div>
+</body>
+</html>

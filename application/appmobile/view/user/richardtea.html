@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0,user-scalable=no,minimal-ui">
+	<link href="/mobile/css/reset.css" rel="stylesheet" type="text/css">
+	<link href="/mobile/css/common.css" rel="stylesheet" type="text/css">
+	<link href="/mobile/css/iconfont.css" rel="stylesheet" type="text/css">
+	<link rel="stylesheet" href="/mobile/css/swiper-4.2.0.min.css">
+	<link href="/mobile/css/richardtea.css" rel="stylesheet" type="text/css">
+	<link href="/mobile/css/layer.css" rel="stylesheet" type="text/css">
+	<title>购买理茶宝</title>
+	<style>
+		input[type=radio]{
+			-webkit-appearance: radio;
+		}
+	</style>
+</head>
+<body>
+<div class="content"><!--content-->
+
+	<div class="title"><!--title-->
+		<span>购买理茶宝</span>
+		<!--<i class="iconfont icon-xiaoxi"></i>-->
+	</div><!--title-->
+
+	<div class="product">
+				<span>
+					<span class="cp">理茶宝产品</span>
+					<span class="fgx">|</span>
+					<span class="jf">赠送积分</span>
+				</span>
+	</div>
+
+
+	<div class="product-list pagerHtmlWrap" id="products">
+
+	</div>
+
+
+	<footer class="footer">
+		<nav class="nav">
+			<ul>
+				<li><a  href="{:url('index')}">
+					<p><i class="iconfont icon-weibiaoti1"></i></p>
+					<p>首页</p>
+				</a></li>
+				<li><a class="active" href="{:url('richardtea')}">
+					<p><i class="iconfont icon-licaishouyi"></i></p>
+					<p>理茶宝</p>
+				</a></li>
+				<li><a href="{:url('record')}">
+					<p><i class="iconfont icon-htmal5icon34"></i></p>
+					<p>记录</p>
+				</a></li>
+				<li><a href="{:url('myinfo')}">
+					<p><i class="iconfont icon-yonghu"></i></p>
+					<p>我的</p>
+				</a></li>
+			</ul>
+		</nav>
+	</footer>
+
+</div><!--content-->
+
+
+<div class="zz" id="bg">
+	<div class="bg-info">
+		<p>您确定购买这款产品吗？</p>
+		<p>价格：<input id="price" type="text" value="5000.00">元</p>
+		<p><input type="button" class="qs" value="确认"><input type="button" class="qs" value="确认"></p>
+	</div>
+</div>
+
+
+<script src="/mobile/js/jquery-1.9.0.min.js"></script>
+<script src="/mobile/js/swiper-4.2.0.min.js"></script>
+<script src="/mobile/js/layer.js"></script>
+<script>
+    $(function(){
+        $.ajax({
+            type: "post",
+            url: "{:url('appmobile/recharge/rechargeIndex')}",
+            success:function(data){
+                var html = '';
+                //console.log(data);
+                for(var i = 0; i < data.length; i++){
+                    html += '<div class="product-lists" data-id="'+ data[i].id+ '">';
+                    html += '<div><img src="/mobile/images/li.png"></div>';
+                    html += '<div>';
+                    html += '<p class="weight"><b class="yuan" style="font-style:normal">' + data[i].rec_money +'</b>  <b class="red">元</b>  </p>';
+                    html += '<p class="weight">赠<b class="zs">' + data[i].total_inte +  '</b>积分</p>';
+                    html += '</div>';
+                    html += '<div><input type="button"  class="btn" value="立即购买"></div>';
+                    html += '</div>';
+                }
+                $("#products").append(html);
+            }
+        });
+
+
+
+        $(".product-list").on('click',".btn",function(){
+            var price = $(this).parent().prev().find(".yuan").text();
+            var dataid = $(this).parent().parent().attr("data-id");
+
+            window.parent.layer.open({
+                title:"确认产品",
+                width:"200px",
+                height:"300px",
+                content:
+                "<div >您确定购买这款产品吗?</div>" +
+                "<div style='margin-left: 30px;font-size: .16rem;color:#666'>价格:"+ price +"元</div>"+
+                "<div id='radio'><p style='margin-top:6px'>是否选择礼包</p><p><label><input style='margin:0 8px;width:16px;height:18px;position:relative;top:4px' class='radio' value='1' type='radio' name='radio'  checked>是</label><label><input style='margin:0 8px;width:18px;height:16px;position:relative;top:4px' class='radio' type='radio' name='radio' value='0'>否</label></p></div>" ,
+                time: 0 //不自动关闭
+                ,btn: ['确认购买', '取消']
+                ,yes: function(index){
+                    var radio = $("#radio input[type=radio]:checked").val();
+                    $.ajax({
+                        type: 'post',
+                        url: "{:url('appmobile/recharge/buyManage')}",
+                        data:{
+                            rec_money: price,
+                            recharge_id: dataid,
+                            is_gift:radio,
+                        },
+                        success: function(msg){
+                            if (msg == 0) {
+                                layer.msg("请在理茶宝积分返还完再购买")
+                                return false
+                            }
+                            if (msg == 1) {
+                                layer.msg("当前购买的产品金钱数小于上次购买的钱数")
+                                return false
+                            }
+                            if (msg == 3) {
+                                layer.msg("信息不完整，前往填写");
+                                setTimeout(function () {
+                                    location.href = "{:url('appmobile/user/perfectinfo')}"
+                                }, 2000)
+
+                            }
+                            if (msg == 4) {
+                                layer.msg("您有尚未支付的理茶宝产品，请支付或者取消")
+                                return false
+
+                            }
+                            if (msg == 5) {
+                                layer.msg("下单购买失败")
+                                return false
+                            }
+                            if (msg == 6) {
+                                layer.msg("信息不完整，前往填写");
+                                setTimeout(function () {
+                                    location.href = "{:url('appmobile/user/perfectinfo')}"
+                                }, 2000)
+
+                            }
+                            if (msg.status == 1) {
+                                layer.msg("下单成功");
+                                setTimeout(function () {
+                                    location.href = "{:url('appmobile/recharge/confirm')}?id=" + msg.id;
+                                }, 2000)
+                            }
+                        }
+                    })
+                    //window.location.href='licha_pay.html';//跳转页面
+                },
+                cancel: function() {
+                    //右上角关闭回调
+
+                }
+            });
+        })
+
+    })
+</script>
+</body>
+</html>

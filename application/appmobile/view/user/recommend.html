@@ -1,0 +1,318 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0,user-scalable=no,minimal-ui">
+    <link href="__CSS_MOBILE__/reset.css" rel="stylesheet" type="text/css">
+    <link href="__CSS_MOBILE__/page.css" rel="stylesheet" type="text/css">
+    <link href="__CSS_MOBILE__/common.css" rel="stylesheet" type="text/css">
+    <link href="__CSS_MOBILE__/iconfont.css" rel="stylesheet" type="text/css">
+    <link href="__CSS_MOBILE__/recommend.css" rel="stylesheet" type="text/css">
+    <link href="__CSS_MOBILE__/layer.css" rel="stylesheet" type="text/css">
+    <title>我的推荐</title>
+
+</head>
+<body>
+
+      <div class="content"><!--content-->
+
+          <div class="top"><!--top-->
+             <a class="back" href="{:url('personcenter')}"><i class="iconfont icon-fanhui"></i></a>
+             <span class="login">我的推荐</span>
+          </div><!--top-->
+
+        
+          <div class="registration"><!--registration-->
+              <div class="registration1">
+                  <div><a class="generations" href="{:url('otherreg')}">代人注册</a></div>
+                  <div><a class="generations" href="javascript:;" id="toggle_market" data-id="2">二级市场</a></div>
+              </div>
+              <div class="registration2">
+                  <div class="market">
+                      <p>一级市场<span class="num-red">{$one}</span>人</p>
+                      <p>团队市场<span class="num-red">{$num_num}</span>人</p>
+                  </div>
+                  <div class="market">
+                      <p>二级市场<span class="num-red">{$two}</span>人</p>
+                      <p>团队总业绩<span class="num-red dsdsdsd">{$money_total}</span>元</p>
+                  </div>
+              </div>
+          </div><!--registration-->
+
+
+          <div class="level"><!--level-->
+              <table id="table"  border="0" cellspacing="0" cellpadding="0">
+
+              </table>
+              <table id="table1"  border="0" cellspacing="0" cellpadding="0" style="display: none;">
+
+              </table>
+              <!--<div class="turn_page" style="text-align: center;margin-top: 10px;">-->
+              <!--</div>-->
+          </div><!--level-->
+
+
+      </div><!--content-->
+      <script type="text/javascript" src="__JS_MOBILE__/jquery-1.9.0.min.js"></script>
+      <script src="__JS_MOBILE__/layer.js"></script>
+      <script>
+          $("#toggle_market").click(function(){
+              var a=$(this).attr("data-id")
+              if(a=="2"){
+                  $(this).text("一级市场")
+                  $("#table").hide()
+                  $("#table1").show()
+                  $(this).attr("data-id","1")
+              }else{
+                  $(this).text("二级市场")
+                  $("#table1").hide()
+                  $("#table").show()
+                  $(this).attr("data-id","2")
+              }
+          })
+      </script>
+      <script>
+          var c_page = 1;
+          getData(c_page);
+          var step = 10;
+          function getData(curPage) {
+              $.ajax({
+                  type: "POST",
+                  url: "{:url('appmobile/user/recommend')}",
+                  dataType: "json",
+                  success: function (data) {
+
+                      console.log(data);
+                      var flag=true
+                      $("#table").html("");
+                      $(".turn_page").html("");
+                      var data_length=data.data.aa.length;
+                      var str = "<tr><th>一级</th>"
+                              + "<th>等级</th>"
+                              + "<th>业绩</th>"
+                      var x_page = curPage;
+                      curPage = (curPage - 1) * step;
+
+                      var count = curPage + step;
+                      if (data_length > x_page * step) {
+
+                      } else {
+                          count = data_length;
+                      }
+                      for (var i = 0; i < data.data.aa.length; i++) {
+                          str += "<tr>" +
+                                  "<td>" + data.data.aa[i].user_name + "</td>" +
+                                  "<td>" + data.data.aa[i].status.lev + "</td>"
+                          for(var j=0;j<getPropertyCount(data.data.ss);j++){
+                              if(data.data.aa[i].user_id == data.data.ss[j].parent_id){
+                                  str+="<td>" + (data.data.ss[j].sum).toFixed(2) + "</td></tr>";
+                                  flag=false
+                              }
+                          }
+                          if(flag){
+                              str+="<td class='222'>0.00</td></tr>";
+                          }else{
+                              flag=true
+                          }
+
+
+                      }
+
+                      $("#table").html(str);        //重绘table
+		
+                      var pageNum = Math.ceil(data_length / step);    //获取得到的数据页数
+
+
+                      str = "";
+
+                      /*若页数大于1则添加上一页、下一页链接*/
+                      if (Math.ceil(data_length / step) > 1) {
+                          str = "<ul><li><a href='javascript:void(0);onclick=preEvent();' id='pre' data-num='1'>上一页</a></li>"
+                      } else {
+                          str = "<ul>";
+                      }
+                      /*循环输出每一页的链接*/
+                      for (var i = 0; i < Math.ceil(data_length / step); i++) {
+                          str += "<li><a href='javascript:void(0);onclick=getData(" + (parseInt(i) + 1) + ");' data-type='num'>" + (parseInt(i) + 1) + "</a></li>";
+                      }
+                      if (str.indexOf("上一页") > -1) {
+                          str += "<li><a href='javascript:void(0);onclick=nextEvent();' id='next' data-num='1'>下一页</a></li>"
+                                  + "<span>共<i id='pageNum'>" + pageNum + "</i>页</span></ul>";
+
+                      } else {
+                          str += "<span>共<i id='pageNum'>" + pageNum + "</i>页</span></ul>";
+
+                      }
+                      $(".turn_page").html(str);
+                      addClass(x_page)
+                      $("#pre").attr("data-num", x_page);
+                      $("#next").attr("data-num", x_page);
+                      //把当前页码存到上一页、下一页的data-num属性中，这样可以在点击上一页或者下一页时知道应该跳到哪页
+                  },
+                  
+              });
+          }
+
+          /**
+           * 上一页点击事件
+           */
+          function preEvent() {
+              var c_page = $("#pre").attr("data-num");
+              if (c_page <= 1) {
+                  $(this).attr('disabled', "true");
+              } else {
+                  c_page = parseInt(c_page) - 1;
+                  getData(c_page);
+              }
+          }
+          /**
+           * 下一页点击事件
+           */
+          function nextEvent() {
+              var c_page = $("#next").attr("data-num");
+              var pageNum = $("#pageNum").text();
+              if (c_page >= pageNum) {
+                  $(this).attr('disabled', "true");
+              } else {
+                  c_page = parseInt(c_page) + 1;
+                  getData(c_page);
+              }
+          }
+
+          function addClass(num) {
+              $(".turn_page ul li").eq(num).find("a").addClass("active");
+          }
+          function getPropertyCount(o){
+              var n, count = 0;
+              for(n in o){
+                  if(o.hasOwnProperty(n)){
+                      count++;
+                  }
+              }
+              return count;
+          }
+      </script>
+      <script>
+          var c_page1 = 1;
+          getData1(c_page1);
+          var step1 = 10;
+          function getData1(curPage) {
+              $.ajax({
+                  type: "POST",
+                  url: "{:url('appmobile/user/my_two')}",
+                  dataType: "json",
+                  success: function (data) {
+                      console.log(data);
+
+
+                      var flag=true
+                      $("#table1").html("");
+                      $(".turn_page1").html("");
+                      var data_length=data.data.a.length;
+                      var str = "<tr><th>二级</th>"
+                              + "<th>等级</th>"
+                              + "<th>业绩</th>"
+                      var x_page = curPage;
+                      curPage = (curPage - 1) * step;
+
+                      var count = curPage + step;
+                      if (data_length > x_page * step) {
+
+                      } else {
+                          count = data_length;
+                      }
+                      for (var i = 0; i < data.data.a.length; i++) {
+                          str += "<tr>" +
+                                  "<td>" + data.data.a[i].user_name + "</td>" +
+                                  "<td>" + data.data.a[i].status.lev + "</td>"
+                          for(var j=0;j<getPropertyCount(data.data.cc);j++){
+                              if(data.data.a[i].user_id == data.data.cc[j].parent_id){
+                                  str+="<td>" + (data.data.cc[j].sum).toFixed(2) + "</td></tr>";
+                                  flag=false
+                              }
+                          }
+                          if(flag){
+                              str+="<td class='222'>0.00</td></tr>";
+                          }else{
+                              flag=true
+                          }
+
+
+                      }
+
+                      $("#table1").html(str);        //重绘table
+
+                      var pageNum = Math.ceil(data_length / step);    //获取得到的数据页数
+
+
+                      str = "";
+
+                      /*若页数大于1则添加上一页、下一页链接*/
+                      if (Math.ceil(data_length / step) > 1) {
+                          str = "<ul><li><a href='javascript:void(0);onclick=preEvent();' id='pre' data-num='1'>上一页</a></li>"
+                      } else {
+                          str = "<ul>";
+                      }
+                      /*循环输出每一页的链接*/
+                      for (var i = 0; i < Math.ceil(data_length / step); i++) {
+                          str += "<li><a href='javascript:void(0);onclick=getData(" + (parseInt(i) + 1) + ");' data-type='num'>" + (parseInt(i) + 1) + "</a></li>";
+                      }
+                      if (str.indexOf("上一页") > -1) {
+                          str += "<li><a href='javascript:void(0);onclick=nextEvent();' id='next' data-num='1'>下一页</a></li>"
+                                  + "<span>共<i id='pageNum'>" + pageNum + "</i>页</span></ul>";
+
+                      } else {
+                          str += "<span>共<i id='pageNum'>" + pageNum + "</i>页</span></ul>";
+
+                      }
+                      $(".turn_page1").html(str);
+                      addClass(x_page)
+                      $("#pre1").attr("data-num", x_page);
+                      $("#next1").attr("data-num", x_page);
+                      //把当前页码存到上一页、下一页的data-num属性中，这样可以在点击上一页或者下一页时知道应该跳到哪页
+                  },
+
+              });
+          }
+
+          /**
+           * 上一页点击事件
+           */
+          function preEvent1() {
+              var c_page = $("#pre").attr("data-num");
+              if (c_page <= 1) {
+                  $(this).attr('disabled', "true");
+              } else {
+                  c_page = parseInt(c_page) - 1;
+                  getData(c_page);
+              }
+          }
+          /**
+           * 下一页点击事件
+           */
+          function nextEvent1() {
+              var c_page = $("#next").attr("data-num");
+              var pageNum = $("#pageNum").text();
+              if (c_page >= pageNum) {
+                  $(this).attr('disabled', "true");
+              } else {
+                  c_page = parseInt(c_page) + 1;
+                  getData(c_page);
+              }
+          }
+
+          function addClass1(num) {
+              $(".turn_page ul li").eq(num).find("a").addClass("active");
+          }
+          function getPropertyCount(o){
+              var n, count = 0;
+              for(n in o){
+                  if(o.hasOwnProperty(n)){
+                      count++;
+                  }
+              }
+              return count;
+          }
+      </script>
+</body>
+</html>

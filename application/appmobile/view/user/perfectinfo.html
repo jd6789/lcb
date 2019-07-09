@@ -1,0 +1,384 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0,user-scalable=no,minimal-ui">
+    <link href="__CSS_MOBILE__/reset.css" rel="stylesheet" type="text/css">
+    <link href="__CSS_MOBILE__/layer.css" rel="stylesheet" type="text/css">
+    <link href="__CSS_MOBILE__/red.css" rel="stylesheet">
+    <link rel="stylesheet" href="__CSS_MOBILE__/mpicker.css">
+    <link href="__CSS_MOBILE__/common.css" rel="stylesheet" type="text/css">
+    <link href="__CSS_MOBILE__/iconfont.css" rel="stylesheet" type="text/css">
+    <link href="__CSS_MOBILE__/perfectinfo.css" rel="stylesheet" type="text/css">
+    <title>完善个人信息</title>
+</head>
+<body>
+      <div class="content"><!--content-->
+
+          <div class="top"><!--top-->
+             <a class="back" href="{:url('personinfo')}"><i class="iconfont icon-fanhui"></i></a>
+             <span class="login">完善个人信息</span>
+          </div><!--top-->
+
+          <div class="mytjr">
+            <span class="tjr">我的推荐人</span>
+          </div>
+          
+          <div class="choice">
+            <ul>
+              <!--<li>
+                <span>选择推荐人:</span>
+                <span class="have"> <input  value="1" type="radio" name="iCheck" > 有推荐人</span>
+                <span> <input value="0"  type="radio" name="iCheck" checked> 无推荐人</span>
+              </li>-->
+              <li>
+                <span>推荐人的用户名:</span>  
+                <input type="text" class="tjruser" data-v="0" value='' placeholder="请填写推荐人" >
+                  <input type="hidden" id="p_id" value="{$p_id}">
+              </li>
+            </ul>
+          </div>
+
+          <div class="mytjr">
+            <span class="tjr">完善个人信息</span>
+          </div>
+
+
+          <div class="choice-info">
+            <ul>
+              <li>真实姓名:<input id="real_name" type="text" class=" adress" value=""></li>
+              <li>身份证号:<input id="idcard" type="text" class=" adress" value=""></li>
+              <li>银行卡号:<input id="bank"  type="text" class=" adress" value=""></li>
+              <li>开户行:&nbsp;&nbsp;&nbsp;<input id="bank_name" type="text" class=" adress" value=""></li>
+                <li>支付密码:<input id="pay_pwd1"  type="password" class=" adress" value=""></li>
+                <li>确认密码:<input id="pay_pwd2"  type="password" class=" adress" value=""></li>
+              <li>收货地址:<input id="user_address" type="text" class="select-value form-control adress" value="湖北省-武汉市-洪山区"></li>
+              <li>详细地址:<input id="district" type="text" class=" adress" value=""></li>
+            </ul>
+          </div>
+
+
+        <div class="bc">
+          <input class="bc-btn" type="button" value="保存">
+        </div>
+          
+
+      </div><!--content-->
+      <script type="text/javascript" src="__JS_MOBILE__/jquery-1.9.0.min.js"></script>
+      <script src="__JS_MOBILE__/icheck.min.js"></script>
+      <script src="__JS_MOBILE__/layer.js"></script>
+      <script src="__JS_MOBILE__/json.js"></script>
+      <script src="__JS_MOBILE__/jsonExchange.js"></script>
+     <script src="__JS_MOBILE__/mPicker.min.js"></script>
+      <script>
+        $(document).ready(function(){
+          $('input').iCheck({
+              checkboxClass: 'icheckbox_minimal-blue',
+              radioClass: 'iradio_minimal-blue',
+              increaseArea: '20%' // optional
+            });
+        });
+    </script>
+
+    <script chartset="UTF-8">
+    $(function() {        
+        /**
+         * 联动的picker
+         * 三级
+         */
+        $('.select-value').mPicker({
+            level:3,
+            dataJson: city3,
+            Linkage:true,
+            rows:6,
+            idDefault:true,
+            splitStr:'-',
+            header:'<div class="mPicker-header">请选择收货地址</div>',
+            confirm:function(json){
+                console.info('当前选中json：',json);
+                console.info('【json里有不带value时】');
+                console.info('选中的id序号为：', json.ids);
+                console.info('选中的value为：', $("#shdz").val());
+                // var id1= $('.select-value').data('id1');
+                // var id2 = $('.select-value').data('id2');
+                // var id3 = $('.select-value').data('id3');
+                // console.info('第一列json：',city3[id1]);
+                // console.info('第二列json：', city3[id1].child[id2]);
+                // console.info('第三列json：', city3[id1].child[id2].child[id3]);
+            },
+            cancel:function(json){
+                console.info('当前选中json：',json);
+            }
+        })
+        
+    });
+    </script>
+
+    <script>
+
+    /*$('input').on('ifChecked', function(event){
+                  var pay_val = $(this).val();
+                  //console.log(pay_val);
+                  if(pay_val == 0){
+                    $(".tjruser").css({'display':'none'})
+                  }
+                  if(pay_val == 1){
+                    $(".tjruser").css({'display':'inline-block'})
+                  }
+
+
+                  $(".bc-btn").click(function(){
+                    console.log(pay_val);
+                    var user = $('.tjruser').val(); 
+                    if(pay_val == 1){
+                        if(!user){
+                          layer.msg('请填写推荐人');
+                           return false
+                        }
+                    }   
+                  })
+
+            });*/
+
+
+            $(".tjruser").blur(function(){
+                var user = $('.tjruser').val();
+                // if(!user){
+                //   layer.msg('请填写推荐人');
+                //   return false
+                // }
+                $.ajax({
+                type:'post',
+                url:"{:url('appmobile/user/pTelVer')}",
+                data:{
+                     'p_user':user
+                },
+                success:function(data){
+                      console.log(data)
+                       if(data.status == 0){
+                          layer.msg('推荐人不存在');
+                          return false
+                       }
+                       if(data.status == 2){
+                          layer.msg('推荐人账号被冻结');
+                          return false
+                       }
+                       if(data.status == 3){
+                          layer.msg('未购买商品 不能作为推荐人');
+                          return false
+                       }
+                    }  
+                })
+            })
+
+                //支付密码确认密码
+                $("#pay_pwd2").blur(function(){
+                    var pay_pwd1 = $("#pay_pwd1").val();
+                    var pay_pwd2 = $("#pay_pwd2").val();
+                    if(pay_pwd2 !== pay_pwd1){
+                        layer.msg("确认密码与支付密码不一致");
+                        return false
+                    }
+                })
+
+              $("#pay_pwd1").blur(function(){
+                  var reg = /^\d{6}\b/;
+                  var pay_pwd1 = $('#pay_pwd1').val();
+                  if(!reg.test(pay_pwd1)){
+                    layer.msg("请输入六位数密码");
+                    return false;
+                  }
+              })
+              $("#pay_pwd2").blur(function(){
+                  var reg = /^\d{6}\b/;
+                  var pay_pwd2 = $('#pay_pwd2').val();
+                  if(!reg.test(pay_pwd2)){
+                    layer.msg("请输入六位数的确认密码");
+                    return false;
+                  }
+              })
+    //验证身份证
+    function isCardNo(card) {
+        // 身份证号码为15位或者18位，15位时全为数字，18位前17位为数字，最后一位是校验位，可能为数字或字符X
+        var reg = /(^\d{15}$)|(^\d{18}$)|(^\d{17}(\d|X|x)$)/;
+        var flag = true;
+        if (reg.test(card) === false) {
+            flag = false
+        }
+        return flag
+    }
+        //身份证号验证
+        $("#idcard").blur(function(){
+            var idcard = $('#idcard').val();
+            if(!idcard){
+                layer.msg("请填写身份证号");
+                return false
+            }else{
+                if(!isCardNo(idcard)){
+                    layer.msg("身份证号格式不正确");
+                    return false
+                }
+            }
+
+        })
+
+
+        //用户名验证
+        $("#real_name").blur(function(){
+            var real_name = $("#real_name").val();
+            var patt1 = new RegExp(/\s+/g);
+            if(!real_name){
+                layer.msg("请填写真实姓名");
+                return false
+            }else{
+                if(patt1.test(real_name)){
+                    layer.msg("真实姓名不能有空格");
+                    return false
+                }
+            }
+        })
+
+
+        //银行卡号号验证
+        $("#bank").blur(function(){
+            var bank = $('#bank').val();
+            if(!bank){
+                layer.msg("请填写银行卡号");
+                return false
+            }
+            if(bank.length !== 16 && bank.length !== 19){
+                layer.msg("填写的银行卡号位数不够");
+                return false
+            }
+        })
+
+
+
+
+        $(".bc-btn").click(function(){
+          var reg = /^\d{6}\b/;
+          var patt1 = new RegExp(/\s+/g);
+            //var user = $('.tjruser').attr("data-v");
+            var real_name = $('#real_name').val();
+          var idcard = $('#idcard').val();
+          var bank = $('#bank').val();
+          var bank_name = $('#bank_name').val();
+          var p_user = $('.tjruser').val();
+          var user_address = $('#user_address').val();
+          var district = $('#district').val();
+          var pay_pwd1 = $('#pay_pwd1').val();
+          var pay_pwd2 = $('#pay_pwd2').val();
+          if(!real_name){
+              layer.msg('请填写真实姓名');
+              return false
+          }else{
+              if(patt1.test(real_name)){
+                  layer.msg("真实姓名不能有空格");
+                  return false
+              }
+          }
+          if(!idcard){
+              layer.msg('请填写身份证号');
+              return false
+          }
+            if(!isCardNo(idcard)){
+                layer.msg("身份证号格式不正确");
+                return false
+            }
+          if(!bank){
+              layer.msg('请填写银行卡号');
+              return false
+          }else{
+              if(bank.length !== 16 && bank.length !== 19){
+                  layer.msg("填写的银行卡号位数不够");
+                  return false
+              }
+          }
+          if(!bank_name){
+              layer.msg('请填写开户行');
+              return false
+          }
+          if(!user_address){
+              layer.msg('请填写收货地址');
+              return false
+          }
+          if(!pay_pwd1){
+            layer.msg("请输入支付密码!");
+            return false;
+          }else{
+              if(!reg.test(pay_pwd1)){
+                  layer.msg("请输入六位数密码");
+                  return false;
+              }
+          }
+          if(!pay_pwd2){
+            layer.msg("请再次输入支付密码!");
+            return false;
+          }else{
+              if(!reg.test(pay_pwd2)){
+                  layer.msg("请输入六位数的确认密码");
+                  return false;
+              }
+          }
+          if(pay_pwd1 !== pay_pwd2){
+              layer.msg("支付密码与确认密码不一致");
+              return false
+          }
+          if(!district){
+              layer.msg('请填写详细地址');
+              return false
+          }
+
+          $.ajax({
+            type:'post',
+            url:"{:url('appmobile/user/perfectinfo')}",
+            dataType:"json",
+            data:{
+              'real_name':real_name,
+              'idcard':idcard,
+              'bank':bank,
+              'bank_name':bank_name,
+              'p_user':p_user,
+              'user_address':user_address,
+              'district':district,
+                'pay_pwd':pay_pwd1,
+            },
+            success:function(data){
+                console.log(data)
+                if(data.status == 4){
+                    layer.msg("推荐人不存在");
+                    return false;
+                };
+                if(data.status == 6){
+                    layer.msg("推荐人未激活");
+                    return false;
+                };
+                if(data.status == 1){
+                    layer.msg("信息完善成功");
+                    setTimeout(function(){
+                        location.href="{:url('appmobile/user/personinfo')}";
+                    },1000);
+                }else{
+                  layer.msg("系统维护中");
+                }
+            },
+            error:function(){
+              console.log('error')
+            }
+          });
+
+        })
+
+    </script>
+      <script>
+
+          var p_id = $("#p_id").val();
+          if(p_id == 0){
+              $(".tjruser").show();
+          }else{
+              $(".tjruser").hide();
+          }
+          //console.log(p_id)
+      </script>
+</body>
+</html>

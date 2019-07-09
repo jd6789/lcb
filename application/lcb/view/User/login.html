@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>理茶宝登录注册</title>
+</head>
+<link rel="stylesheet" href="__CSS__/commen.css">
+<link rel="stylesheet" type="text/css" href="__CSS__/login.css">
+<link href="__FONTS__/font-awesome/css/font-awesome.min.css" rel="stylesheet">
+<body>
+<!--内容-->
+<div class="main">
+    <!--头部-->
+    <div class="header">
+        <!--头部内容-->
+        <div class="header-content">
+            <!--Logo-->
+            <div class="header-logo">
+                <div class="header-logo-content">
+                    <div class="flexbox">理茶宝</div>
+                    <div class="flexbox">登录入口</div>
+                </div>
+            </div>
+            <!--登录注册-->
+            <div class="header-login">
+                <div class="header-login-content">
+                    <a class="flexbox pointer" href="{:url('login')}">登录</a>
+                    <a class="flexbox pointer" href="{:url('register')}">注册</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--内容-->
+    <div class="content">
+        <div class="bx">
+            <div class="fl">
+                <h2 class="font_white">
+                    企业定制·专属版充值理茶宝
+                </h2>
+                <div class="font_white c_middle">
+                    ───选取购买等值茶产品
+                </div>
+                <div class="font_white">
+                    账户内含有充值赠送的积分，积分可在商城及线下各门店内兑换或消费任意商品。好喝的茶品 不定期更新产品，全年包邮送达，常饮常新。
+                </div>
+            </div>
+            <div class="fr">
+                <div class="c_title">
+                    登录
+                </div>
+                <div class="ft">
+                    <i></i><input type="text" placeholder="请输入用户名" class="c_input" id="username">
+                </div>
+                <div class="fb">
+                    <i></i><input type="password" placeholder="请输入登录密码" class="c_input" id="password">
+                </div>
+                <div class="c_tip font_white">
+                    <span class="fl"><a href="{:url('reppwd')}">忘记密码</a></span>
+                    <span class="fr"><i class="fa fa-pencil"></i><a href="{:url('register')}">立即注册</a></span>
+                </div>
+                <div class="c_btn">
+                    <input type="text" value="立即登录" id="J_Login">
+                </div>
+            </div>
+        </div>
+
+    </div>
+    <!--尾部-->
+    <div class="footer">
+        <!--尾部内容-->
+        <div class="footer-content">
+            <ul class="footer-ul">
+                <li>
+                    <ul class="footer-ul-one">
+                        <li>
+                            <p>关于理茶宝</p>
+                            <a href="">资质荣誉</a>
+                            <a href="">运营报告</a>
+                            <a href="">加盟合作</a>
+                        </li>
+                        <li>
+                            <p>关于理茶宝</p>
+                            <a href="">资质荣誉</a>
+                            <a href="">运营报告</a>
+                            <a href="">加盟合作</a>
+                        </li>
+                        <li>
+                            <p>关于理茶宝</p>
+                            <a href="">资质荣誉</a>
+                            <a href="">运营报告</a>
+                            <a href="">加盟合作</a>
+                        </li>
+                    </ul>
+                </li>
+                <li>
+                    <ul class="footer-ul-two">
+                        <li>
+                            <p>客户热线</p>
+                        </li>
+                        <li>
+                            <h3 class="orange">027-6417-7777</h3>
+                        </li>
+                        <li>
+                            <span class="small-size">(09:00-18:00)</span>
+                        </li>
+                        <li class="fa-icon">
+                        <span>
+                            <span class="fa fa-weixin"></span>
+                        </span>
+                            <span>
+                            <span class="fa fa-weibo"></span>
+                        </span>
+                            <span>
+                            <span class="fa fa-users"></span>
+                        </span>
+                        </li>
+                    </ul>
+                </li>
+                <li>
+                    <ul class="footer-ul-three">
+                        <li>二维码</li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>
+</body>
+</html>
+<script src="__JS__/jquery.min.js"></script>
+<script src="__JS__/layer/layer.js"></script>
+<script type="text/javascript">
+    //会员登录
+    $("#J_Login").click(function(){
+        var username = $('#username').val();
+        var password = $('#password').val();
+        if(!username){
+            layer.msg("用户名不能为空!");
+            return false;
+        }
+        if(!password){
+            layer.msg("密码不能为空!");
+            return false;
+        }
+        $.ajax({
+            type:"post",
+            url:"{:url('lcb/user/login')}",
+            dataType:'json',
+            data:{
+                'username':username,
+                'password':password,
+            },
+            success:function(msg){
+                var msg=JSON.parse(msg)
+                console.log(msg.status);
+                if(msg.status == 2){
+                    layer.msg("用户名不存在");
+                    return false;
+                }
+                if(msg.status == 0){
+                    layer.msg("密码错误");
+                    return false;
+                }
+                if(msg.status == 1){
+                    layer.msg("登录成功");
+                    setTimeout(function(){
+                        location.href="{:url('lcb/index/index')}";
+                    },1000);
+                }
+            }
+        });
+    })
+</script>

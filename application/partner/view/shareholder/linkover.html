@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0,user-scalable=no,minimal-ui">
+    <link href="__CSS_MOBILE__/reset.css" rel="stylesheet" type="text/css">
+    <link href="__CSS_MOBILE__/common.css" rel="stylesheet" type="text/css">
+    <link href="__CSS_MOBILE__/iconfont.css" rel="stylesheet" type="text/css">
+    <link href="__CSS_MOBILE__/reppwd.css" rel="stylesheet" type="text/css">
+    <link href="__CSS_MOBILE__/layer.css" rel="stylesheet" type="text/css">
+    <title>账号关联</title>
+    <style>
+
+        .dqzh{
+            height:1.3rem;
+            background:#f3f3f3;
+        }
+        .zh{
+            height:.45rem;
+            line-height:.45rem;
+            padding-left:8px;
+            border-bottom:solid 1px #fff;
+        }
+        .tell{
+            padding:8px 0 0 10px;
+        }
+        .change{
+            text-align:center;
+            margin:15px 0;
+            font-size:.18rem;
+            color:#666;
+        }
+        .changezh{
+            height:1rem;
+            background:#f3f3f3;
+            padding-top:20px;
+            box-sizing:border-box;
+            padding-left:15px;
+        }
+        .login-btn{
+            text-align:center;
+        }
+        .btn{
+            width:85%;
+            display:block;
+            margin:0 auto;
+            line-height:.45rem;
+            color:#fff!important;
+        }
+        .bz{
+            width:85%;
+            margin:0 auto;
+            margin-top:10px;
+        }
+    </style>
+</head>
+<body>
+<div class="content"><!--content-->
+
+    <div class="top"><!--top-->
+        <a class="back" href="javascript:history.go(-1);"><i class="iconfont icon-fanhui"></i></a>
+        <span class="login">账号关联</span>
+    </div><!--top-->
+
+    <div class="dqzh">
+        <div class="zh">当前登录账号</div>
+        <div class="tell">
+            <img style="float:left;margin-right:20px;width:60px;height:60px;border-radius:60px" src="{$data_user['user_picture']}" width="60px" >
+            <p style="padding-top:10px">用户名：{$data_user['user_name']}</p>
+            <p>手机：{$data_user['mobile_phone']}</p>
+        </div>
+    </div>
+
+    <div class="change">关联的账户</div>
+
+    <div class="changezh">
+        <img style="float:left;margin-right:20px;width:60px;height:60px;border-radius:60px" src="{$data_user['user_picture']}" width="60px">
+        <p>用户名：{$data['user_name']}</p>
+        <p>邮箱:{$data['email']}</p>
+    </div>
+
+    <div class="login-btn"><!--login-btn-->
+        <!--<p><a class="btn" href="{:url('user/change_user')}">切换并登录</a></p>-->
+    </div><!--login-btn-->
+    <div class="bz">
+        注：当前登录账号为关联账号，则无法解除关联，如您需要解除关联，请将当前登录账号切换为主账号即可。
+    </div>
+
+</div><!--content-->
+<script type="text/javascript" src="__JS_MOBILE__/jquery-1.9.0.min.js"></script>
+<script src="__JS_MOBILE__/gVerify.js"></script>
+<script src="__JS_MOBILE__/layer.js"></script>
+
+<script>
+    $(function(){
+
+    })
+</script>
+
+
+</body>
+</html>

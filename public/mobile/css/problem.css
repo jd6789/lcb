@@ -1,0 +1,83 @@
+body{
+	background:#eff2f3;
+}
+.top{
+	height:.45rem;
+	text-align:center;
+	line-height:.45rem;
+	position:relative;
+	background:#fff;
+}
+.icon-fanhui{
+	font-size:.20rem;
+	color:#000;
+	font-weight:bold;
+}
+.back{
+	position:absolute;
+	left:.12rem;
+}
+.login{
+	font-size:.18rem;
+
+}
+.rel{
+	position:absolute;
+	right:.12rem;
+	font-size:.15rem;
+}
+
+.question{
+	margin-top:10px;
+	background:#fff;
+	padding:15px;
+	padding-bottom:48px;
+	margin-bottom:10px;
+}
+.question-ico img{
+	width:24px;
+}
+.question-title{
+	font-size:.16rem;
+	color:#141414;
+	font-weight:800;
+	margin-left:6px;
+}
+
+.question-list li{
+	margin-bottom:25px;
+}
+.one,.one-title,.two,.two-title{
+	display:inline-block;
+}
+.one{
+	width:24px;
+	height:28px;
+	background:url('../images/one.png') no-repeat;
+	background-size:contain;
+	text-align:center;
+	line-height:24px;
+	color:#fff;
+	font-size:.14rem;
+}
+.two{
+	width:24px;
+	height:28px;
+	background:url('../images/two.png') no-repeat;
+	background-size:contain;
+	text-align:center;
+	line-height:24px;
+	color:#fff;
+	font-size:.14rem;
+}
+.one-title,.two-title{
+	color:#483e3f;
+	font-size:.15rem;
+	margin-left:8px;
+}
+.one-text,.two-text{
+	margin-left:40px;
+	font-size:.12rem;
+	color:#483e3f;
+	margin-top:6px;
+}

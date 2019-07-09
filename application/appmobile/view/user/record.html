@@ -1,0 +1,500 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0,user-scalable=no,minimal-ui">
+    <link href="__CSS_MOBILE__/reset.css" rel="stylesheet" type="text/css">
+    <link href="__CSS_MOBILE__/common.css" rel="stylesheet" type="text/css">
+    <link href="__CSS_MOBILE__/iconfont.css" rel="stylesheet" type="text/css">
+    <link href="__CSS_MOBILE__/jquery.pagination.css" rel="stylesheet" type="text/css">
+
+    <link rel="stylesheet" href="__CSS_MOBILE__/shijian.css">
+    <link href="__CSS_MOBILE__/record.css" rel="stylesheet" type="text/css">
+    <title>记录</title>
+    <style>
+        .content{
+            padding-bottom:1.2rem
+        }
+        #table {
+            width: 100%;
+            margin-top:6px;
+            border-bottom: solid 1px #ccc;
+            border-right: solid 1px #ccc;
+        }
+        #table tr th{
+            border: solid 1px #ccc;
+            color:#fff;
+            border-bottom:none;
+            border-right:none;
+        }
+
+        #table tr td {
+            border: solid 1px #ccc;
+            width: 20%;
+            word-wrap: break-word !important;
+            word-break: break-all !important;
+            white-space: normal !important;
+            height: 32px;
+            text-align: center;
+            background:#fff;
+            border-bottom:none;
+            border-right:none;
+        }
+
+        #table1 {
+            width: 100%;
+            margin-top:6px;
+            border-bottom: solid 1px #ccc;
+            border-right: solid 1px #ccc;
+        }
+        #table1 tr th{
+            border: solid 1px #ccc;
+            color:#fff;
+            border-bottom:none;
+            border-right:none;
+        }
+
+        #table1 tr td {
+            border: solid 1px #ccc;
+            width: 20%;
+            word-wrap: break-word !important;
+            word-break: break-all !important;
+            white-space: normal !important;
+            height: 32px;
+            text-align: center;
+            background:#fff;
+            border-bottom:none;
+            border-right:none;
+        }
+
+        .swiper {
+
+            display: none;
+
+        }
+
+        .tab {
+            display: flex;
+            height: 50px;
+            background: #fff;
+            margin: 5px 0px;
+            text-align: center;
+            line-height: 50px;
+                }
+
+        .tab div {
+            flex-grow: 1;
+        }
+
+        .this {
+            color: #fff;
+            background: #58beff;
+        }
+
+        .M-box {
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        .box{
+            float:right;
+            margin-top:20px
+        }
+        .box a.active{
+            color:#fff
+        }
+    </style>
+</head>
+<body>
+<div class="content"><!--content-->
+
+    <div class="title"><!--title-->
+        <span>记录</span>
+        <i class="iconfont icon-xiaoxi"></i>
+    </div><!--title-->
+    <div class="tab">
+        <div class="this" id=""wdlcb>我的理茶宝</div>
+        <div id="wdqb">我的钱包</div>
+    </div>
+
+    <!--选项卡切换 -->
+    <div class="swiper">
+        <div class="time">
+            <div class="date">
+                <span class="start-time">起止时间:</span>
+                <input type="text" id="input1" value=""/><i class="iconfont icon-icon-calendar"></i>
+                <span class="start-time start-z">至</span>
+                <input type="text" id="input2" value=""/><i class="iconfont icon-icon-calendar"></i>
+            </div>
+            <div class="transre">
+                <span class="start-time">交易记录:</span>
+                <span class="jl">
+                    <span class="jl-active" data-num="1">全部</span>
+                    <span data-num="2">每日释放</span>
+                    <span data-num="3">奖励</span>
+                    <span data-num="4">消费</span>
+                </span>
+            </div>
+        </div>
+        <table border="0" cellspacing="0" cellpadding="0" id="table">
+
+        </table>
+        <div class="box">
+            <div id="pagination3" class="page fl"></div>
+        </div>
+
+    </div>
+
+    <!--选项卡切换 -->
+    <!--选项卡切换 -->
+    <div class="swiper">
+        <div class="time1">
+            <div class="date1">
+                <span class="start-time1">起止时间:</span>
+                <input type="text" id="input3" value=""/><i class="iconfont icon-icon-calendar"></i>
+                <span class="start-time start-z">至</span>
+                <input type="text" id="input4" value=""/><i class="iconfont icon-icon-calendar"></i>
+            </div>
+            <div class="transre1">
+                <span class="start-time1">交易记录:</span>
+                <span class="jl1">
+                    <span class="jl-active1" data-num="1">全部</span>
+                    <span data-num="2">充值</span>
+                    <span data-num="3">支出</span>
+                </span>
+            </div>
+        </div>
+        <table border="0" cellspacing="0" cellpadding="0" id="table1">
+
+        </table>
+        <div class="box">
+            <div id="pagination4" class="page fl"></div>
+        </div>
+    </div>
+    <!--选项卡切换 -->
+
+
+    <footer class="footer">
+        <nav class="nav">
+            <ul>
+                <li><a href="{:url('index')}">
+                    <p><i class="iconfont icon-weibiaoti1"></i></p>
+                    <p>首页</p>
+                </a></li>
+                <li><a href="{:url('richardtea')}">
+                    <p><i class="iconfont icon-licaishouyi"></i></p>
+                    <p>理茶宝</p>
+                </a></li>
+                <li><a class="active" href="{:url('record')}">
+                    <p><i class="iconfont icon-htmal5icon34"></i></p>
+                    <p>记录</p>
+                </a></li>
+                <li><a href="{:url('myinfo')}">
+                    <p><i class="iconfont icon-yonghu"></i></p>
+                    <p>我的</p>
+                </a></li>
+            </ul>
+        </nav>
+    </footer>
+
+</div><!--content-->
+
+<script src="__JS_MOBILE__/jquery-1.9.0.min.js"></script>
+<script src="__JS_MOBILE__/jquer_shijian.js" type="text/javascript"></script>
+<script src="__JS_MOBILE__/jquery.pagination.min.js" type="text/javascript"></script>
+
+
+<script>
+    var page = 1;
+    var page1 = 1;
+    var time1 ='';
+    var time2 ='' ;
+    var time3 ='';
+    var time4 ='' ;
+    var num = 1;
+    var num1 = 1;
+    var count='';
+    var count_page='';
+    var count1='';
+    var count_page1='';
+    getdata(page, num,time1, time2);
+
+        $(".jl span").click(function () {
+            $(this).addClass("jl-active").siblings().removeClass("jl-active");
+            num = $(this).attr("data-num");
+            //c_page = 1;
+            getdata(page, num,time1, time2)
+        });
+
+    $(".jl1 span").click(function () {
+        $(this).addClass("jl-active1").siblings().removeClass("jl-active1");
+        num1 = $(this).attr("data-num");
+        console.log(num1)
+        //c_page = 1;
+        getdata1(page, num1,time1, time2)
+    });
+
+
+        $("#wdqb").click(function(){
+
+            $("pagination3").css({"display":"none"});
+            $('#pagination4').pagination({
+                showData: 8,
+                count: 3,
+                pageCount:count_page1,
+                homePageText: "首页",
+                endPageText: "尾页",
+                prevPageText: "上一页",
+                nextPageText: "下一页",
+                mode: 'fixed',
+                coping:false,
+                callback: function (currentPage) {
+                    page1 = currentPage
+                    getdata1(page1,  time3, time4);
+
+                }
+            })
+            getdata1(page1, time3, time4);
+        })
+
+    $("#wdlcb").click(function(){
+
+        $("pagination4").css({"display":"none"});
+        $('#pagination3').pagination({
+            showData: 8,
+            count: 3,
+            pageCount:count_page,
+            homePageText: "首页",
+            endPageText: "尾页",
+            prevPageText: "上一页",
+            nextPageText: "下一页",
+            mode: 'fixed',
+            coping:false,
+            callback: function (currentPage) {
+                page = currentPage
+                getdata(page, num, time1, time2);
+
+            }
+        })
+        getdata(page, num,time1, time2);
+    })
+
+        //选择需要显示的
+        $("#input1").shijian({
+            y: +50,//当前年份+50
+            startYear: 1989,
+            Hour: false,//是否显示小时
+            Minute: false,//是否显分钟
+            Seconds: false,//是否显秒，
+            okfun: function () {
+                time1 = $("#input1").val();
+                time2 = $("#input2").val();
+                console.log( time1)
+                console.log( time2)
+                //alert(time2)
+                getdata(page, num,time1, time2)
+            }
+        })
+        $("#input2").shijian({
+            y: +100,//当前年份+100
+            startYear: 1989,
+            Hour: false,//是否显示小时
+            Minute: false,//是否显分钟
+            Seconds: false,//是否显秒
+            okfun: function () {
+                time1 = $("#input1").val();
+                time2 = $("#input2").val();
+                console.log( time1)
+                console.log( time2)
+                //alert(time2)
+               getdata(page, num,time1, time2)
+            }
+        })
+
+    $("#input3").shijian({
+        y: +50,//当前年份+50
+        startYear: 1989,
+        Hour: false,//是否显示小时
+        Minute: false,//是否显分钟
+        Seconds: false,//是否显秒，
+        okfun: function () {
+            time3 = $("#input3").val();
+            time4 = $("#input4").val();
+            console.log( time3)
+            console.log( time4)
+            //alert(time2)
+            getdata1(page1, num1,time3, time4)
+        }
+    })
+    $("#input4").shijian({
+        y: +100,//当前年份+100
+        startYear: 1989,
+        Hour: false,//是否显示小时
+        Minute: false,//是否显分钟
+        Seconds: false,//是否显秒
+        okfun: function () {
+            time3 = $("#input3").val();
+            time4 = $("#input4").val();
+            console.log( time3)
+            console.log( time4)
+            //alert(time2)
+            getdata1(page1,num1, time3, time4)
+        }
+    })
+
+
+    function getdata(page, num, time1, time2) {
+        $.ajax({
+            type: "POST",
+            url: "{:url('appmobile/Integral/index')}",
+            data: {
+                page: page,
+                type: num,
+                time1: time1,
+                time2: time2
+            },
+            dataType: "json",
+            success: function (data) {
+                var data = JSON.parse(data);
+                console.log(data)
+                count = data.count
+                count_page = Math.ceil(count / 8)
+                var str = ""
+                str += "<tr bgcolor='#58beff' height='38px' >"
+                    + " <th>茶劵</th>"
+                    + " <th>茶点</th>"
+                    + "<th>说明</th>"
+                    + "<th style='width: 1.3rem;'>时间</th></tr>";
+
+                for (var i = 0; i < data.list.length; i++) {
+                    //console.log(data)
+                    str += '<tr>\n' +
+                        '            <td class="green">' + ((data.list[i].tea_inte == null) ? 0 : data.list[i].tea_inte) + '</td>\n' +
+                        '            <td class="green">' + ((data.list[i].tea_ponit_inte == null) ? 0 : data.list[i].tea_ponit_inte) + '</td>\n' +
+                        '            <td>' + data.list[i].introduce + '</td>\n' +
+                        '            <td>' + getLocalTime(data.list[i].addtime) + '</td>\n' +
+                        '        </tr>'
+                }
+                $("#table").html(str);
+                $("#pagination3").pagination("setPage", page, count_page);
+                var green = $("td.green").text();
+                //console.log(green.charAt(0));
+                if(green.charAt(0) == "+"){
+                    $("td.green").css({"color":"green"})
+                }else if(green.charAt(0) == "-"){
+                    $("td.green").css({"color":"red"})
+                }
+
+            }
+        });
+    }
+
+
+
+    function getdata1(page1,num1, time3, time4) {
+        $.ajax({
+            type: "POST",
+            url: "{:url('appmobile/Integral/wallet_info')}",
+            data: {
+                page: page1,
+                type:num1,
+                time1: time3,
+                time2: time4
+            },
+            dataType: "json",
+            success: function (data) {
+                var data = JSON.parse(data);
+                //console.log(data)
+                count = data.count
+                count_page = Math.ceil(count / 8)
+                var str = ""
+                str += "<tr bgcolor='#58beff' height='38px'>"
+                    + " <th>使用的额度</th>"
+                    + "<th>说明</th>"
+                    + "<th style='width: 1.3rem;'>时间</th></tr>";
+
+                for (var i = 0; i < data.list.length; i++) {
+                    //console.log(data)
+                    str += '<tr>\n' +
+                        '            <td class="green">' + ((data.list[i].have_inte == null)?0:data.list[i].have_inte) + '</td>\n' +
+                        '            <td>' + ((data.list[i].introduce == null)?0:data.list[i].introduce) + '</td>\n' +
+                        '            <td>' + getLocalTime(data.list[i].addtime) + '</td>\n' +
+                        '        </tr>'
+                }
+                $("#table1").html(str);
+                $("#pagination4").pagination("setPage", page1, count_page1);
+                var green = $("td.green").text();
+                //console.log(green.charAt(0));
+                if(green.charAt(0) == "+"){
+                    $("td.green").css({"color":"green"})
+                }else if(green.charAt(0) == "-"){
+                    $("td.green").css({"color":"red"})
+                }
+
+            }
+        });
+    }
+
+
+
+    function getLocalTime(nS) {
+        var myYear = new Date(parseInt(nS) * 1000).getFullYear()
+        var myMonth = new Date(parseInt(nS) * 1000).getMonth() + 1
+        var myDay = new Date(parseInt(nS) * 1000).getDate()
+        var hour = new Date(parseInt(nS) * 1000).getHours();
+        var minute = new Date(parseInt(nS) * 1000).getMinutes();
+        var second = new Date(parseInt(nS) * 1000).getSeconds();
+        if (myMonth < 10) {
+            myMonth = '0' + myMonth
+        }
+        if (myDay < 10) {
+            myDay = '0' + myDay
+        }
+        if (second < 10) {
+            second = '0' + second
+        }
+        if (minute < 10) {
+            minute = '0' + minute
+        }
+        var showDate = myYear + "-" + myMonth + '-' + myDay + ' ' + hour + ':' + minute + ':' + second
+        return showDate
+    }
+
+
+
+        $(".tab div").click(function () {
+            $(this).addClass("this").siblings().removeClass("this")
+        })
+        $(".swiper").eq(0).show();
+        $(".tab div").click(function () {
+            var i = $(this).index();
+            //console.log(i)
+            $(".swiper").eq(i).show().siblings(".swiper").hide();
+        })
+
+
+
+
+
+    $('#pagination3').pagination({
+        showData: 8,
+        count: 3,
+        pageCount:count_page,
+        homePageText: "首页",
+        endPageText: "尾页",
+        prevPageText: "上一页",
+        nextPageText: "下一页",
+        mode: 'fixed',
+        coping:false,
+        callback: function (currentPage) {
+             page = currentPage
+            getdata(page, num, time1, time2);
+
+        }
+    })
+
+</script>
+
+</body>
+</html>

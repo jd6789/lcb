@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+{volist name="menu" id="v"}
+<a class="yingye current" href="{:URL($v['module_name'].'/'.$v['controller_name'].'/'.$v['action_name'])}"
+      target="aaa"  {eq name="v.parent_id" value="0"} {else /}style="display: none;"{/eq}>{$v.rule_name}</a>
+{/volist}
+<li><a class="yingye current" href="{:URL('tmvip/User/index')}" target="aaa">会员</a></li>
+<li><a class="jinxc" href="{:URL('tmvip/System/index')}" target="aaa">理茶宝</a></li>
+<li><a class="baobiao" href="{:URL('tmvip/Report/index')}" target="aaa">积分明细</a></li>
+<li><a class="yingye current" href="{:URL('tmvip/admin/index')}" target="aaa">管理员</a></li>
+
+<!--<a href="{:URL('tmvip/User/user_detail')}" class="current" target="bbb">会员信息</a>-->
+<!--<a href="{:URL('tmvip/User/user_manage')}" class="" target="bbb">会员积分信息</a>-->
+<!--<a href="{:URL('tmvip/User/wallet_change')}" class="" target="bbb">钱包变动</a>-->
+<!--&lt;!&ndash;<a href="{:URL('tmvip/user/increase_wallet')}" class="" target="bbb">钱包充值记录</a>&ndash;&gt;-->
+<!--&lt;!&ndash;<a href="{:URL('tmvip/user/withdrawal_wallet')}" class="" target="bbb">钱包提现记录</a>&ndash;&gt;-->
+<!--<a href="{:URL('tmvip/User/integral_change')}" class="" target="bbb">积分变动</a>-->
+<!--<a href="{:URL('tmvip/User/integral_chart')}" class="" target="bbb">积分图表</a>-->
+<!--<a href="{:URL('tmvip/User/lcb_quantity_chart')}" class="" target="bbb">理茶宝图表</a>-->
+<!--<a href="{:URL('tmvip/User/wallet_chart')}" class="" target="bbb">钱包图表</a>-->
+<!--&lt;!&ndash;<a href="{:URL('tmvip/User/look_team')}" class="" target="bbb">团队</a>&ndash;&gt;-->
+
+{volist name="menu" id="v" }
+<a href="{:URL($v['module_name'].'/'.$v['controller_name'].'/'.$v['action_name'])}" class="current" target="bbb" {eq name="v.parent_id" value="$url"} {else/}style="display: none;"{/eq}>{$v.rule_name}</a>
+{/volist}
+<a href="{:URL('tmvip/System/recharge_info')}" class="current" target="bbb">理茶宝信息</a>
+<a href="{:URL('tmvip/System/teapoint')}" class="" target="bbb">返积分规则</a>
+
+{volist name="menu" id="v" }
+<a href="{:URL($v['module_name'].'/'.$v['controller_name'].'/'.$v['action_name'])}" class="current" target="bbb" {eq name="v.parent_id" value="$url"} {else/}style="display: none;"{/eq}>{$v.rule_name}</a>
+{/volist}
+<a href="{:URL('tmvip/Report/consumption')}" class="current" target="bbb">消费统计</a>
+<a href="{:URL('tmvip/Report/lichabao')}" class="" target="bbb">理茶宝充值统计</a>
+<a href="{:URL('tmvip/Report/release_tongji')}" class="" target="bbb">释放明细</a>
+<a href="{:URL('tmvip/Report/recommend_reward')}" class="" target="bbb">推荐奖励</a>
+<a href="{:URL('tmvip/Report/performance_reward')}" class="" target="bbb">绩效奖励</a>
+<a href="{:URL('tmvip/Report/user_out')}" class="" target="bbb">出局统计</a>
+<a href="{:URL('tmvip/Report/vip_again')}" class="" target="bbb">升级统计</a>
+
+{volist name="menu" id="v" }
+<a href="{:URL($v['module_name'].'/'.$v['controller_name'].'/'.$v['action_name'])}" class="current" target="bbb" {eq name="v.parent_id" value="$url"} {else/}style="display: none;"{/eq}>{$v.rule_name}</a>
+{/volist}
+<a href="{:URL('tmvip/Admin/admin_show')}" class="current" target="bbb">管理员信息</a>
+<a href="{:URL('tmvip/Admin/rule_show')}" class="" target="bbb">权限列表</a>
+<a href="{:URL('tmvip/Admin/role_show')}" class="" target="bbb">角色列表</a>
+
+{volist name="menu" id="v" }
+<a href="{:URL($v['module_name'].'/'.$v['controller_name'].'/'.$v['action_name'])}" class="current" target="bbb" {eq name="v.parent_id" value="$url"} {else/}style="display: none;"{/eq}>{$v.rule_name}</a>
+{/volist}
+<li><a class="yingye current" href="{:URL('tmvip/User/index')}" target="aaa">会员</a></li>
+<li><a class="jinxc" href="{:URL('tmvip/System/index')}" target="aaa">理茶宝</a></li>
+<li><a class="baobiao" href="{:URL('tmvip/Report/index')}" target="aaa">积分明细</a></li>
+<li><a class="yingye current" href="{:URL('tmvip/admin/index')}" target="aaa">管理员</a></li>
+
+{in name="vo.id" value="$hasRules"} checked="checked" {/in}
+
+<table border="0" cellpadding="0" cellspacing="0">
+    {volist name="rule" id="v"}
+    <tr>
+        <td width="60">
+            <div style="width: 600px;font-weight: 700;"><input type="checkbox" name="rule[]" value="{$v.id}" {in name="v.id" value="$hasRules"} checked="checked" {/in} >{$v.rule_name}</div>
+            <div style="width: 1000px;margin-left: 20px;white-space: normal">
+                {volist name="v.info" id="vo"}
+                <input type="checkbox" name="rule[]" value="{$vo.id}" {in name="vo.id" value="$hasRules"} checked="checked" {/in} >{$vo.rule_name}&nbsp;&nbsp;&nbsp;&nbsp;
+                {/volist}
+            </div>
+        </td>
+    </tr>
+    {/volist}
+    <tr>
+        <td><input type="checkbox" class="qx" data-id="0">全选&nbsp;&nbsp;&nbsp;&nbsp;<input  type="submit" value="确定" class="btngreen baocun"> <input type="text" name="id" value="{$role_name.id}" hidden></td>
+    </tr>
+</table>
+</body>
+</html>

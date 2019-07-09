@@ -1,0 +1,109 @@
+
+.icon-fanhui{
+	font-size:.20rem;
+	color:#000;
+	font-weight:bold;
+}
+.back{
+	position:absolute;
+	left:.12rem;
+}
+.login{
+	font-size:.18rem;
+
+}
+.rel{
+	position:absolute;
+	right:.12rem;
+	font-size:.15rem;
+}
+.logo{
+	margin:.85rem auto .74rem auto;
+	text-align:center;
+}
+.box{
+	margin:0 .25rem;
+	box-sizing:border-box;
+}
+.form-input p{
+	position:relative;
+}
+.user{
+	width:100%;
+	color:#8c8c8c;
+	font-size:.14rem;
+	border:none;
+	border-bottom:solid 1px #8c8c8c;
+	padding-bottom:.13rem;
+	text-indent:.41rem;
+}
+.user-yzm{
+	width: calc(100% - 1rem );
+	color:#8c8c8c;
+	font-size:.14rem;
+	border:none;
+	border-bottom:solid 1px #8c8c8c;
+	padding-bottom:.13rem;
+	text-indent:.41rem;
+}
+.yzm{
+	width:.9rem;
+	height:.32rem;
+	box-sizing:border-box;
+	float:right;
+	font-size:.13rem;
+	background:none;
+	color:#777;
+	border-radius:.06rem;
+	border:solid .01rem #454545;
+}
+.pwd{
+	margin-top:.20rem;
+}
+.icon-shouji{
+	position:absolute;
+	font-size:.20rem;
+	color:#8c8c8c;
+	margin-top:-.05rem;
+	left:.05rem;
+}
+.icon-yanzhengma2{
+	position:absolute;
+	font-size:.20rem;
+	color:#8c8c8c;
+	margin-top:-.05rem;
+	left:.05rem;
+}
+.login-btn{
+	margin-top:.55rem;
+}
+.btn{
+	height:.45rem;
+	width:100%;
+	border:none;
+	background:#00a0e9;
+	border-radius:.06rem;
+	font-size:.16rem;
+	color:#fff;
+}
+.fs{
+	margin-top:.08rem;
+	width:100%;
+	position:relative;
+}
+.fs a{
+	color:#454545;
+	font-size:.12rem;
+}
+.fs a.tel{
+	position:absolute;
+	right:0px;
+}
+.agree{
+	margin-top:.37rem;
+	text-align:center;
+	font-size:.12rem;
+}
+.agree .terms{
+	color:#00a0e9;
+}

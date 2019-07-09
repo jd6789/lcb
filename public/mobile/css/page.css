@@ -1,0 +1,77 @@
+table a.btn{
+    display: inline-block;
+    padding: 0.1rem 0.2rem;
+    font-weight: 400;
+    line-height: 0.3rem;
+    text-align: center;
+    vertical-align: middle;
+    cursor: pointer;
+    border: 0.016rem solid transparent;
+    border-radius: 0.05rem;
+    color: #fff;
+    background-color: #639a67;
+    margin: 0;
+}
+table{
+    width: 100%;
+}
+table tbody tr th {
+     background: #eaeaea;
+     height: 0.5rem;
+     font-weight:100;
+     font-size: 0.14rem;
+     text-align: center;
+     padding:0.07rem;
+ }
+  table tbody tr td {
+     text-align: center;
+     font-size: 0.12rem;
+     color: #333;
+     border-bottom: 0.016rem solid #eaeaea;
+     padding:0.1rem;
+ }
+.turn_page ul, .turn_page1 ul {
+    display: inline-block;
+    margin-bottom: 0;
+    margin-left: 0;
+    -webkit-border-radius: 0.04rem;
+    -moz-border-radius: 0.04rem;
+    border-radius: 0.04rem;
+    -webkit-box-shadow: 0 0.016rem 0.032rem rgba(0, 0, 0, 0.05);
+    -moz-box-shadow: 0 0.016rem 0.032rem rgba(0, 0, 0, 0.05);
+    box-shadow: 0 0.016rem 0.032rem rgba(0, 0, 0, 0.05);
+}
+
+.turn_page ul li, .turn_page1 ul li {
+    display: inline;
+}
+
+.turn_page ul li a, .turn_page1 ul li a {
+    float: left;
+    padding: 0.06rem 0.15rem;
+    text-decoration: none;
+    background-color: #fff;
+    /*border-left-width: 0;*/
+    margin-left: 0.032rem;
+    color: #639a67;
+    border: 0.016rem solid #639a67;
+}
+
+.turn_page ul li a.active, .turn_page1 ul li a.active {
+    color: #fff;
+    background: #639a67;
+}
+
+.turn_page ul li a:hover, .turn_page1 ul li a:hover {
+    color: #fff;
+    background: #639a67;
+}
+
+.turn_page span, .turn_page1 span {
+    float: left;
+    margin-left: 0.15rem;
+}
+
+.turn_page span i, .turn_page1 span i {
+    font-style: normal;
+}

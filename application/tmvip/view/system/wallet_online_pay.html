@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link href="__ADMIN_CSS__/styles.bundle.css" rel="stylesheet">
+    <style>
+        /*分页*/
+        .pagination {
+            text-align: right;
+            margin-top: 15px;
+        }
+        .pagination li {display: inline-block;margin-right: -1px;padding: 5px;border: 1px solid #e2e2e2;min-width: 20px;text-align: center;}
+        .pagination li.active {background: #009688;color: #fff;border: 1px solid #009688;}
+        .pagination li a {display: block;text-align: center;}
+    </style>
+    <style>
+        .cont_search input.search{
+            height: 28px;
+            line-height: 28px;
+            width: 100px;
+            font-weight: 200;
+            font-size: 14px;
+        }
+        .cont_search table{
+            width: auto;
+        }
+        .cont_search table td{
+            padding-right: 10px;
+        }
+    </style>
+</head>
+<body>
+<div class="cont_search clearfix">
+    <form action=""  method="post">
+        <!-- 关键字 -->
+        用户名<input type="text" name="username" size="15" />
+        <input type="submit" value="查询" class="btngreen search ">
+    </form>
+</div>
+<div class="bench white-scroll">
+    <div class="globaltable r5px">
+        <table border="0" cellpadding="0" cellspacing="0">
+            <tbody>
+            <tr>
+                <td>用户名称</td>
+                <td>用户电话</td>
+                <td>充值金额</td>
+                <td>时间</td>
+                <td>订单号</td>
+                <td>是否支付</td>
+                <td>操作</td>
+            </tr>
+
+            <!---->
+            {volist name="data.info" id="v"}
+            <tr>
+                <td>{$data[$v.user_ids]['username']}</td>
+                <td>{$data[$v.user_ids]['tel']}</td>
+                <td>{$v.montys}￥</td>
+                <td>{$v.money_addtime|date='Y-m-d H:i:s',###}</td>
+                <td>{$v.money_num}</td>
+                <td>
+                    {if condition="$v.pay_status eq 1 "}已支付
+                    {else/}
+                    未支付
+                    {/if}
+                </td>
+                <td>
+                    {if condition="$v.pay_status eq 1 "}
+                    {else/}
+                    <button value="{$v.money_id}" class="dels">超时删除</button>&nbsp;
+                    <button value="{$v.money_id}" class="submi">已确认支付</button>
+                    </select>
+                    {/if}
+                </td>
+            </tr>
+            {/volist}
+            <!---->
+            </tbody>
+        </table><p>{$data.info->render()}</p>
+    </div>
+    <div class="page clearfix">
+        <div class="text">共<b>1</b>页<b>4</b>条记录</div>
+        <div class="linklist">
+            <a class="prev" href="javascript:void(0)">&nbsp;</a>
+            <a href="javascript:void(0)" class="current">1</a>
+            <a class="next" href="javascript:void(0)">&nbsp;</a>
+        </div>
+    </div>
+</div>
+</body>
+</html>
+<script type="text/javascript" src="__JS_MOBILE__/jquery-1.9.0.min.js"></script>
+<script src="__JS_MOBILE__/layer.js"></script>
+<script>
+    $(".submi").click(function(){
+        var btnn=$(this).val();
+        $.ajax({
+            url:"{:URL('api/api/money')}",
+            data:{id:btnn},
+            type:"post",
+            success:function(msg){
+                if(msg.status ==0){
+                    layer.msg('服务器错误，操作失败');
+                }else{
+                    layer.msg("操作成功");
+                    location.reload();
+                }
+
+            }
+        });
+    })
+    $(".dels").click(function(){
+        var btn=$(this).val();
+        $.ajax({
+            url:"{:URL('api/api/delmoney')}",
+            data: {id:btn},
+            type:"post",
+            success:function(msg){
+                if(msg.status ==1){
+                    layer.msg("删除成功");
+                    location.reload();
+                }else{
+                    layer.msg("删除失败");
+                }
+            }
+        });
+    })
+</script>

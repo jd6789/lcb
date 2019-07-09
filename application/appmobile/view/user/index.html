@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0,user-scalable=no,minimal-ui">
+    <link href="__CSS_MOBILE__/reset.css" rel="stylesheet" type="text/css">
+    <link href="__CSS_MOBILE__/common.css" rel="stylesheet" type="text/css">
+    <link href="__CSS_MOBILE__/iconfont.css" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" href="__CSS_MOBILE__/swiper-4.2.0.min.css">
+    <link href="__CSS_MOBILE__/index.css" rel="stylesheet" type="text/css">
+	<title>理茶宝首页</title>
+	<style>
+		.titlelcb{
+			position:relative;
+			left:50%;
+			display:inline-block;
+			width:54px;
+			margin-left:-27px;
+		}
+		.logini{
+			float:right;
+			font-size:.14rem;
+			color: #ffffff;
+			margin-right:10px
+		}
+	</style>
+</head>
+<body>
+	<div class="content"><!--content-->
+		
+		<div class="title"><!--title-->
+			<span class="titlelcb">理茶宝</span>
+			<a class="logini" href="{:url('login')}" id="href" style="width: 140px;text-align: right;overflow: auto;white-space: nowrap;text-overflow: ellipsis;">
+				<span class="" id="username" style="color:#fff"></span>
+			</a>
+			<!--<i class="iconfont icon-xiaoxi"></i>-->
+		</div><!--title-->
+		
+		<div class="swiper-container"><!--swiper-container-->
+		    <div class="swiper-wrapper">
+		        <div class="swiper-slide"><img src="__IMAGES_MOBILE__/banner1.jpg"></div>
+		        <div class="swiper-slide"><img src="__IMAGES_MOBILE__/banner2.jpg"></div>
+		        <div class="swiper-slide"><img src="__IMAGES_MOBILE__/banner3.jpg"></div>
+		    </div>
+		<!-- 如果需要分页器 -->
+    		<div class="swiper-pagination"></div>
+    		<div class="problems"><a href="{:url('problem')}">常见问题</a></div>
+		</div><!--swiper-container-->
+		
+		
+		<div class="advantage">
+			<div class="advantage-title">理查宝的优势</div>
+			<div class="advantage-list clear">
+				<ul>
+					<li><img src="__IMAGES_MOBILE__/ys1.png"><p>理想回报</p></li>
+					<li><img src="__IMAGES_MOBILE__/ys2.png"><p>理茶普惠</p></li>
+					<li><img src="__IMAGES_MOBILE__/ys3.png"><p>体系健全</p></li>
+					<li><img src="__IMAGES_MOBILE__/ys4.png"><p>安全保障</p></li>
+				</ul>
+			</div>
+		</div>
+
+		<div class="index-bg">
+			<img src="__IMAGES_MOBILE__/index.png">
+		</div>
+	</div><!--content-->
+
+	
+
+	<footer class="footer">
+			<nav class="nav">
+				<ul>
+					<li><a class="active" href="{:url('index')}">
+						<p><i class="iconfont icon-weibiaoti1"></i></p>
+						<p>首页</p>
+					</a></li>
+					<li><a href="{:url('richardtea')}">
+						<p><i class="iconfont icon-licaishouyi"></i></p>
+						<p>理茶宝</p>
+					</a></li>
+					<li><a href="{:url('record')}">
+						<p><i class="iconfont icon-htmal5icon34"></i></p>
+						<p>记录</p>
+					</a></li>
+					<li><a href="{:url('myinfo')}">
+						<p><i class="iconfont icon-yonghu"></i></p>
+						<p>我的</p>
+					</a></li>
+				</ul>
+			</nav>
+		</footer>
+
+	<script src="__JS_MOBILE__/jquery-1.8.3.min.js"></script>
+	<script src="__JS_MOBILE__/swiper-4.2.0.min.js"></script>
+	<script>
+
+        $.ajax({
+            url:  "{:url('appmobile/alluser/userLogin')}",
+            type: "post",
+            success: function (msg) {
+                console.log(msg);
+                if (msg.status == 1) {
+                    $("#username").text("欢迎您，"+msg.msg)
+                    $("#href").attr("href","javascript:;")
+                }else{
+                    $("#username").text("登录")
+                }
+            }
+        })
+
+		  var mySwiper = new Swiper ('.swiper-container', {
+		    autoplay: true,
+		    //freeMode : true,
+		    //touchRatio : 0.5,
+		    pagination: {
+      			el: '.swiper-pagination',
+      			type: 'bullets',
+    		},
+	    		autoplay: {
+	    			disableOnInteraction: false,
+	  			},
+		  })        
+  </script>
+</body>
+</html>

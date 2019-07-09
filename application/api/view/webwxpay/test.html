@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>微信支付测试</title>
+    <script type="text/javascript" src="/mobile/js/jquery-1.9.0.min.js"></script>
+    <script type="text/javascript" src="/mobile/js/jquery.qrcode.min.js"></script>
+
+</head>
+<body>
+<div id="code"></div>
+<input type="hidden" value="{$data}" id="data">
+</body>
+<script>
+    $(function(){
+        var urldata = $("#data").val();
+        $('#code').qrcode(urldata);
+    })
+
+</script>
+</html>

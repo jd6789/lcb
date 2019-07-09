@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0,user-scalable=no,minimal-ui">
+    <link href="__CSS_MOBILE__/reset.css" rel="stylesheet" type="text/css">
+    <link href="__CSS_MOBILE__/common.css" rel="stylesheet" type="text/css">
+    <link href="__CSS_MOBILE__/iconfont.css" rel="stylesheet" type="text/css">
+    <link href="__CSS_MOBILE__/changepwd.css" rel="stylesheet" type="text/css">
+    <link href="__CSS_MOBILE__/layer.css" rel="stylesheet" type="text/css">
+    <title>修改密码</title>
+</head>
+<body>
+      <div class="content"><!--content-->
+
+          <div class="top"><!--top-->
+             <a class="back" href="{:url('personcenter')}"><i class="iconfont icon-fanhui"></i></a>
+             <span class="login">用户密码</span>
+          </div><!--top-->
+
+        
+          <div class="change">
+            <p>当前密码<span class="line">|</span><input class="pwd" type="password" placeholder="请输入当前密码" id="password1"></p>
+            <p><span style="padding-right:14px;">新密码</span><span class="line">|</span><input class="pwd" type="password" placeholder="请输入新密码" id="password2"></p>
+            <p>确认密码<span class="line">|</span><input class="pwd" type="password" placeholder="请再次输入密码" id="password3"></p>
+          </div>
+
+          <div class="bc">
+            <input type="button" class="bc-btn" value="确认保存" id="btn">
+          </div>
+
+      </div><!--content-->
+      <script type="text/javascript" src="__JS_MOBILE__/jquery-1.9.0.min.js"></script>
+      <script src="__JS_MOBILE__/layer.js"></script>
+      
+</body>
+</html>
+<script type="text/javascript" src="__JS_MOBILE__/jquery-1.9.0.min.js"></script>
+<script src="__JS_MOBILE__/layer.js"></script>
+<script type="text/javascript">
+
+    $("#password1").blur(function(){
+        var password1 = $('#password1').val();
+        if(!password1){
+            layer.msg("当前密码不能为空!");
+            return false;
+        }
+    });
+
+    $('#btn').click(function(){
+        var reg = /^(?![0-9]+$)(?![a-zA-Z]+$)[0-9A-Za-z]{6,16}$/;
+        var password1 = $('#password1').val();
+        var password2 = $('#password2').val();
+        var password3 = $('#password3').val();
+
+        if(!password2){
+            layer.msg("新密码不能为空!");
+            return false;
+        }
+        if(!password3){
+            layer.msg("确认密码不能为空!");
+            return false;
+        }else{
+            if(!reg.test(password2)){
+                layer.msg("密码只能由6-16位数字和字母组成");
+                return false
+            }
+        }
+        $.ajax({
+            type:'post',
+            url:"{:url('newapp/user/changepwd')}",
+            data:{
+                'password1':password1,
+                'password2':password2,
+                'password3':password3
+            },
+            
+            success:function(msg){
+                console.log(msg)
+                if(msg.status == 0){
+                    layer.msg('初始密码不正确!');
+                    return false;
+                }
+                if(msg.status == 2){
+                    layer.msg('两次密码不一致!');
+                    return false;
+                }
+                if(msg.status == 3){
+                    layer.msg('系统维护中!');
+                    return false;
+                }
+                if(msg.status == 1){
+                    layer.msg('密码修改成功!');
+                    setTimeout(function(){
+                        location.href="{:url('newapp/user/index')}";
+                    },1000);
+                }
+            }
+        });
+    });
+</script>

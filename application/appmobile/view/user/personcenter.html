@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0,user-scalable=no,minimal-ui">
+    <link href="__CSS_MOBILE__/reset.css" rel="stylesheet" type="text/css">
+    <link href="__CSS_MOBILE__/common.css" rel="stylesheet" type="text/css">
+    <link href="__CSS_MOBILE__/iconfont.css" rel="stylesheet" type="text/css">
+    <link href="__CSS_MOBILE__/personcenter.css" rel="stylesheet" type="text/css">
+    <link href="__CSS_MOBILE__/layer.css" rel="stylesheet" type="text/css">
+    <title>个人中心</title>
+</head>
+<body>
+<div style="position: absolute;width: 100%;height: 100%;background-color:#fff;top: 0;left: 0;" id="zhezhao">
+    <img src="__IMAGES_MOBILE__/loding.gif" alt="" style="width: 50px;position: absolute;left: 50%;top: 50%;transform:translate(-50%,-50%)">
+</div>
+      <div class="content"><!--content-->
+
+          <div class="top"><!--top-->
+             <a class="back" href="{:url('myinfo')}"><i class="iconfont icon-fanhui"></i></a>
+             <span class="login">个人中心</span>
+          </div><!--top-->
+
+          <div class="center">
+            <div class="center-info">
+              <ul>
+                <a href="{:url('personinfo')}"><li><i class="iconfont icon-yonghu"></i>个人信息<i class="iconfont icon-jiantouyou"></i></li></a>
+                <a class="smrz" href="{:url('realname')}"><li><i class="iconfont icon-xiazai18"></i>实名认证<i class="iconfont icon-jiantouyou"></i></li></a>
+                <a href="{:url('changepwd')}"><li><i class="iconfont icon-mima"></i>用户密码<i class="iconfont icon-jiantouyou"></i></li></a>
+                <a href="javascript:;" style="display: none;"><li><i class="iconfont icon-shouji"></i>绑定手机<i class="iconfont icon-jiantouyou"></i></li></a>
+                <a href="{:url('recommend')}"><li><i class="iconfont icon-qiandai"></i>我的推荐<i class="iconfont icon-jiantouyou"></i></li></a>
+                  <a href="{:url('accountlink')}"><li><i class="iconfont icon-qiandai"></i>关联账户<i class="iconfont icon-jiantouyou"></i></li></a>
+            </ul>
+            </div>           
+          </div>
+          
+
+      </div><!--content-->
+      <script type="text/javascript" src="__JS_MOBILE__/jquery-1.9.0.min.js"></script>
+      <script src="__JS_MOBILE__/layer.js"></script>
+
+      <script>
+      $.ajax({
+          type:"post",
+          url:"{:url('appmobile/user/personcenter')}",
+          success:function(data){
+            //console.log(data)
+            if(data.status == 1){
+                $(".smrz").css({"display":"none"})
+
+            }
+              $("#zhezhao").hide()
+          },
+          error:function(){
+            alert("error")
+              $("#zhezhao").hide()
+          }
+        })
+      </script>
+      
+</body>
+</html>

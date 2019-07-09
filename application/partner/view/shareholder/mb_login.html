@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0"/>
+    <meta name="apple-mobile-web-app-capable" content="yes"/>
+    <meta name="apple-mobile-web-app-status-bar-style" content="black"/>
+    <meta name="format-detection" content="telephone=no"/>
+    <meta name="description" content="国茶商城"/>
+    <meta name="keywords" content="国茶商城"/>
+    <title>手机登录</title>
+    <link rel="stylesheet" href="__CSS_PARTNER__/commen.css">
+    <script type="text/javascript" src="__JS_PARTNER__/jquery.min.js"></script>
+    <script src="__JS_PARTNER__/layer/layer.js"></script>
+    <script type="text/javascript" src="__JS_PARTNER__/auto-size.js"></script>
+    <script src="__JS_PARTNER__/url.js"></script>
+    <style>
+        html, body {
+            background-color: #000;
+            font-size: 0.28rem;
+        }
+
+        img {
+            max-width: 100%;
+            display: inline-block;
+        }
+        .content{
+            height: 7rem;
+            margin-top: 1.5rem;
+            background: url("__IMAGES_PARTNER__/kuang1_03.png") no-repeat center;
+            background-size: 90% 3.8rem;
+            position: relative;
+        }
+        .content .logo{
+            position: absolute;
+            top: 0.6rem;
+            left: 40.5%;
+            width: 1.2rem;
+            height: 1.2rem;
+            border-radius: 50%;
+            background-color: #fff;
+            text-align: center;
+            line-height: 1.2rem;
+        }
+        .content>img{
+            width: 1rem;
+            position: absolute;
+            top: -2%;
+            left: 55%;
+        }
+        .login_print{
+            margin-top: 0.45rem;
+            position: relative;
+        }
+        .login_print img{
+            width: 0.45rem;
+            margin-right:0.2rem;
+            vertical-align: bottom;
+        }
+        .login_print input{
+            display: inline-block;
+            width: 78%;
+            height: 0.8rem;
+            font-size: 0.28rem;
+            border: none;
+            border-bottom:1px solid #ccc;
+        }
+        .login_print i.username{
+            position: absolute;
+            width: 0.6rem;
+            height: 0.6rem;
+            background: url("__IMAGES_PARTNER__/icon/qux_03.png") no-repeat center;
+            background-size: 0.2rem 0.2rem;
+            right: 0.4rem;
+            top: 0.2rem;
+            display: none;
+        }
+        .login_print button{
+            width: 40%;border: none;
+            outline:none;
+            color: #fff;
+            background-color: #fdde72;
+            height: 0.8rem;
+            font-size:0.24rem;
+        }
+        .content>a{
+            position: absolute;
+            width: 70%;
+            height: 1rem;
+            background-color: #fdde72;
+            border-radius: 0.5rem;
+            text-align: center;
+            line-height: 1rem;
+            bottom:1rem;
+            left: 1rem;
+            color: #fff;
+            font-size: 0.35rem;
+            font-weight: 200;
+        }
+        .tip a{
+            color: #fff;
+        }
+        .fl{
+            float: left;
+            padding-left: 0.2rem;
+        }
+        .fr{
+            float: right;
+            text-align: right;
+            padding-right: 0.2rem;
+        }
+        .footer{
+            position: absolute;
+            width: 100%;
+            bottom: 0.5rem;
+            text-align: center;
+        }
+        .footer img{
+            height: 1.5rem;
+        }
+    </style>
+</head>
+<body>
+<div class="head">
+    <a href="javascript:history.go(-1);" class="back">
+        <img src="__IMAGES_PARTNER__/icon/fanh_03.png" alt="">
+    </a>
+    <!--<a href="{:url('shareholder/register')}" class="home">-->
+    <a href="javascript:;" class="home">
+        注册
+    </a>
+</div>
+<div class="content">
+    <div class="logo">
+        gu
+    </div>
+    <img src="__IMAGES_PARTNER__/icon/yez_03.png" alt="" >
+    <div style="padding-top: 2rem;width: 80%;margin:0 auto;">
+        <div class="login_print">
+            <img src="__IMAGES_PARTNER__/icon/shouji_03.png" alt=""><input type="text" id="mobileNum"><i class="username"></i>
+        </div>
+        <div class="login_print">
+            <img src="__IMAGES_PARTNER__/icon/mima_03.png" alt=""><input type="number" id="captcha" style="width: 40%;"><button id="getCaptcha">点击获取验证码</button>
+        </div>
+    </div>
+    <a href="javascript:;" id="login_tel">登录</a>
+    <div style="color: #fff;margin-top: 1.8rem;" class="tip">
+        <div class="fl" style="width: 40%;display: none;">
+            <a href="">忘记密码?</a>
+        </div>
+        <div class="fr" style="width: 40%;">
+            <a href="{:url('shareholder/login')}">用户名登录</a>
+        </div>
+        <div class="clear"></div>
+    </div>
+</div>
+<div class="footer">
+    <img src="__IMAGES_PARTNER__/icon/cha_03.png" alt="">
+</div>
+
+
+<script>
+    $("#mobileNum").focus(function () {
+        $(".username").show()
+    })
+    $("#password").focus(function () {
+        $(".password").show()
+    })
+    $(".username").click(function () {
+        $("#mobileNum").val("")
+        $("#mobileNum").focus()
+    })
+    $(".password").mousedown(function () {
+        $("#password").prop("type","text")
+    }).mouseup(function () {
+        $("#password").prop("type","password")
+    })
+    $("#mobileNum").blur(function () {
+        var a = $(this).val();
+        if (!a) {
+            layer.msg("手机号码不能为空");
+            return false
+        } else {
+            if (!checkMobile(a)) {
+                layer.msg("手机号码格式不正确");
+                return false
+            }
+        }
+    })
+    $("#getCaptcha").click(function () {
+        var tel = $("#mobileNum").val();
+        if (tel == "") {
+            layer.msg("手机号不能为空");
+            return false;
+        } else {
+            if (!checkMobile(tel)) {
+                layer.msg("手机号码格式不正确");
+                return false;
+            } else {
+                var sms = "SMS_62170183";
+                $.ajax({
+                    data: {tel: tel,sms:sms},
+                    url:"{:url('shareholder/test')}",
+                    type: "post",
+                    success: function (msg) {
+                        if (msg.s == 1) {
+                            layer.msg("验证码发送成功");
+                            settime();
+                        } else {
+                            layer.msg("验证码发送失败");
+                        }
+                    }
+                })
+            }
+        }
+    })
+    $('#login_tel').click(function () {
+        var tel = $('#mobileNum').val();
+        var mobileCode = $('#captcha').val();
+        if(!tel){
+            layer.msg("手机号不能为空")
+            return false
+        }
+        if(!mobileCode){
+            layer.msg("验证码不能为空")
+            return false
+        }
+        var data = {
+            mobile_phone: tel,
+            mobileCode: mobileCode,
+        };
+        $.post("{:url('shareholder/mb_login')}", data, function (msg) {
+            if (msg.status == 1) {
+                layer.msg('登陆成功');
+                setTimeout(function(){
+                    location.href="{:url('index/index')}"
+                },1000)
+            } else if(msg.status==0){
+                layer.msg(msg.msg);
+            }else if(msg.status==2){
+                layer.msg(msg.msg);
+            }else if(msg.status==3){
+                layer.msg(msg.msg);
+            }else if(msg.status==4){
+                layer.msg(msg.msg);
+            }
+        }, 'json');
+    });
+</script>
+<script>
+    var countdown = 60;
+    function settime() {
+        if (countdown == 0) {
+            $("#getCaptcha").removeAttr("disabled");
+            $("#getCaptcha").text("重新发送") ;
+            countdown = 60;
+            $("#getCaptcha").css({"background-color": "#fdde72"});
+            return false;
+        } else {
+            $("#getCaptcha").attr("disabled", "true");
+            $("#getCaptcha").text("重新发送(" + countdown + ")");
+            $("#getCaptcha").css({"background-color": "#bbb"});
+            countdown--;
+        }
+        setTimeout(function () {
+                settime()
+            }
+            , 1000)
+    }
+    //验证手机号正则
+    function checkMobile(mobile) {
+        var flag = true;
+        if (typeof(mobile) != "string") {
+            flag = false;
+        } else {
+            // ��� ��ϵ�绰 - �ֻ�����
+            var mobileReg = /^(13|14|15|17|18)\d{9}$/;
+            if (!mobileReg.test(mobile)) {
+                flag = false;
+            }
+        }
+        return flag;
+    }
+</script>
+</body>
+</html>

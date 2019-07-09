@@ -1,0 +1,44 @@
+html{
+	font-size:625%;
+}
+body{
+	font-size:.14rem;
+	font-family:"微软雅黑";
+	overflow-x:hidden;
+}
+html,body{
+	height:100%;width:100%;
+}
+.clear:after{
+	content:"";
+	display:block;
+	height:0px;
+	clear:both;
+}
+input[type=button], input[type=submit], input[type=file], button { cursor: pointer; -webkit-appearance: none; }
+
+input::-webkit-input-placeholder {
+    /* placeholder颜色  */
+    color: #aab2bd;
+    /* placeholder字体大小  */
+    font-size: .14rem;
+
+}
+.content{
+	max-width:7.5rem;
+	margin:0 auto;
+	padding-bottom:.55rem;
+}
+
+.top{
+	height:.45rem;
+	text-align:center;
+	line-height:.45rem;
+	position:relative;
+}
+.blue{
+	color:#00a0e9!important;
+}
+.red{
+	color:#ff2624!important;
+}

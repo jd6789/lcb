@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0"/>
+    <meta name="apple-mobile-web-app-capable" content="yes"/>
+    <meta name="apple-mobile-web-app-status-bar-style" content="black"/>
+    <meta name="format-detection" content="telephone=no"/>
+    <meta name="description" content="淘米科技"/>
+    <meta name="keywords" content="淘米科技"/>
+    <title>普通登录</title>
+    <link rel="stylesheet" href="css/commen.css">
+    <script type="text/javascript" src="js/jquery.min.js"></script>
+    <script src="js/layer/layer.js"></script>
+    <script type="text/javascript" src="js/auto-size.js"></script>
+    <style>
+        html, body {
+            background-color: #000;
+            font-size: 0.28rem;
+        }
+
+        img {
+            max-width: 100%;
+            display: inline-block;
+        }
+        .content{
+            height: 7rem;
+            margin-top: 1.5rem;
+            background: url("images/kuang1_03.png") no-repeat center;
+            background-size: 90% 3.8rem;
+            position: relative;
+        }
+        .content .logo{
+            position: absolute;
+            top: 0.6rem;
+            left: 40.5%;
+            width: 1.2rem;
+            height: 1.2rem;
+            border-radius: 50%;
+            background-color: #fff;
+            text-align: center;
+            line-height: 1.2rem;
+        }
+        .content>img{
+            width: 1rem;
+            position: absolute;
+            top: -2%;
+            left: 55%;
+        }
+        .login_print{
+            margin-top: 0.45rem;
+            position: relative;
+        }
+        .login_print img{
+            width: 0.45rem;
+            margin-right:0.2rem;
+            vertical-align: bottom;
+        }
+        .login_print input{
+            display: inline-block;
+            width: 78%;
+            height: 0.8rem;
+            font-size: 0.28rem;
+            border: none;
+            border-bottom:1px solid #ccc;
+        }
+        .login_print i.username{
+            position: absolute;
+            width: 0.6rem;
+            height: 0.6rem;
+            background: url("images/icon/qux_03.png") no-repeat center;
+            background-size: 0.2rem 0.2rem;
+            right: 0.4rem;
+            top: 0.2rem;
+            display: none;
+        }
+        .login_print i.password{
+            position: absolute;
+            width: 0.6rem;
+            height: 0.6rem;
+            background: url("images/icon/yj_03.png") no-repeat center;
+            background-size: 0.4rem 0.25rem;
+            right: 0.4rem;
+            top: 0.2rem;
+            display: none;
+        }
+        .content>a{
+            position: absolute;
+            width: 70%;
+            height: 1rem;
+            background-color: #fdde72;
+            border-radius: 0.5rem;
+            text-align: center;
+            line-height: 1rem;
+            bottom:1rem;
+            left: 1rem;
+            color: #fff;
+            font-size: 0.35rem;
+            font-weight: 200;
+        }
+        .tip a{
+            color: #fff;
+        }
+        .fl{
+            float: left;
+            padding-left: 0.2rem;
+        }
+        .fr{
+            float: right;
+            text-align: right;
+            padding-right: 0.2rem;
+        }
+        .footer{
+            position: absolute;
+            width: 100%;
+            bottom: 0.5rem;
+            text-align: center;
+        }
+        .footer img{
+            height: 1.5rem;
+
+        }
+    </style>
+</head>
+<body>
+<div class="head">
+    <a href="javascript:history.go(-1);" class="back">
+        <img src="images/icon/fanh_03.png" alt="">
+    </a>
+    <a href="regedit.html" class="home">
+        注册
+    </a>
+</div>
+<div class="content">
+    <div class="logo">
+        gu
+    </div>
+    <img src="images/icon/yez_03.png" alt="" >
+    <div style="padding-top: 2rem;width: 80%;margin:0 auto;">
+        <div class="login_print">
+            <img src="images/icon/yhm_03.png" alt=""><input type="text" id="username">
+        </div>
+        <div class="login_print">
+            <img src="images/icon/mima_03.png" alt=""><input type="password" id="password"><i class="password p_show"  id="togglePassword"></i>
+        </div>
+    </div>
+    <a href="javascript:;">登录</a>
+    <div style="color: #fff;margin-top: 1.8rem;" class="tip">
+        <div class="fl" style="width: 40%;">
+            <a href="">忘记密码?</a>
+        </div>
+        <div class="fr" style="width: 40%;">
+            <a href="login2.html" class="tel">手机号登录</a>
+        </div>
+        <div class="clear"></div>
+    </div>
+</div>
+<div class="footer">
+    <img src="images/icon/cha_03.png" alt="">
+</div>
+
+<script src="js/jquery.toggle-password.min.js"></script>
+<script>
+    $('#password').togglePassword({
+        el: '#togglePassword'
+    });
+    $("#username").focus(function () {
+        $(".username").show()
+    }).blur(function () {
+        $(".username").hide()
+    })
+    $("#password").focus(function () {
+        $(".password").show()
+    })
+    $(".username").click(function () {
+        $("#username").val("")
+        $("#username").focus()
+    })
+
+
+</script>
+</body>
+</html>

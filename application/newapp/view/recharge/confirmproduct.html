@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0,user-scalable=no,minimal-ui">
+    <link href="__CSS_NEW__/reset.css" rel="stylesheet" type="text/css">
+    <link href="__CSS_NEW__/common.css" rel="stylesheet" type="text/css">
+    <link href="__CSS_NEW__/iconfont.css" rel="stylesheet" type="text/css">
+    <link href="__CSS_NEW__/layer.css" rel="stylesheet" type="text/css">
+    <title>升级理茶宝确认</title>
+    <style>
+      body{
+        background:#fff2be;
+      }
+      .top{
+            height:.45rem;
+            text-align:center;
+            line-height:.45rem;
+            position:relative;
+            background:#4359aa;
+          }
+          .icon-fanhui{
+            font-size:.20rem;
+            color:#fff;
+            font-weight:bold;
+          }
+          .back{
+            position:absolute;
+            left:.12rem;
+          }
+          .login{
+            font-size:.18rem;
+            color:#fff;
+          }
+          .dol{
+            text-align:center;
+            font-size:.28rem;
+            color:#fa5c51;
+            font-weight:700;
+          }
+          .dol span{
+            font-size:.16rem;
+          }
+          .xztc{
+            margin-left:15px;
+            font-size:.16rem;
+            color:#333;
+            margin-top:20px;
+           margin-bottom:20px;
+          }
+          .tc1{
+            width:300px;
+            background:url("__IMAGES_NEW__/tc.png") no-repeat left top;
+            background-size:100% 110px;
+            margin:0 auto;
+            display:flex;
+            text-align:center;
+            margin-bottom:15px;
+              height:110px;
+              font-size:.16rem;
+
+          }
+          .tc1 .tc1-l{
+              flex-grow:1;
+              width:82px;
+              color:#fff;
+              font-size:.16rem;
+              line-height:110px;
+          }
+          .tc1 .tc1-r{
+              flex-grow:2;
+              width:200px;
+              line-height:2;
+              padding-top:10px;
+
+          }
+          .cz{
+            font-size:.16rem;
+            color:#333;
+
+          }
+          .xfed{
+            font-size:.16rem;
+            color:#666;
+          }
+          .tc-active{
+            width:300px;
+            background:url("__IMAGES_NEW__/tcxz.png") no-repeat left top;
+            background-size:300px 110px;
+            margin:0 auto;
+            display:flex;
+            text-align:center;
+            margin-bottom:15px;
+          }
+          .btn{
+            text-align:center;
+            margin-top:60px;
+          }
+          .qx-btn{
+            width:130px;
+            height:49px;
+            font-size:.15rem;
+            color:#333;
+            background:none;
+            border:solid 1px #4f4f4f;
+            border-radius:8px;
+          }
+          .qr-btn{
+            width:130px;
+            height:49px;
+            font-size:.15rem;
+            color:#fff;
+            background:linear-gradient(to right, #ff6146 0%, #ff844a 100% );
+            border:none;
+            border-radius:8px;
+            margin-left:30px;
+          }
+    </style>
+</head>
+<body>
+      <div class="content"><!--content-->
+
+          <div class="top"><!--top-->
+             <a class="back" href="{:url('newapp/user/richardtea')}"><i class="iconfont icon-fanhui"></i></a>
+             <span class="login">确认产品</span>
+          </div><!--top-->
+
+         <div><img src="__IMAGES_NEW__/confirm.png" width="100%"></div>
+
+         <div class="dol"><span>理茶宝充值￥</span>{$data.rec_money}</div>
+          <p class="xztc">选择套餐</p>
+         <div class="tc">          
+           <div class="tc1 tc-active" data-id="0">
+             <div class="tc1-l">A套餐</div>
+             <div class="tc1-r">
+                 <p class="cz">充值<b style="color: #ac2925">{$data.rec_money}</b></p>
+                 <p class="xfed">购买<b style="color: #ac2925">{$data.rec_money}</b>的产品礼包</p>
+                 <p class="xfed">赠送<b style="color: #ac2925">{$data.total_inte}</b>消费额度</p>
+             </div>
+           </div>
+           <!--<div class="tc1 " data-id="1">-->
+             <!--<div class="tc1-l">B套餐</div>-->
+             <!--<div class="tc1-r">-->
+                 <!--<p class="cz">充值:<b style="color: #ac2925">{$data.rec_money}</b></p>-->
+                 <!--<p class="xfed">获得<b style="color: #ac2925">{$data.gift}</b>即时消费额度</p>-->
+                 <!--<p class="xfed">再赠送<b style="color: #ac2925">{$data.b}</b>消费额度</p>-->
+             <!--</div>-->
+           <!--</div>-->
+         </div>
+          
+      
+    <div class="btn">
+        <input class="data-id" type="hidden" value="{$data.id}">
+        <a href="{:url('user/index')}"><input type="button" value="取消" class="qx-btn"></a><input class="qr-btn" type="button" value="确认购买">
+    </div>
+
+      </div><!--content-->
+      <script type="text/javascript" src="__JS_NEW__/jquery-1.9.0.min.js"></script>
+      <script src="__JS_NEW__/layer.js"></script>
+
+      <script>
+        $(function(){
+            var gift
+            $(".tc1").click(function(){
+              $(this).addClass("tc-active").siblings().removeClass("tc-active");
+                gift = $(this).attr("data-id");
+            })
+            $(".qr-btn").click(function(){
+                var dataid = $(".data-id").val();
+                $.ajax({
+                    type: 'post',
+                    url: "{:url('recharge/addAgainBuyManage')}",
+                    data:{
+                        recharge_id: dataid,
+                        is_gift:gift
+                    },
+                    success: function(msg){
+                        if (msg == 0) {
+                            layer.msg("请在理茶宝积分返还完再购买")
+                            return false
+                        }
+                        if (msg == 1) {
+                            layer.msg("当前购买的产品金钱数小于上次购买的钱数")
+                            return false
+                        }
+                        if (msg == 3) {
+                            layer.msg("信息不完整，前往填写");
+                            setTimeout(function () {
+                                location.href = "{:url('user/realname')}"
+                            }, 2000)
+
+                        }
+                        if (msg == 4) {
+                            layer.msg("您有尚未支付的理茶宝产品，请支付或者取消")
+                            setTimeout(function () {
+                                location.href = "{:url('user/myrichardtea')}"
+                            }, 2000)
+
+                        }
+                        if (msg == 5) {
+                            layer.msg("下单购买失败")
+                            return false
+                        }
+                        if (msg == 6) {
+                            layer.msg("信息不完整，前往填写");
+                            setTimeout(function () {
+                                location.href = "{:url('user/realname')}"
+                            }, 2000)
+
+                        }
+                        if (msg.status == 1) {
+                            layer.msg("下单成功");
+                            setTimeout(function () {
+                                location.href = "{:url('recharge/confirmupdate')}?id=" + msg.id;
+                            }, 2000)
+                        }
+                    }
+                })
+            })
+
+        })
+        
+      </script>
+      
+</body>
+</html>
