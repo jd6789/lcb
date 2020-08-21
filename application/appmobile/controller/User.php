@@ -1762,7 +1762,6 @@ public function ceshi()
     public function recommender(){
         if(!request()->isAjax()){
             $user_id = session('user_id');
-
         }else{
 
         }

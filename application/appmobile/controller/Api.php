@@ -29,7 +29,7 @@ class Api extends Controller{
             $user_id=intval($key_data['user_id']);
             //查询用户的茶点茶券
             $user_data=Db::table('tea_user')->where('user_id',$user_id)->find();
-
+            return json($user_data);
         }
     }
 }

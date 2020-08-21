@@ -160,9 +160,7 @@ class AdminUser {
 
     //角色更新
     public function update_role_name($id,$name){
-
         return  Db::table("tea_role")->where('id',$id)->update(['role_name'=>$name]);
-
     }
 
     //权限更新

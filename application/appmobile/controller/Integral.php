@@ -13,7 +13,7 @@ class Integral extends Common{
 
     //记录
     public function index(){
-        $user_id = intval(cookie('user')['user_id']);
+        //$user_id = intval(cookie('user')['user_id']);
         $user_id = 88;
         $where  = " id > 0 and user_id = $user_id and wallet = 0 ";
         $howtime1 = input('post.time1');

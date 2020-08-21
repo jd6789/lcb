@@ -169,7 +169,7 @@ class Money extends Common{
         Db::startTrans(); //开启事务
         try{
             $data=array(
-              'pay_status'=>1,
+                'pay_status'=>1,
                 'trade_no'=>date('Y').date('m').date('d').uniqid().'168',
                 'pay_way'=>3,
                 'trade_beizhu'=>'线下支付成功'

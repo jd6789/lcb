@@ -1,0 +1,442 @@
+<?php if (!defined('THINK_PATH')) exit(); /*a:1:{s:76:"D:\project2\lcb\public/../application/partner\view\shareholder\register.html";i:1527151643;}*/ ?>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0"/>
+    <meta name="apple-mobile-web-app-capable" content="yes"/>
+    <meta name="apple-mobile-web-app-status-bar-style" content="black"/>
+    <meta name="format-detection" content="telephone=no"/>
+    <meta name="description" content="国茶商城"/>
+    <meta name="keywords" content="国茶商城"/>
+    <title>注册</title>
+    <link rel="stylesheet" href="/partner/css/commen.css">
+    <script type="text/javascript" src="/partner/js/jquery.min.js"></script>
+    <script src="/partner/js/layer/layer.js"></script>
+    <script type="text/javascript" src="/partner/js/auto-size.js"></script>
+    <script src="/partner/js/url.js"></script>
+    <style>
+        html, body {
+            background-color: #000;
+            font-size: 0.28rem;
+        }
+
+        img {
+            max-width: 100%;
+            display: inline-block;
+        }
+        .content{
+            height: 10rem;
+            margin-top: 0.8rem;
+            background: url("/partner/images/kuang3_03.png") no-repeat center;
+            background-size: 90% 8rem;
+            position: relative;
+        }
+        .content .logo{
+            position: absolute;
+            top: 0.2rem;
+            left: 40.5%;
+            width: 1.2rem;
+            height: 1.2rem;
+            border-radius: 50%;
+            background-color: #fff;
+            text-align: center;
+            line-height: 1.2rem;
+        }
+        .content>img{
+            width: 1rem;
+            position: absolute;
+            top: -3%;
+            left: 58%;
+        }
+        .login_print{
+            margin-top: 0.2rem;
+            position: relative;
+        }
+        .login_print img{
+            width: 0.45rem;
+            margin-right:0.2rem;
+            vertical-align: bottom;
+        }
+        .login_print input{
+            display: inline-block;
+            width: 78%;
+            height: 0.8rem;
+            font-size: 0.28rem;
+            border: none;
+            border-bottom:1px solid #ccc;
+        }
+        .login_print i.username{
+            position: absolute;
+            width: 0.6rem;
+            height: 0.6rem;
+            background: url("/partner/images/icon/qux_03.png") no-repeat center;
+            background-size: 0.2rem 0.2rem;
+            right: 0.4rem;
+            top: 0.2rem;
+            display: none;
+        }
+        .login_print button{
+            width: 40%;border: none;
+            outline:none;
+            color: #fff;
+            background-color: #fdde72;
+            height: 0.8rem;
+            font-size:0.24rem;
+        }
+        .content>a{
+            position: absolute;
+            width: 70%;
+            height: 1rem;
+            background: -moz-linear-gradient(left, #fe9d12 0%, #f8c51c 100%);
+            background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#fe9d12), color-stop(100%,#f8c51c));
+            background: -webkit-linear-gradient(left, #fe9d12 0%,#f8c51c 100%);
+            background: -o-linear-gradient(left, #fe9d12 0%,#f8c51c 100%);
+            background: -ms-linear-gradient(left, #fe9d12 0%,#f8c51c 100%);
+            background: linear-gradient(left right, #fe9d12 0%,#f8c51c 100%);
+            border-radius: 0.5rem;
+            text-align: center;
+            line-height: 1rem;
+            bottom:0.4rem;
+            left: 1rem;
+            color: #fff;
+            font-size: 0.35rem;
+            font-weight: 200;
+            z-index:999;
+        }
+        .tip a{
+            color: #fff;
+        }
+        .fl{
+            float: left;
+            padding-left: 0.2rem;
+        }
+        .fr{
+            float: right;
+            text-align: right;
+            padding-right: 0.2rem;
+        }
+        .footer{
+            position: fixed;
+            width: 100%;
+            bottom: 0rem;
+            text-align: left;
+        }
+        .footer img{
+            height: 1rem;
+        }
+    </style>
+</head>
+<body>
+<div class="head">
+    <a href="javascript:history.go(-1);" class="back">
+        <img src="/partner/images/icon/fanh_03.png" alt="">
+    </a>
+    <a href="<?php echo url('shareholder/login'); ?>" class="home">
+       登录
+    </a>
+</div>
+<div class="content">
+    <div class="logo">
+        gu
+    </div>
+    <img src="/partner/images/icon/yez_03.png" alt="" >
+    <div style="padding-top: 2rem;width: 80%;margin:0 auto;">
+        <div class="login_print">
+            <img src="/partner/images/icon/yhm_03.png" alt=""><input type="text" id="userName" placeholder="请输入用户名"><i class="username" ></i>
+        </div>
+        <div class="login_print">
+            <img src="/partner/images/icon/mima_03.png" alt=""><input type="password" id="password" placeholder="请输入密码"><i class="password p_show" data-id="1"></i>
+        </div>
+        <div class="login_print">
+            <img src="/partner/images/icon/mima_03.png" alt=""><input type="password" id="password2" placeholder="确认密码"><i class="password p_show" data-id="1"></i>
+        </div>
+        <div class="login_print">
+            <img src="/partner/images/icon/shouji_03.png" alt=""><input type="tel" id="tel" placeholder="请输入手机号"><i class="username"></i>
+        </div>
+        <div class="login_print">
+            <img src="/partner/images/icon/yanzm_03.png" alt=""><input type="number" id="code" style="width: 40%;"><button id="getCaptcha">点击获取验证码</button>
+        </div>
+        <div class="login_print">
+            <img src="/partner/images/icon/tuijian_06.png" alt=""><input type="tel" id="p_tel" placeholder="请输入推荐人"><i class="username"></i>
+        </div>
+    </div>
+    <a href="javascript:;" id="submit">注册</a>
+</div>
+<div class="footer">
+    <img src="/partner/images/icon/cha2_02.png" alt="">
+</div>
+
+
+<script>
+    $("#username").focus(function () {
+        $(".username").show()
+    }).blur(function () {
+        $(".username").hide()
+    })
+    $("#password").focus(function () {
+        $(".password").show()
+    })
+    $(".username").click(function () {
+        $("#username").val("")
+        $("#username").focus()
+    })
+    $(".password").mousedown(function () {
+        $("#password").prop("type","text")
+
+    }).mouseup(function () {
+        $("#password").prop("type","password")
+    })
+    //验证用户名
+    $("#userName").blur(function () {
+        var userName = $(this).val();
+        if (!userName) {
+            layer.msg("用户名不能为空");
+            return false
+        } else {
+            var patt1 = new RegExp(/\s+/g);
+            if (patt1.test(userName)) {
+                layer.msg("用户名不能有空格");
+                return false
+            }
+            $.ajax({
+                url: "<?php echo url('shareholder/checkName'); ?>",
+                type: "post",
+                data: {userName: userName},
+                success: function (msg) {
+                    if (msg == 1) {
+                        layer.msg("用户名可用！");
+                    } else {
+                        layer.msg("用户名已被注册！");
+                        $("#userName").val("");
+
+                    }
+                }
+            })
+        }
+    })
+    //验证密码
+    $("#password").blur(function () {
+        var a = $(this).val();
+        if (!a) {
+            layer.msg("密码不能为空");
+            return false
+        }else{
+            var reg = /^(?![0-9]+$)(?![a-zA-Z]+$)[0-9A-Za-z]{6,16}$/;
+            if(!reg.test(a)){
+                layer.msg("密码只能由6-16位数字和字母组成");
+                $(this).val("")
+                return false
+            }
+        }
+    })
+    //验证重复密码
+    $("#password2").blur(function () {
+        var a = $(this).val();
+        var b = $("#password").val();
+        if (!a) {
+            layer.msg("重复密码不能为空");
+            return false
+        }
+        if (a != b) {
+            layer.msg("两次输入密码不一致！");
+            return false
+        }
+    })
+    //验证手机
+    $("#tel").blur(function () {
+        var a = $(this).val();
+        if (!a) {
+            layer.msg("手机号码不能为空");
+            return false
+        } else {
+            if (!checkMobile(a)) {
+                layer.msg("手机号码格式不正确");
+                return false
+            }
+        }
+        $.ajax({
+            type:"post",
+            url:"<?php echo url('appmobile/user/cmobile_phone'); ?>",
+            dataType:'json',
+            data:{
+                'tel':tel,
+            },
+            success:function(msg){
+                var msg=JSON.parse(msg)
+                if(msg.status == 1){
+                    layer.msg("您是淘米会员,可直接用淘米平台账号登录!");
+                    setTimeout(function(){
+                        location.href="<?php echo url('shareholder/mb_login'); ?>";
+                    },2500);
+                }
+            }
+        });
+    })
+    $("#getCaptcha").click(function () {
+        var tel = $("#tel").val();
+        if (tel == "") {
+            layer.msg("手机号不能为空");
+            return false;
+        } else {
+            if (!checkMobile(tel)) {
+                layer.msg("手机号码格式不正确");
+                return false;
+            } else {
+                $.ajax({
+                    data: {tel: tel},
+                    url:"<?php echo url('shareholder/test'); ?>",
+                    type: "post",
+                    success: function (msg) {
+                        if (msg.s == 1) {
+                            layer.msg("验证码发送成功");
+                            settime();
+                        } else {
+                            layer.msg("验证码发送失败");
+                        }
+                    }
+                })
+            }
+        }
+    })
+    //验证推荐人
+    $("#p_tel").blur(function () {
+        var p_tel = $(this).val();
+        if (!p_tel) {
+            return false
+        } else {
+            $.ajax({
+                url: "<?php echo url('shareholder/pTelVer'); ?>",
+                type: "post",
+                data: {p_user: p_tel},
+                success: function (msg) {
+                    if (msg.data == 1) {
+                        layer.msg("推荐人可用");
+                    }
+                    if (msg.status == 0) {
+                        layer.msg(msg.data);
+                    }
+                    if (msg.status == 2) {
+                        layer.msg(msg.data);
+                    }
+                    if (msg.status == 3) {
+                        layer.msg(msg.data);
+                    }
+                }
+            })
+        }
+    })
+    //发送
+    $('.content a').click(function () {
+        var user = $('#userName').val();
+        var password = $('#password').val();
+        var password2 = $('#password2').val();
+        var tel = $('#tel').val();
+        var code = $('#code').val();
+        var p_tel = $('#p_tel').val();
+
+        if (!user) {
+            layer.msg("用户名不能为空");
+            return false;
+        }else{
+            var patt1 = new RegExp(/\s+/g);
+            if (patt1.test(user)) {
+                layer.msg("用户名不能有空格");
+                return false
+            }
+        }
+        if (!password) {
+            layer.msg("密码不能为空");
+            return false;
+        }
+        if (!password2) {
+            layer.msg("重复密码不能为空");
+            return false;
+        }
+        if(password !=password2){
+            layer.msg("两次输入密码不一致！");
+        }
+        if (!tel) {
+            layer.msg("手机号不能为空");
+            return false;
+        }
+        if (!code) {
+            layer.msg("验证码不能为空");
+            return false;
+        }
+
+        $.ajax({
+            data: {
+                username: user,
+                password: password,
+                tel: tel,
+                p_user: p_tel,
+                pay_pwd: pay_pwd,
+                code:code
+            },
+            url: "<?php echo url('shareholder/register'); ?>",
+            type: "post",
+            success: function (msg) {
+                if (msg.status == 1) {
+                    layer.msg("注册成功,即将跳转登录页面");
+                    setTimeout(function () {
+                        location.href = "<?php echo url('shareholder/login'); ?>";
+                    }, 2000)
+                }
+                if (msg.status == 2) {
+                    layer.msg(msg.msg);
+                    return false;
+                }
+                if (msg.status == 3) {
+                    layer.msg(msg.msg);
+                    return false;
+                }
+                if (msg.status == 4) {
+                    layer.msg(msg.msg);
+                    return false;
+                }
+                if (msg.status == 5) {
+                    layer.msg(msg.msg);
+                    return false;
+                }
+            }
+        })
+    })
+</script>
+<script>
+    var countdown = 60;
+    function settime() {
+        if (countdown == 0) {
+            $("#getCaptcha").removeAttr("disabled");
+            $("#getCaptcha").text("重新发送") ;
+            countdown = 60;
+            $("#getCaptcha").css({"background-color": "#fdde72"});
+            return false;
+        } else {
+            $("#getCaptcha").attr("disabled", "true");
+            $("#getCaptcha").text("重新发送(" + countdown + ")");
+            $("#getCaptcha").css({"background-color": "#bbb"});
+            countdown--;
+        }
+        setTimeout(function () {
+                settime()
+            }
+            , 1000)
+    }
+    //验证手机号正则
+    function checkMobile(mobile) {
+        var flag = true;
+        if (typeof(mobile) != "string") {
+            flag = false;
+        } else {
+            // ��� ��ϵ�绰 - �ֻ�����
+            var mobileReg = /^(13|14|15|17|18)\d{9}$/;
+            if (!mobileReg.test(mobile)) {
+                flag = false;
+            }
+        }
+        return flag;
+    }
+</script>
+</body>
+</html>

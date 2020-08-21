@@ -26,7 +26,6 @@ class Common extends Controller{
 
     public function auto_wx()
     {
-
       if($this->is_weixin()){
            if(!session('user_id')){
                //自动登录

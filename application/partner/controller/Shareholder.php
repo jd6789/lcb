@@ -273,8 +273,6 @@ class Shareholder extends Co
                     //将这个会员插入到数据库里面去
                     Db::table('tea_user')->insert(['user_id'=>$user_id,'is_ceo'=>1]);
                 }
-
-
 //                if ($usernifo['is_ceo'] == 0) {
 //                    //return json(array('status' => 4, 'data' => "不是股东"));
 //                }
@@ -413,7 +411,7 @@ class Shareholder extends Co
         //删除所有超时的二维码信息
         Db::table('tea_session')->where('overtime','<',$time)->delete();
         $user_id=session('user_id');
-               $user_session=Db::table('tea_session')->where('user_id',$user_id)->where('is_ceo',0)->find();
+        $user_session=Db::table('tea_session')->where('user_id',$user_id)->where('is_ceo',0)->find();
         if($user_session){
             //当前用户已经有二维码信息入库，判断二维码是否有效
             if($time > intval($user_session['overtime'])){
@@ -839,7 +837,6 @@ class Shareholder extends Co
             if($password1 != $password){
                 return json(array('status'=>0,'data'=>"当前密码不正确"));
             }
-
             $password2 = trim(input('post.password2'));
             $password3 = trim(input('post.password3'));
             if($password2 != $password3){
